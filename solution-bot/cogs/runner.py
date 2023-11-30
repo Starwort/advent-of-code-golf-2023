@@ -51,9 +51,9 @@ class Runner(commands.Cog):
         languages = await self.tio.get_languages()
 
         self.languages = (
-            {lang.name: lang for lang in languages}
-            | {lang.tio_name: lang for lang in languages}
-            | {lang.alias: lang for lang in languages}
+            {lang.name.lower(): lang for lang in languages}
+            | {lang.tio_name.lower(): lang for lang in languages}
+            | {lang.alias.lower(): lang for lang in languages if lang.alias is not None}
         )
 
     def get_language(
@@ -62,13 +62,19 @@ class Runner(commands.Cog):
         if language in self.languages:
             return self.languages[language], []
         else:
-            results: list[tuple[str, int]] = process.extract(language, self.languages.keys(), limit=3)  # type: ignore
-            return None, [(self.languages[lang], score) for lang, score in results]
+            results: list[tuple[str, int]] = process.extract(language, self.languages.keys(), limit=6)  # type: ignore
+            found= set()
+            filtered: list[tuple[Language, int]]  = []
+            for lang, score in results:
+                if self.languages[lang].name not in found:
+                    filtered.append((self.languages[lang], score))
+                    found.add(self.languages[lang].name)
+            return None, filtered[:3]
 
     @commands.command()
     async def search(self, ctx: commands.Context, day: int, language: str):
         """Search for a solution in a language."""
-        tio_lang, top_3_matches = self.get_language(language)
+        tio_lang, top_3_matches = self.get_language(language.lower())
         if tio_lang is None:
             await ctx.send(
                 f"Could not find language `{language}`. Did you mean one of these?\n"
@@ -114,7 +120,7 @@ class Runner(commands.Cog):
             return
         if TYPE_CHECKING:
             code: Codeblock = code  # type: ignore
-        tio_lang, top_3_matches = self.get_language(language)
+        tio_lang, top_3_matches = self.get_language(language.lower())
         if tio_lang is None:
             await ctx.send(
                 f"Could not find language `{language}`. Did you mean one of these?\n"
