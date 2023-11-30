@@ -65,6 +65,38 @@ class Runner(commands.Cog):
             return None, [(self.languages[lang], score) for lang, score in results]
 
     @commands.command()
+    async def search(self, ctx: commands.Context, day: int, language: str):
+        """Search for a solution in a language."""
+        tio_lang, top_3_matches = self.get_language(language)
+        if tio_lang is None:
+            await ctx.send(
+                f"Could not find language `{language}`. Did you mean one of these?\n"
+                + "\n".join(
+                    f"`{lang.name}` ({score}%)" for lang, score in top_3_matches
+                )
+            )
+            return
+        language = tio_lang.name
+        solution_authors: SolutionAuthors = json.loads(
+            solution_authors_file.read_text()
+        )
+        if str(day) not in solution_authors:
+            await ctx.reply("No solutions for this day yet.")
+            return
+        if language not in solution_authors[str(day)]:
+            await ctx.reply("No solutions for this language yet.")
+            return
+        author = solution_authors[str(day)][language]
+        solution = (solutions_dir / f"{day}" / language).read_text()
+        solution_len = len(solution.encode())
+        await ctx.reply(
+            f"[Solution for day {day} in {language} by"
+            f" {author} ({solution_len})](https://github.com/Starwort/advent-of-code-golf-2023):\n```\n"
+            + solution
+            + "\n```"
+        )
+
+    @commands.command()
     async def submit(self, ctx: commands.Context, day: int, language: str, code: codeblock_converter):  # type: ignore
         """Submit a solution for a day.
 
