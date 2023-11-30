@@ -1,7 +1,8 @@
 import asyncio
 import json
+from datetime import datetime
 from pathlib import Path
-from typing import TYPE_CHECKING, TypedDict, assert_never
+from typing import TYPE_CHECKING
 
 import aoc_helper
 import discord
@@ -65,6 +66,19 @@ class Runner(commands.Cog):
 
     @commands.command()
     async def submit(self, ctx: commands.Context, day: int, language: str, code: codeblock_converter):  # type: ignore
+        """Submit a solution for a day.
+
+        The solution must be a full program that takes input from stdin, and
+        gives the answer to both parts of the puzzle on stdout. The solution
+        must be runnable on [TIO.run](https://tio.run).
+        """
+        puzzle_unlock = datetime(2023, 12, day, 5)
+        if datetime.utcnow() < puzzle_unlock:
+            await ctx.reply(
+                f"Day {day} is not yet unlocked. It will be unlocked"
+                f" <t:{int(puzzle_unlock.timestamp())}:R>"
+            )
+            return
         if TYPE_CHECKING:
             code: Codeblock = code  # type: ignore
         tio_lang, top_3_matches = self.get_language(language)
