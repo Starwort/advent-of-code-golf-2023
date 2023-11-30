@@ -11,19 +11,27 @@ from aoc_helper.data import DATA_DIR as aoc_data_dir
 from async_tio import Language, Tio
 from discord.ext import commands
 from jishaku.codeblocks import Codeblock, codeblock_converter
-from thefuzz import process
+from thefuzz import fuzz, process
 
 README_TEMPLATE = """# Advent of Code Golf 2023
 
 ![Advent of Code Golf icon](./advent-of-code-golf.png)
 
-This is a community project for Advent of Code Golf 2023 - anyone can submit a solution to any day, in any language (supported by [TIO.run](https://tio.run)), and the shortest one for each language wins. This file will be maintained by the `solution-bot` and will contain the current leaderboard.
+This is a community project for Advent of Code Golf 2023 - anyone can submit a
+solution to any day, in any language (supported by [TIO.run](https://tio.run)),
+and the shortest one for each language wins. This file will be maintained by the
+`solution-bot` and will contain the current leaderboard.
 
 ## Submission rules
 
-- Each solution must be a full program, runnable on [TIO.run](https://tio.run) - this is how the bot will evaluate submissions.
-- Each solution must be a valid answer to the challenge - the bot will check this against my input/output for the day. If you believe a submission is *wrong* (i.e. doesn't solve the challenge on your input), please raise an issue including the submission, your input, and the expected answer.
-- Puzzles involving grid lettering do not need to OCR the letters themselves - outputting the grid is sufficient.
+- Each solution must be a full program, runnable on [TIO.run](https://tio.run) -
+  this is how the bot will evaluate submissions.
+- Each solution must be a valid answer to the challenge - the bot will check this
+  against my input/output for the day. If you believe a submission is *wrong*
+  (i.e. doesn't solve the challenge on your input), please raise an issue
+  including the submission, your input, and the expected answer.
+- Puzzles involving grid lettering do not need to OCR the letters themselves -
+  outputting the grid is sufficient.
 - Input will be provided as stdin, and output should be to stdout.
 - Input length is measured in *bytes*, not characters.
 
@@ -62,9 +70,14 @@ class Runner(commands.Cog):
         if language in self.languages:
             return self.languages[language], []
         else:
-            results: list[tuple[str, int]] = process.extract(language, self.languages.keys(), limit=6)  # type: ignore
-            found= set()
-            filtered: list[tuple[Language, int]]  = []
+            results: list[tuple[str, int]] = process.extract(
+                language,
+                self.languages.keys(),
+                fuzz.ratio,
+                limit=6,
+            )  # type: ignore
+            found = set()
+            filtered: list[tuple[Language, int]] = []
             for lang, score in results:
                 if self.languages[lang].name not in found:
                     filtered.append((self.languages[lang], score))
@@ -183,9 +196,7 @@ class Runner(commands.Cog):
             else:
                 await ctx.reply(
                     f"Failed to decode text; incompletely decoded as {text}\nOriginal"
-                    " text was:\n```\n"
-                    + "\n".join(answers[1:])
-                    + "\n```"
+                    " text was:\n```\n" + "\n".join(answers[1:]) + "\n```"
                 )
                 return False
         elif answers[-1] == real_answers[1]:
@@ -204,9 +215,7 @@ class Runner(commands.Cog):
             else:
                 await ctx.reply(
                     f"Failed to decode text; incompletely decoded as {text}\nOriginal"
-                    " text was:\n```\n"
-                    + "\n".join(answers[:-1])
-                    + "\n```"
+                    " text was:\n```\n" + "\n".join(answers[:-1]) + "\n```"
                 )
                 return False
         else:
