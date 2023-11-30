@@ -73,7 +73,7 @@ class Runner(commands.Cog):
             results: list[tuple[str, int]] = process.extract(
                 language,
                 self.languages.keys(),
-                fuzz.ratio,
+                scorer=fuzz.ratio,
                 limit=6,
             )  # type: ignore
             found = set()
@@ -196,7 +196,9 @@ class Runner(commands.Cog):
             else:
                 await ctx.reply(
                     f"Failed to decode text; incompletely decoded as {text}\nOriginal"
-                    " text was:\n```\n" + "\n".join(answers[1:]) + "\n```"
+                    " text was:\n```\n"
+                    + "\n".join(answers[1:])
+                    + "\n```"
                 )
                 return False
         elif answers[-1] == real_answers[1]:
@@ -215,7 +217,9 @@ class Runner(commands.Cog):
             else:
                 await ctx.reply(
                     f"Failed to decode text; incompletely decoded as {text}\nOriginal"
-                    " text was:\n```\n" + "\n".join(answers[:-1]) + "\n```"
+                    " text was:\n```\n"
+                    + "\n".join(answers[:-1])
+                    + "\n```"
                 )
                 return False
         else:
