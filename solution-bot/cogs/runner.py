@@ -3,6 +3,7 @@ import json
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import TYPE_CHECKING
+from urllib.parse import quote
 
 import aoc_helper
 import discord
@@ -12,11 +13,11 @@ from discord.ext import commands
 from jishaku.codeblocks import Codeblock, codeblock_converter
 from thefuzz import process
 
-README_TEMPLATE = """# Advent of Golf 2023
+README_TEMPLATE = """# Advent of Code Golf 2023
 
-![Advent of Golf icon](./advent-of-golf.png)
+![Advent of Code Golf icon](./advent-of-code-golf.png)
 
-This is a community project for Advent of Golf 2023 - anyone can submit a solution to any day, in any language (supported by [TIO.run](https://tio.run)), and the shortest one for each language wins. This file will be maintained by the `solution-bot` and will contain the current leaderboard.
+This is a community project for Advent of Code Golf 2023 - anyone can submit a solution to any day, in any language (supported by [TIO.run](https://tio.run)), and the shortest one for each language wins. This file will be maintained by the `solution-bot` and will contain the current leaderboard.
 
 ## Submission rules
 
@@ -91,7 +92,7 @@ class Runner(commands.Cog):
         solution_len = len(solution.encode())
         await ctx.reply(
             f"[Solution for day {day} in {language} by"
-            f" {author} ({solution_len})](https://github.com/Starwort/advent-of-code-golf-2023):\n```\n"
+            f" {author} ({solution_len})](https://github.com/Starwort/advent-of-code-golf-2023/blob/master/solutions/{quote(language)}):\n```\n"
             + solution
             + "\n```"
         )

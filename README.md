@@ -1,8 +1,8 @@
-# Advent of Golf 2023
+# Advent of Code Golf 2023
 
-![Advent of Golf icon](./advent-of-golf.png)
+![Advent of Code Golf icon](./advent-of-code-golf.png)
 
-This is a community project for Advent of Golf 2023 - anyone can submit a solution to any day, in any language (supported by [TIO.run](https://tio.run)), and the shortest one for each language wins. This file will be maintained by the `solution-bot` and will contain the current leaderboard.
+This is a community project for Advent of Code Golf 2023 - anyone can submit a solution to any day, in any language (supported by [TIO.run](https://tio.run)), and the shortest one for each language wins. This file will be maintained by the `solution-bot` and will contain the current leaderboard.
 
 ## Submission rules
 
