@@ -1,6 +1,6 @@
 import asyncio
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -99,10 +99,20 @@ class Runner(commands.Cog):
         )
         answers = result.output.split()
         real_answer_path = aoc_data_dir / "2023" / f"{day}"
-        real_answers = (
-            (real_answer_path / "1.solution").read_text(),
-            (real_answer_path / "2.solution").read_text(),
-        )
+        try:
+            real_answers = (
+                (real_answer_path / "1.solution").read_text(),
+                (real_answer_path / "2.solution").read_text(),
+            )
+        except FileNotFoundError:
+            now = datetime.utcnow()
+            soon = now.replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
+            timestamp = int(soon.timestamp())
+            await ctx.reply(
+                "Sorry, submissions for this day are not yet open. Please try again"
+                f" <t:{timestamp}:R>"
+            )
+            return
         if real_answers[0] in code.content or real_answers[1] in code.content:
             await ctx.reply("Your solution contains the answer. Please don't cheat.")
             return
