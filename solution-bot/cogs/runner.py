@@ -1,3 +1,4 @@
+import asyncio
 import json
 from pathlib import Path
 from typing import TYPE_CHECKING, TypedDict, assert_never
@@ -202,7 +203,7 @@ class Runner(commands.Cog):
         if solution_path.exists():
             current_solution = solution_path.read_bytes()
             code_bytes = code.encode()
-            if len(current_solution) < len(code_bytes):
+            if len(code_bytes) < len(current_solution):
                 await ctx.reply(
                     "Your solution is shorter than the current one, updating..."
                 )
@@ -216,6 +217,28 @@ class Runner(commands.Cog):
                     solution_authors[str(day)] = {language: ctx.author.name}
                 solution_authors_file.write_text(json.dumps(solution_authors))
                 self.update_leaderboard()
+                await asyncio.create_subprocess_shell(
+                    f'git add . && git commit -m "({ctx.author.name}) Day'
+                    f' {day} {language} {len(current_solution)} -> {len(code_bytes)}"'
+                    " && git push"
+                )
+        else:
+            await ctx.reply("Your solution is the first for this language, adding...")
+            code_bytes = code.encode()
+            solution_path.write_bytes(code_bytes)
+            solution_authors: SolutionAuthors = json.loads(
+                solution_authors_file.read_text()
+            )
+            if str(day) in solution_authors:
+                solution_authors[str(day)][language] = ctx.author.name
+            else:
+                solution_authors[str(day)] = {language: ctx.author.name}
+            solution_authors_file.write_text(json.dumps(solution_authors))
+            self.update_leaderboard()
+            await asyncio.create_subprocess_shell(
+                f'git add . && git commit -m "({ctx.author.name})'
+                f' Day {day} {language} -> {len(code.encode())}" && git push'
+            )
 
     def update_leaderboard(self):
         solution_authors: SolutionAuthors = json.loads(
