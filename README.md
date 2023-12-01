@@ -25,4 +25,4 @@ leaderboard.
 
 Day | K (ngn/k) | Python
 --: | --- | ---
-1 | [110 - okras](./solutions/1/K%20%28ngn/k%29) | [192 - eniraa](./solutions/1/Python)
+1 | [110 - okras](./solutions/1/K%20%28ngn/k%29) | [187 - _tessaract](./solutions/1/Python)
