@@ -1,4 +1,3 @@
-
 from unicodedata import*
 *I,=open(0)
 for n in 0,10:
