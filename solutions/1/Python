@@ -1,5 +1,7 @@
+
+from unicodedata import*
 *I,=open(0)
-for N in 0,9:
+for n in 0,10:
  t=0
- for l in I:[l:=l.replace(s,s+str(N:=N%9+1)+s)for s in"one two three four five six seven eight nine".split()*N];a,*_,b=filter(str.isdigit,l*2);t+=int(a+b)
+ for l in I:[l:=l.replace(q:=name(x)[6:].lower(),q+x+q)for x in map(str,range(n))];a,*_,b=filter(str.isdigit,l*2);t+=int(a+b)
  print(t)
