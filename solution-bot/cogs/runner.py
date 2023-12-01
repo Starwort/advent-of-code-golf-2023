@@ -117,7 +117,7 @@ class Runner(commands.Cog):
         )
 
     @commands.command()
-    async def submit(self, ctx: commands.Context, day: int, language: str, code: codeblock_converter):  # type: ignore
+    async def submit(self, ctx: commands.Context, day: int, language: str, *, code: codeblock_converter):  # type: ignore
         """Submit a solution for a day.
 
         The solution must be a full program that takes input from stdin, and
