@@ -168,11 +168,20 @@ class Runner(commands.Cog):
                 f" <t:{timestamp}:R>"
             )
             return
-        if real_answers[0] in code.content or real_answers[1] in code.content:
-            await ctx.reply("Your solution contains the answer. Please don't cheat.")
+
+        if not await self.grade_solution(ctx, answers, real_answers):
             return
-        if await self.grade_solution(ctx, answers, real_answers):
-            await self.update_solutions(ctx, day, language, code.content)
+
+        for additional_case in (extra_data_dir / f"{day}").iterdir():
+            input = (additional_case / "input").read_text()
+            answers = (
+                (additional_case / "1.solution").read_text(),
+                (additional_case / "1.solution").read_text(),
+            )
+            if not await self.grade_solution(ctx, answers, real_answers):
+                return
+
+        await self.update_solutions(ctx, day, language, code.content)
 
     def row_to_bools(self, row: str) -> list[bool]:
         return [c == "#" for c in row]
@@ -232,7 +241,7 @@ class Runner(commands.Cog):
             current_solution = solution_path.read_bytes()
             code_bytes = code.encode()
             if len(code_bytes) < len(current_solution):
-                await ctx.reply(
+                reply = await ctx.reply(
                     "Your solution is shorter than the current one, updating..."
                 )
                 solution_path.write_bytes(code_bytes)
@@ -251,9 +260,13 @@ class Runner(commands.Cog):
                     " && git push"
                 )
                 await subprocess.wait()
-                await ctx.reply("Done!")
+                await reply.edit(
+                    "Your solution is shorter than the current one, updating... Done!"
+                )
         else:
-            await ctx.reply("Your solution is the first for this language, adding...")
+            reply = await ctx.reply(
+                "Your solution is the first for this language, adding..."
+            )
             code_bytes = code.encode()
             solution_path.write_bytes(code_bytes)
             solution_authors: SolutionAuthors = json.loads(
@@ -270,7 +283,9 @@ class Runner(commands.Cog):
                 f' Day {day} {language} -> {len(code.encode())}" && git push'
             )
             await subprocess.wait()
-            await ctx.reply("Done!")
+            await reply.edit(
+                "Your solution is the first for this language, adding... Done!"
+            )
 
     def update_leaderboard(self):
         solution_authors: SolutionAuthors = json.loads(
@@ -291,7 +306,9 @@ class Runner(commands.Cog):
             def get_entry(lang: str) -> str:
                 if author := day_solutions.get(lang):
                     solution_len = len((solutions_dir / f"{day}" / lang).read_bytes())
-                    return f"[{solution_len} - {author}](./solutions/{day}/{quote(lang)})"
+                    return (
+                        f"[{solution_len} - {author}](./solutions/{day}/{quote(lang)})"
+                    )
                 else:
                     return "-"
 
@@ -301,6 +318,7 @@ class Runner(commands.Cog):
 
 repo_root = Path(__file__).parent.parent.parent
 solutions_dir = repo_root / "solutions"
+extra_data_dir = repo_root / "extra-data"
 solution_authors_file = repo_root / "solution_authors.json"
 readme_file = repo_root / "README.md"
 
