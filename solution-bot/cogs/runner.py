@@ -177,104 +177,51 @@ class Runner(commands.Cog):
     def row_to_bools(self, row: str) -> list[bool]:
         return [c == "#" for c in row]
 
+    def parse_answers(self, answers: list[str]) -> list[str]:
+        looks_like_grid = ["#" in answer for answer in answers]
+        answers = []
+        current_grid = []
+        for answer, is_grid in zip(answers, looks_like_grid):
+            if is_grid:
+                current_grid.append(self.row_to_bools(answer))
+                if len(current_grid) == 6:
+                    answers.append(aoc_helper.decode_text(current_grid))
+                    current_grid = []
+            else:
+                answers.append(answer)
+        return answers
+
     async def grade_solution(
         self, ctx: commands.Context, answers: list[str], real_answers: tuple[str, str]
     ) -> bool:
+        answers = self.parse_answers(answers)
+        if len(answers) != 2:
+            await ctx.reply(
+                "Your solution gave the wrong number of answers; found:"
+                f" {len(answers)} ({', '.join(answers)}), expected: 2"
+            )
+            return False
         if (answers[0], answers[1]) == real_answers:
             await ctx.reply("That's the right answer!")
             return True
         elif answers[0] == real_answers[0]:
-            text = aoc_helper.decode_text(
-                [self.row_to_bools(row) for row in answers[1:]]
+            await ctx.reply(
+                f"Solution gave wrong answer for part 2: {answers[1]}! Correct answer:"
+                f" {real_answers[1]}"
             )
-            if text == real_answers[1]:
-                await ctx.reply("That's the right answer!")
-                return True
-            elif "?" not in text:
-                await ctx.reply(
-                    f"Solution gave wrong answer for part 2: {text}! Correct answer:"
-                    f" {real_answers[1]}"
-                )
-                return False
-            else:
-                await ctx.reply(
-                    f"Failed to decode text; incompletely decoded as {text}\nOriginal"
-                    " text was:\n```\n"
-                    + "\n".join(answers[1:])
-                    + "\n```"
-                )
-                return False
-        elif answers[-1] == real_answers[1]:
-            text = aoc_helper.decode_text(
-                [self.row_to_bools(row) for row in answers[:-1]]
+            return False
+        elif answers[1] == real_answers[1]:
+            await ctx.reply(
+                f"Solution gave wrong answer for part 1: {answers[0]}! Correct answer:"
+                f" {real_answers[0]}"
             )
-            if text == real_answers[0]:
-                await ctx.reply("That's the right answer!")
-                return True
-            elif "?" not in text:
-                await ctx.reply(
-                    f"Solution gave wrong answer for part 1: {text}! Correct answer:"
-                    f" {real_answers[0]}"
-                )
-                return False
-            else:
-                await ctx.reply(
-                    f"Failed to decode text; incompletely decoded as {text}\nOriginal"
-                    " text was:\n```\n"
-                    + "\n".join(answers[:-1])
-                    + "\n```"
-                )
-                return False
+            return False
         else:
-            text_left = aoc_helper.decode_text(
-                [self.row_to_bools(row) for row in answers[: len(answers) // 2]]
+            await ctx.reply(
+                f"Solution gave wrong answers for both parts: {answers[0]},"
+                f" {answers[1]}! Correct answers: {real_answers[0]}, {real_answers[1]}"
             )
-            text_right = aoc_helper.decode_text(
-                [self.row_to_bools(row) for row in answers[len(answers) // 2 :]]
-            )
-            failed_msg = ""
-            if "?" in text_left:
-                failed_msg += (
-                    "Failed to decode text for part 1; incompletely decoded as"
-                    f" {text_left}\nOriginal text was:\n```\n"
-                    + "\n".join(answers[: len(answers) // 2])
-                    + "\n```\n"
-                )
-            if "?" in text_right:
-                failed_msg += (
-                    "Failed to decode text for part 2; incompletely decoded as"
-                    f" {text_right}\nOriginal text was:\n```\n"
-                    + "\n".join(answers[len(answers) // 2 :])
-                    + "\n```"
-                )
-            if failed_msg:
-                await ctx.reply(failed_msg)
-                return False
-            match (text_left == real_answers[0], text_right == real_answers[1]):
-                case (True, True):
-                    await ctx.reply("That's the right answer!")
-                    return True
-                case (False, True):
-                    await ctx.reply(
-                        f"Solution gave wrong answer for part 1: {text_left}! Correct"
-                        f" answer: {real_answers[0]}"
-                    )
-                    return False
-                case (True, False):
-                    await ctx.reply(
-                        f"Solution gave wrong answer for part 2: {text_right}! Correct"
-                        f" answer: {real_answers[1]}"
-                    )
-                    return False
-                case (False, False):
-                    await ctx.reply(
-                        f"Solution gave wrong answer for both parts: {text_left},"
-                        f" {text_right}! Correct answer: {real_answers[0]},"
-                        f" {real_answers[1]}"
-                    )
-                    return False
-                case _:
-                    assert False, "unreachable"
+            return False
 
     async def update_solutions(
         self, ctx: commands.Context, day: int, language: str, code: str
@@ -298,11 +245,13 @@ class Runner(commands.Cog):
                     solution_authors[str(day)] = {language: ctx.author.name}
                 solution_authors_file.write_text(json.dumps(solution_authors))
                 self.update_leaderboard()
-                await asyncio.create_subprocess_shell(
+                subprocess = await asyncio.create_subprocess_shell(
                     f'git add . && git commit -m "({ctx.author.name}) Day'
                     f' {day} {language} {len(current_solution)} -> {len(code_bytes)}"'
                     " && git push"
                 )
+                await subprocess.wait()
+                await ctx.reply("Done!")
         else:
             await ctx.reply("Your solution is the first for this language, adding...")
             code_bytes = code.encode()
@@ -316,10 +265,12 @@ class Runner(commands.Cog):
                 solution_authors[str(day)] = {language: ctx.author.name}
             solution_authors_file.write_text(json.dumps(solution_authors))
             self.update_leaderboard()
-            await asyncio.create_subprocess_shell(
+            subprocess = await asyncio.create_subprocess_shell(
                 f'git add . && git commit -m "({ctx.author.name})'
                 f' Day {day} {language} -> {len(code.encode())}" && git push'
             )
+            await subprocess.wait()
+            await ctx.reply("Done!")
 
     def update_leaderboard(self):
         solution_authors: SolutionAuthors = json.loads(
