@@ -3,13 +3,13 @@
 ![Advent of Code Golf icon](./advent-of-code-golf.png)
 
 This is a community project for Advent of Code Golf 2023 - anyone can submit a
-solution to any day, in any language (supported by [TIO.run](https://tio.run)),
+solution to any day, in any language (supported by [Attempt This Online](https://ato.pxeger.com)),
 and the shortest one for each language wins. This file will be maintained by the
 `solution-bot` and will contain the current leaderboard.
 
 ## Submission rules
 
-- Each solution must be a full program, runnable on [TIO.run](https://tio.run) -
+- Each solution must be a full program, runnable on [Attempt This Online](https://ato.pxeger.com) -
   this is how the bot will evaluate submissions.
 - Each solution must be a valid answer to the challenge - the bot will check this
   against my input/output for the day. If you believe a submission is *wrong*
