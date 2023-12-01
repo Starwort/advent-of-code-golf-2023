@@ -179,17 +179,17 @@ class Runner(commands.Cog):
 
     def parse_answers(self, answers: list[str]) -> list[str]:
         looks_like_grid = ["#" in answer for answer in answers]
-        answers = []
+        out_answers = []
         current_grid = []
         for answer, is_grid in zip(answers, looks_like_grid):
             if is_grid:
                 current_grid.append(self.row_to_bools(answer))
                 if len(current_grid) == 6:
-                    answers.append(aoc_helper.decode_text(current_grid))
+                    out_answers.append(aoc_helper.decode_text(current_grid))
                     current_grid = []
             else:
-                answers.append(answer)
-        return answers
+                out_answers.append(answer)
+        return out_answers
 
     async def grade_solution(
         self, ctx: commands.Context, answers: list[str], real_answers: tuple[str, str]
