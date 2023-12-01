@@ -149,7 +149,8 @@ class Runner(commands.Cog):
             language=tio_lang.tio_name,
             inputs=aoc_helper.fetch(day, year=2023),
         )
-        answers = result.output.split()
+        out = "\n".join(result.output.splitlines()[:-6])  # strip `time` info
+        answers = out.split()
         real_answer_path = aoc_data_dir / "2023" / f"{day}"
         try:
             real_answers = (
