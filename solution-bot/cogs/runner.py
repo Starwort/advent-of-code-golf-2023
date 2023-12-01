@@ -257,21 +257,25 @@ class Runner(commands.Cog):
         if not await self.grade_solution(ctx, answers, real_answers):
             return
 
-        for additional_case in (extra_data_dir / f"{day}").iterdir():
-            input = (additional_case / "input").read_text()
-            real_answers = (
-                (additional_case / "1.solution").read_text(),
-                (additional_case / "2.solution").read_text(),
-            )
-            answers = await self.execute(
-                ctx,
-                code.content,
-                language=ato_lang,
-                input=input,
-            )
-            if not await self.grade_solution(ctx, answers, real_answers):
-                return
+        cases_dir = extra_data_dir / f"{day}"
 
+        if cases_dir.exists():
+            for additional_case in cases_dir.iterdir():
+                input = (additional_case / "input").read_text()
+                real_answers = (
+                    (additional_case / "1.solution").read_text(),
+                    (additional_case / "2.solution").read_text(),
+                )
+                answers = await self.execute(
+                    ctx,
+                    code.content,
+                    language=ato_lang,
+                    input=input,
+                )
+                if not await self.grade_solution(ctx, answers, real_answers):
+                    return
+
+        await ctx.reply("That's the right answer!")
         await self.update_solutions(ctx, day, language, code.content)
 
     def row_to_bools(self, row: str) -> list[bool]:
@@ -302,7 +306,6 @@ class Runner(commands.Cog):
             )
             return False
         if (answers[0], answers[1]) == real_answers:
-            await ctx.reply("That's the right answer!")
             return True
         elif answers[0] == real_answers[0]:
             await ctx.reply(
