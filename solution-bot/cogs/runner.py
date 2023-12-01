@@ -111,7 +111,7 @@ class Runner(commands.Cog):
         solution_len = len(solution.encode())
         await ctx.reply(
             f"[Solution for day {day} in {language} by"
-            f" {author} ({solution_len})](https://github.com/Starwort/advent-of-code-golf-2023/blob/master/solutions/{quote(language)}):\n```\n"
+            f" {author} ({solution_len})](https://github.com/Starwort/advent-of-code-golf-2023/blob/master/solutions/{day}/{quote(language)}):\n```\n"
             + solution
             + "\n```"
         )
@@ -291,7 +291,7 @@ class Runner(commands.Cog):
             def get_entry(lang: str) -> str:
                 if author := day_solutions.get(lang):
                     solution_len = len((solutions_dir / f"{day}" / lang).read_bytes())
-                    return f"[{solution_len} - {author}](./solutions/{day}/{lang})"
+                    return f"[{solution_len} - {author}](./solutions/{day}/{quote(lang)})"
                 else:
                     return "-"
 
