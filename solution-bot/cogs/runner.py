@@ -2,16 +2,19 @@ import asyncio
 import json
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import TYPE_CHECKING
+from sys import version as py_version
+from typing import TYPE_CHECKING, Literal, TypedDict
 from urllib.parse import quote
 
 import aoc_helper
 import discord
+import msgpack
+import websockets.client as websockets
 from aoc_helper.data import DATA_DIR as aoc_data_dir
-from async_tio import Language, Tio
 from discord.ext import commands
 from jishaku.codeblocks import Codeblock, codeblock_converter
 from thefuzz import fuzz, process
+from websockets.version import version as ws_version
 
 README_TEMPLATE = """# Advent of Code Golf 2023
 
@@ -40,6 +43,34 @@ and the shortest one for each language wins. This file will be maintained by the
 {}
 """
 
+
+class LanguageMeta(TypedDict):
+    name: str
+    version: str
+    # ignoring the rest of the fields for now
+
+
+class Stdout(TypedDict):
+    Stdout: str
+
+
+class Stderr(TypedDict):
+    Stderr: str
+
+
+class DoneData(TypedDict):
+    status_type: Literal["exited", "killed", "core_dumped", "unknown"]
+    status_value: int
+    stdout_truncated: bool
+    stderr_truncated: bool
+    timed_out: bool
+    # ignoring the rest of the fields for now
+
+
+class Done(TypedDict):
+    Done: DoneData
+
+
 type SolutionDay = str
 type SolutionLanguage = str
 
@@ -49,54 +80,54 @@ type SolutionAuthors = dict[SolutionDay, dict[SolutionLanguage, str]]
 class Runner(commands.Cog):
     """The description for Runner goes here."""
 
-    languages: dict[str, Language]
-
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        self.tio = Tio()
 
     async def async_init(self):
-        languages = await self.tio.get_languages()
+        from json import loads
 
-        self.languages = (
-            {lang.name.lower(): lang for lang in languages}
-            | {lang.tio_name.lower(): lang for lang in languages}
-            | {lang.alias.lower(): lang for lang in languages if lang.alias is not None}
-        )
+        self.languages: dict[str, LanguageMeta] = loads(languages.read_text())
+        self.language_lookup: dict[str, str] = {
+            lang.lower(): lang for lang in self.languages
+        } | {meta["name"].lower(): lang for lang, meta in self.languages.items()}
 
-    def get_language(
-        self, language: str
-    ) -> tuple[Language | None, list[tuple[Language, int]]]:
+    def get_language(self, language: str) -> tuple[str | None, list[tuple[str, int]]]:
+        language = language.lower()
         if language in self.languages:
-            return self.languages[language], []
+            return language, []
         else:
             results: list[tuple[str, int]] = process.extract(
                 language,
-                self.languages.keys(),
+                self.language_lookup.keys(),
                 scorer=fuzz.ratio,
                 limit=6,
             )  # type: ignore
             found = set()
-            filtered: list[tuple[Language, int]] = []
+            filtered: list[tuple[str, int]] = []
             for lang, score in results:
-                if self.languages[lang].name not in found:
-                    filtered.append((self.languages[lang], score))
-                    found.add(self.languages[lang].name)
+                if self.language_lookup[lang] not in found:
+                    filtered.append((self.language_lookup[lang], score))
+                    found.add(self.language_lookup[lang])
             return None, filtered[:3]
 
     @commands.command()
     async def search(self, ctx: commands.Context, day: int, language: str):
         """Search for a solution in a language."""
-        tio_lang, top_3_matches = self.get_language(language.lower())
-        if tio_lang is None:
+        ato_lang, top_3_matches = self.get_language(language.lower())
+        if ato_lang is None:
+            top_3_meta = [
+                (self.languages[lang], score)
+                for lang, score in top_3_matches
+                if lang in self.languages
+            ]
             await ctx.send(
                 f"Could not find language `{language}`. Did you mean one of these?\n"
                 + "\n".join(
-                    f"`{lang.name}` ({score}%)" for lang, score in top_3_matches
+                    f"`{lang['name']}` ({score}%)" for lang, score in top_3_meta
                 )
             )
             return
-        language = tio_lang.name
+        language = self.languages[ato_lang]["name"]
         solution_authors: SolutionAuthors = json.loads(
             solution_authors_file.read_text()
         )
@@ -116,6 +147,50 @@ class Runner(commands.Cog):
             + "\n```"
         )
 
+    async def execute(
+        self, ctx: commands.Context, code: str, language: str, input: str
+    ) -> list[str]:
+        stdout = ""
+        stderr = ""
+        async with websockets.connect(
+            "wss://ato.pxeger.com/api/v1/ws/execute",
+            user_agent_header=(
+                f"Advent of Code Golf bot / websockets=={ws_version};"
+                f" Python=={py_version}"
+            ),
+        ) as ws:
+            await ws.send(
+                msgpack.dumps(
+                    {
+                        "language": language,
+                        "code": code,
+                        "input": input,
+                    }
+                )
+            )
+            while True:
+                msg: Stdout | Stderr | Done = msgpack.loads(await ws.recv())  # type: ignore
+                match msg:
+                    case {"Stdout": data}:
+                        stdout += data
+                    case {"Stderr": data}:
+                        stderr += data
+                    case {"Done": data}:
+                        match data:
+                            case {"timed_out": True}:
+                                await ctx.reply("Your code timed out after 60 seconds.")
+                            case {"status_type": "killed", "status_value": why}:
+                                await ctx.reply(
+                                    f"Your code was killed by the server: {why}"
+                                )
+                            case {"status_type": "core_dumped", "status_value": why}:
+                                await ctx.reply(f"Your code caused a core dump: {why}")
+                        break
+            if stdout:
+                return stdout.split()
+            else:
+                return stderr.split()
+
     @commands.command()
     async def submit(self, ctx: commands.Context, day: int, language: str, *, code: codeblock_converter):  # type: ignore
         """Submit a solution for a day.
@@ -133,24 +208,31 @@ class Runner(commands.Cog):
             return
         if TYPE_CHECKING:
             code: Codeblock = code  # type: ignore
-        tio_lang, top_3_matches = self.get_language(language.lower())
-        if tio_lang is None:
+        ato_lang, top_3_matches = self.get_language(language.lower())
+        if ato_lang is None:
+            top_3_meta = [
+                (self.languages[lang], score)
+                for lang, score in top_3_matches
+                if lang in self.languages
+            ]
             await ctx.send(
                 f"Could not find language `{language}`. Did you mean one of these?\n"
                 + "\n".join(
-                    f"`{lang.name}` ({score}%)" for lang, score in top_3_matches
+                    f"`{lang['name']}` ({score}%)" for lang, score in top_3_meta
                 )
             )
             return
-        language = tio_lang.name
-        await ctx.send(f"Running your code in {tio_lang.name}...")
-        result = await self.tio.execute(
-            code.content,
-            language=tio_lang.tio_name,
-            inputs=aoc_helper.fetch(day, year=2023),
+        language = self.languages[ato_lang]["name"]
+        await ctx.send(
+            "Running your code in"
+            f" {language} ({self.languages[ato_lang]['version']})..."
         )
-        out = "\n".join(result.output.splitlines()[:-6])  # strip `time` info
-        answers = out.split()
+        answers = await self.execute(
+            ctx,
+            code.content,
+            language=ato_lang,
+            input=aoc_helper.fetch(day, year=2023),
+        )
         real_answer_path = aoc_data_dir / "2023" / f"{day}"
         try:
             real_answers = (
@@ -174,9 +256,15 @@ class Runner(commands.Cog):
 
         for additional_case in (extra_data_dir / f"{day}").iterdir():
             input = (additional_case / "input").read_text()
-            answers = (
+            real_answers = (
                 (additional_case / "1.solution").read_text(),
-                (additional_case / "1.solution").read_text(),
+                (additional_case / "2.solution").read_text(),
+            )
+            answers = await self.execute(
+                ctx,
+                code.content,
+                language=ato_lang,
+                input=input,
             )
             if not await self.grade_solution(ctx, answers, real_answers):
                 return
@@ -261,7 +349,10 @@ class Runner(commands.Cog):
                 )
                 await subprocess.wait()
                 await reply.edit(
-                    "Your solution is shorter than the current one, updating... Done!"
+                    content=(
+                        "Your solution is shorter than the current one, updating..."
+                        " Done!"
+                    )
                 )
         else:
             reply = await ctx.reply(
@@ -284,7 +375,7 @@ class Runner(commands.Cog):
             )
             await subprocess.wait()
             await reply.edit(
-                "Your solution is the first for this language, adding... Done!"
+                content="Your solution is the first for this language, adding... Done!"
             )
 
     def update_leaderboard(self):
@@ -321,6 +412,7 @@ solutions_dir = repo_root / "solutions"
 extra_data_dir = repo_root / "extra-data"
 solution_authors_file = repo_root / "solution_authors.json"
 readme_file = repo_root / "README.md"
+languages = repo_root / "attempt-this-online" / "languages.json"
 
 
 async def setup(bot: commands.Bot):
