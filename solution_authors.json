@@ -1,1 +1,5 @@
-{"1": {"Python 3": "starwort", "Python 3.8 (pre-release)": "starwort"}}
+{
+    "1": {
+        "Python": "starwort"
+    }
+}

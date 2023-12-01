@@ -1,7 +1,0 @@
-*I,=open(0)
-for N in 0,1:
- t=i=0
- for l in I:
-  for s in"one two three four five six seven eight nine".split()*N:i+=1;l=l.replace(s,s+str(i)+s)
-  a,*_,b=filter(str.isdigit,l*2);t+=int(a+b);i=0
- print(t)
