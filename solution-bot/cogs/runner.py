@@ -158,7 +158,9 @@ class Runner(commands.Cog):
             )
         except FileNotFoundError:
             now = datetime.utcnow()
-            soon = now.replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
+            soon = now.replace(
+                second=0, microsecond=0, minute=now.minute - (now.minute % 15)
+            ) + timedelta(minutes=15)
             timestamp = int(soon.timestamp())
             await ctx.reply(
                 "Sorry, submissions for this day are not yet open. Please try again"
