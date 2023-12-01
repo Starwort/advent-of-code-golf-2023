@@ -216,7 +216,7 @@ class Runner(commands.Cog):
         if code.language is not None:
             # skip initial newline when codeblock was given with
             # ``` syntax
-            code.content = code.content[1:]
+            code = Codeblock(code.language, code.content[1:])
         ato_lang, top_3_matches = self.get_language(language)
         if ato_lang is None:
             top_3_meta = [
@@ -233,7 +233,7 @@ class Runner(commands.Cog):
             return
         language = self.languages[ato_lang]["name"]
         await ctx.send(
-            f"Running your code ({len(code.content.encode)} bytes) in"
+            f"Running your code ({len(code.content.encode())} bytes) in"
             f" {language} ({self.languages[ato_lang]['version']})..."
         )
         answers = await self.execute(
