@@ -51,11 +51,11 @@ class LanguageMeta(TypedDict):
 
 
 class Stdout(TypedDict):
-    Stdout: str
+    Stdout: bytes
 
 
 class Stderr(TypedDict):
-    Stderr: str
+    Stderr: bytes
 
 
 class DoneData(TypedDict):
@@ -174,9 +174,9 @@ class Runner(commands.Cog):
                 msg: Stdout | Stderr | Done = msgpack.loads(await ws.recv())  # type: ignore
                 match msg:
                     case {"Stdout": data}:
-                        stdout += data
+                        stdout += data.decode()
                     case {"Stderr": data}:
-                        stderr += data
+                        stderr += data.decode()
                     case {"Done": data}:
                         match data:
                             case {"timed_out": True}:
