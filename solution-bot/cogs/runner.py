@@ -165,6 +165,8 @@ class Runner(commands.Cog):
                         "language": language,
                         "code": code,
                         "input": input,
+                        "options": [],
+                        "arguments": [],
                     }
                 )
             )
