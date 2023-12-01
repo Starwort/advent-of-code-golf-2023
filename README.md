@@ -24,4 +24,4 @@ and the shortest one for each language wins. This file will be maintained by the
 
 Day | Python 3 | Python 3.8 (pre-release)
 --: | --- | ---
-1 | [202 - starwort](./solutions/1/Python%203) | [187 - _tessaract](./solutions/1/Python%203.8%20%28pre-release%29)
+1 | [202 - starwort](./solutions/1/Python%203) | [195 - starwort](./solutions/1/Python%203.8%20%28pre-release%29)
