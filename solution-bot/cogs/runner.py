@@ -246,7 +246,7 @@ class Runner(commands.Cog):
                 solution_authors_file.write_text(json.dumps(solution_authors))
                 self.update_leaderboard()
                 subprocess = await asyncio.create_subprocess_shell(
-                    f'git add . && git commit -m "({ctx.author.name}) Day'
+                    f'git add .. && git commit -m "({ctx.author.name}) Day'
                     f' {day} {language} {len(current_solution)} -> {len(code_bytes)}"'
                     " && git push"
                 )
@@ -266,7 +266,7 @@ class Runner(commands.Cog):
             solution_authors_file.write_text(json.dumps(solution_authors))
             self.update_leaderboard()
             subprocess = await asyncio.create_subprocess_shell(
-                f'git add . && git commit -m "({ctx.author.name})'
+                f'git add .. && git commit -m "({ctx.author.name})'
                 f' Day {day} {language} -> {len(code.encode())}" && git push'
             )
             await subprocess.wait()
