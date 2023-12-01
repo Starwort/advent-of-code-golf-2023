@@ -2,6 +2,6 @@
 for N in 0,1:
  t=i=0
  for l in I:
-  for s in"one two three four five six seven eight nine ten".split()*N:i+=1;l=l.replace(s,s+str(i)+s)
+  for s in"one two three four five six seven eight nine".split()*N:i+=1;l=l.replace(s,s+str(i)+s)
   *a,=filter(str.isdigit,l);t+=int(a[0]+a[-1]);i=0
  print(t)
