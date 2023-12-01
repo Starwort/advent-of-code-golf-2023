@@ -96,6 +96,8 @@ class Runner(commands.Cog):
         language = language.lower()
         if language in self.languages:
             return language, []
+        elif language in self.language_lookup:
+            return self.language_lookup[language], []
         else:
             results: list[tuple[str, int]] = process.extract(
                 language,
@@ -211,7 +213,7 @@ class Runner(commands.Cog):
             return
         if TYPE_CHECKING:
             code: Codeblock = code  # type: ignore
-        ato_lang, top_3_matches = self.get_language(language.lower())
+        ato_lang, top_3_matches = self.get_language(language)
         if ato_lang is None:
             top_3_meta = [
                 (self.languages[lang], score)
