@@ -217,7 +217,7 @@ class Runner(commands.Cog):
             # skip initial and trailing newlines when codeblock was given with
             # ``` syntax
             code_content = code.content[1:]
-            if code.endswith("\n") and language != "whitespace":
+            if code_content.endswith("\n") and language != "whitespace":
                 code_content = code_content[:-1]
             code = Codeblock(code.language, code_content)
         ato_lang, top_3_matches = self.get_language(language)
