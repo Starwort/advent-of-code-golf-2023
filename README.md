@@ -24,4 +24,4 @@ and the shortest one for each language wins. This file will be maintained by the
 
 Day | Python 3
 --: | ---
-1 | [204 - starwort](./solutions/1/Python 3)
+1 | [202 - starwort](./solutions/1/Python 3)
