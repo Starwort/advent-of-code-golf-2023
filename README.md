@@ -22,6 +22,6 @@ and the shortest one for each language wins. This file will be maintained by the
 
 ## Leaderboard
 
-Day | Python 3
---: | ---
-1 | [202 - starwort](./solutions/1/Python 3)
+Day | Python 3 | Python 3.8 (pre-release)
+--: | --- | ---
+1 | [202 - starwort](./solutions/1/Python%203) | [200 - starwort](./solutions/1/Python%203.8%20%28pre-release%29)
