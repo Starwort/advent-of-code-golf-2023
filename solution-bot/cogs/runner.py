@@ -214,9 +214,12 @@ class Runner(commands.Cog):
         if TYPE_CHECKING:
             code: Codeblock = code  # type: ignore
         if code.language is not None:
-            # skip initial newline when codeblock was given with
+            # skip initial and trailing newlines when codeblock was given with
             # ``` syntax
-            code = Codeblock(code.language, code.content[1:])
+            code_content = code.content[1:]
+            if code.endswith("\n") and language != "whitespace":
+                code_content = code_content[:-1]
+            code = Codeblock(code.language, code_content)
         ato_lang, top_3_matches = self.get_language(language)
         if ato_lang is None:
             top_3_meta = [
