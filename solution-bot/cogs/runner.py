@@ -156,7 +156,7 @@ class Runner(commands.Cog):
         """Search the available languages. Returns the top 10 matches, or states
         an exact match.
         """
-        exact, best_10 = self.get_languages(query, 10)
+        exact, best_10 = self.get_language(query, 10)
         if exact is not None:
             await ctx.reply(
                 f"{query!r} is an available language:"
