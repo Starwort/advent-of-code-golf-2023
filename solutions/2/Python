@@ -2,8 +2,8 @@
 i=1
 for l in I:
  for s in l.replace(*';,').split(','):
-  a=s.split()
-  if int(a[-2])>24-ord(a[-1][0])//9:break
+  *a,x,y=s.split()
+  if int(x)>24-ord(y[0])//9:break
  else:t+=i
  i+=1
 import math,re
