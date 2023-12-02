@@ -28,4 +28,4 @@ If you wish to submit solutions, please use [the bot](https://discord.com/api/oa
 Day | K (ngn/k) | Python
 --: | --- | ---
 1 | [110 - okras](./solutions/1/K%20%28ngn/k%29) | [187 - _tessaract](./solutions/1/Python)
-2 | - | [179 - starwort](./solutions/2/Python)
+2 | - | [178 - _tessaract](./solutions/2/Python)

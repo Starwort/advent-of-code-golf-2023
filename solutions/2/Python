@@ -1,7 +1,7 @@
 import re
 i=A=B=0
 for l in open(0):
- i-=1;g=[z:=0]*15
- for a,b in re.findall("(\d+) (\w)",l):g[r]=max(g[r:=24-ord(b)//9],a:=int(a));z|=a>r
- A+=i*~-z;*_,x,y,z=g;B+=x*y*z
+ i-=1;g=[z:=0]*3
+ for a,b in re.findall("(\d+) (\w)",l):g[r]=max(g[r:=12-ord(b)//9],a:=int(a));z|=a-12>r
+ A+=i*~-z;x,y,z=g;B+=x*y*z
 print(A,B)
