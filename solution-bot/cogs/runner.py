@@ -1,5 +1,6 @@
 import asyncio
 import json
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 from sys import version as py_version
@@ -50,6 +51,8 @@ If you wish to submit solutions, please use [the bot](https://discord.com/api/oa
 class LanguageMeta(TypedDict):
     name: str
     version: str
+    internal_name: str  # custom
+    disallowed_regex: str | None  # custom
     # ignoring the rest of the fields for now
 
 
@@ -90,14 +93,47 @@ class Runner(commands.Cog):
         from json import loads
 
         self.languages: dict[str, LanguageMeta] = loads(languages.read_text())
-        self.language_lookup: dict[str, str] = {
-            lang.lower(): lang for lang in self.languages
-        } | {meta["name"].lower(): lang for lang, meta in self.languages.items()}
+        for lang, meta in self.languages.items():
+            meta["internal_name"] = lang
+            meta["disallowed_regex"] = None
+        self.language_lookup: dict[str, LanguageMeta] = {
+            lang.lower(): meta for lang, meta in self.languages.items()
+        } | {meta["name"].lower(): meta for meta in self.languages.values()}
 
-    def get_language(self, language: str) -> tuple[str | None, list[tuple[str, int]]]:
+        self.load_variants()
+
+    def load_variants(self):
+        extra_langs = {}
+        for variant, rule in {
+            "no-ws": {"name": "No Whitespace", "disallowed_regex": r"\s"},
+            "orthoplex": {
+                "name": "Orthoplex",
+                "disallowed_regex": r"[^a-z()]|eval|exec",
+            },
+        }.items():
+            extra_langs |= {
+                f"{lang}-{variant}": {
+                    "name": f"{meta['name']} ({rule['name']})",
+                    "internal_name": meta["internal_name"],
+                    "version": meta["version"],
+                    "disallowed_regex": rule["disallowed_regex"],
+                }
+                for lang, meta in self.languages.items()
+            }
+        self.languages |= extra_langs
+        self.language_lookup |= {
+            lang.lower(): meta for lang, meta in extra_langs.items()
+        }
+        self.language_lookup |= {
+            meta["name"].lower(): meta for meta in extra_langs.values()
+        }
+
+    def get_language(
+        self, language: str
+    ) -> tuple[LanguageMeta | None, list[tuple[LanguageMeta, int]]]:
         language = language.lower()
         if language in self.languages:
-            return language, []
+            return self.languages[language], []
         elif language in self.language_lookup:
             return self.language_lookup[language], []
         else:
@@ -108,11 +144,11 @@ class Runner(commands.Cog):
                 limit=6,
             )  # type: ignore
             found = set()
-            filtered: list[tuple[str, int]] = []
+            filtered: list[tuple[LanguageMeta, int]] = []
             for lang, score in results:
-                if self.language_lookup[lang] not in found:
+                if self.language_lookup[lang]["name"] not in found:
                     filtered.append((self.language_lookup[lang], score))
-                    found.add(self.language_lookup[lang])
+                    found.add(self.language_lookup[lang]["name"])
             return None, filtered[:3]
 
     @commands.command()
@@ -128,11 +164,12 @@ class Runner(commands.Cog):
             await ctx.send(
                 f"Could not find language `{language}`. Did you mean one of these?\n"
                 + "\n".join(
-                    f"`{lang['name']}` ({score}%)" for lang, score in top_3_meta
+                    f"'{lang['name']}' `{lang['internal_name']}` ({score}%)"
+                    for lang, score in top_3_meta
                 )
             )
             return
-        language = self.languages[ato_lang]["name"]
+        language = ato_lang["name"]
         solution_authors: SolutionAuthors = json.loads(
             solution_authors_file.read_text()
         )
@@ -199,7 +236,14 @@ class Runner(commands.Cog):
                 return stderr.split()
 
     @commands.command()
-    async def submit(self, ctx: commands.Context, day: int, language: str, *, code: codeblock_converter):  # type: ignore
+    async def submit(
+        self,
+        ctx: commands.Context,
+        day: int,
+        language: str,
+        *,
+        code: Codeblock = commands.parameter(converter=codeblock_converter),
+    ):
         """Submit a solution for a day.
 
         The solution must be a full program that takes input from stdin, and
@@ -213,8 +257,6 @@ class Runner(commands.Cog):
                 f" <t:{int(puzzle_unlock.timestamp())}:R>"
             )
             return
-        if TYPE_CHECKING:
-            code: Codeblock = code  # type: ignore
         if code.language is not None:
             # skip initial and trailing newlines when codeblock was given with
             # ``` syntax
@@ -229,22 +271,29 @@ class Runner(commands.Cog):
                 for lang, score in top_3_matches
                 if lang in self.languages
             ]
-            await ctx.send(
+            await ctx.reply(
                 f"Could not find language `{language}`. Did you mean one of these?\n"
                 + "\n".join(
                     f"`{lang['name']}` ({score}%)" for lang, score in top_3_meta
                 )
             )
             return
-        language = self.languages[ato_lang]["name"]
-        await ctx.send(
+        elif ato_lang["disallowed_regex"] is not None:
+            if match := re.search(ato_lang["disallowed_regex"], code.content):
+                await ctx.reply(
+                    "Sorry, your solution is ineligible for this language variant:"
+                    f" contains disallowed text {match[0]!r}"
+                )
+                return
+        language = ato_lang["name"]
+        await ctx.reply(
             f"Running your code ({len(code.content.encode())} bytes) in"
-            f" {language} ({self.languages[ato_lang]['version']})..."
+            f" {language} ({ato_lang['version']})..."
         )
         answers = await self.execute(
             ctx,
             code.content,
-            language=ato_lang,
+            language=ato_lang["internal_name"],
             input=aoc_helper.fetch(day, year=2023),
         )
         real_answer_path = aoc_data_dir / "2023" / f"{day}"
@@ -280,7 +329,7 @@ class Runner(commands.Cog):
                 answers = await self.execute(
                     ctx,
                     code.content,
-                    language=ato_lang,
+                    language=ato_lang["internal_name"],
                     input=input,
                 )
                 if not await self.grade_solution(ctx, answers, real_answers):
