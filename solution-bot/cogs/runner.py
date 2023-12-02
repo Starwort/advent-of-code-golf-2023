@@ -21,7 +21,7 @@ README_TEMPLATE = """# Advent of Code Golf 2023
 ![Advent of Code Golf icon](./advent-of-code-golf.png)
 
 This is a community project for Advent of Code Golf 2023 - anyone can submit a
-solution to any day, in any language(supported by [Attempt This
+solution to any day, in any language (supported by [Attempt This
 Online](https://ato.pxeger.com)), and the shortest one for each language wins.
 This file will be maintained by the `solution-bot` and will contain the current
 leaderboard.
