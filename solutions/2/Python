@@ -1,8 +1,8 @@
-import re,math
+import re
 i=A=B=0
 for l in open(0):
  i+=1;g=[0]*3;z=1
  for a,b in re.findall(r"(\d+) (\w)",l):O=ord(b);g[x]=max(g[x:=(O-97)//6],a:=int(a));z*=a<=24-O//9
  if z:A+=i
- B+=math.prod(g)
+ B+=g[0]*g[1]*g[2]
 print(A,B)
