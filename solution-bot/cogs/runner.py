@@ -129,7 +129,7 @@ class Runner(commands.Cog):
         }
 
     def get_language(
-        self, language: str
+        self, language: str, top_n: int = 3
     ) -> tuple[LanguageMeta | None, list[tuple[LanguageMeta, int]]]:
         language = language.lower()
         if language in self.languages:
@@ -141,7 +141,7 @@ class Runner(commands.Cog):
                 language,
                 self.language_lookup.keys(),
                 scorer=fuzz.ratio,
-                limit=6,
+                limit=top_n * 2,
             )  # type: ignore
             found = set()
             filtered: list[tuple[LanguageMeta, int]] = []
@@ -149,7 +149,27 @@ class Runner(commands.Cog):
                 if self.language_lookup[lang]["name"] not in found:
                     filtered.append((self.language_lookup[lang], score))
                     found.add(self.language_lookup[lang]["name"])
-            return None, filtered[:3]
+            return None, filtered[:top_n]
+
+    @commands.command(name="search-langs", aliases=["langs"])
+    async def search_langs(self, ctx: commands.Context, query: str):
+        """Search the available languages. Returns the top 10 matches, or states
+        an exact match.
+        """
+        exact, best_10 = self.get_languages(query, 10)
+        if exact is not None:
+            await ctx.reply(
+                f"{query!r} is an available language:"
+                f" {exact['name']} ({exact['version']})"
+            )
+        else:
+            await ctx.reply(
+                f"## Languages matching {query!r}\n"
+                + "\n".join(
+                    f"- '{lang['name']}' `{lang['internal_name']}` ({score}%)"
+                    for lang, score in best_10
+                )
+            )
 
     @commands.command()
     async def search(self, ctx: commands.Context, day: int, language: str):
