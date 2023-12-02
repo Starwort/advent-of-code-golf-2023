@@ -52,6 +52,7 @@ class LanguageMeta(TypedDict):
     name: str
     version: str
     internal_name: str  # custom
+    ato_name: str  # custom
     disallowed_regex: str | None  # custom
     # ignoring the rest of the fields for now
 
@@ -94,6 +95,7 @@ class Runner(commands.Cog):
 
         self.languages: dict[str, LanguageMeta] = loads(languages.read_text())
         for lang, meta in self.languages.items():
+            meta["ato_name"] = lang
             meta["internal_name"] = lang
             meta["disallowed_regex"] = None
         self.language_lookup: dict[str, LanguageMeta] = {
@@ -114,7 +116,8 @@ class Runner(commands.Cog):
             extra_langs |= {
                 f"{lang}-{variant}": {
                     "name": f"{meta['name']} ({rule['name']})",
-                    "internal_name": meta["internal_name"],
+                    "ato_name": meta["internal_name"],
+                    "internal_name": f"{lang}-{variant}",
                     "version": meta["version"],
                     "disallowed_regex": rule["disallowed_regex"],
                 }
@@ -313,7 +316,7 @@ class Runner(commands.Cog):
         answers = await self.execute(
             ctx,
             code.content,
-            language=ato_lang["internal_name"],
+            language=ato_lang["ato_name"],
             input=aoc_helper.fetch(day, year=2023),
         )
         real_answer_path = aoc_data_dir / "2023" / f"{day}"
@@ -349,7 +352,7 @@ class Runner(commands.Cog):
                 answers = await self.execute(
                     ctx,
                     code.content,
-                    language=ato_lang["internal_name"],
+                    language=ato_lang["ato_name"],
                     input=input,
                 )
                 if not await self.grade_solution(ctx, answers, real_answers):
