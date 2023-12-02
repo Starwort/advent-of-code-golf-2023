@@ -26,7 +26,7 @@ Online](https://ato.pxeger.com)), and the shortest one for each language wins.
 This file will be maintained by the `solution-bot` and will contain the current
 leaderboard.
 
-If you wish to submit
+If you wish to submit solutions, please use [the bot](https://discord.com/api/oauth2/authorize?client_id=1179753478214651915&permissions=0&scope=bot)
 
 ## Submission rules
 
