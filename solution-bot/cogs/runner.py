@@ -204,7 +204,7 @@ class Runner(commands.Cog):
 
         The solution must be a full program that takes input from stdin, and
         gives the answer to both parts of the puzzle on stdout. The solution
-        must be runnable on [TIO.run](https://tio.run).
+        must be runnable on [ATO](https://ato.pxeger.com).
         """
         puzzle_unlock = datetime(2023, 12, day, 5)
         if datetime.utcnow() < puzzle_unlock:
