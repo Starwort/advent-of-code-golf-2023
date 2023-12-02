@@ -305,7 +305,7 @@ class Runner(commands.Cog):
             if match := re.search(ato_lang["disallowed_regex"], code.content):
                 await ctx.reply(
                     "Sorry, your solution is ineligible for this language variant:"
-                    f" contains disallowed text {match[0]!r}"
+                    f" contains disallowed text `{match[0]}`"
                 )
                 return
         language = ato_lang["name"]
