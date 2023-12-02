@@ -1,0 +1,10 @@
+*I,=open(t:=0)
+i=1
+for l in I:
+ for s in l.replace(*';,').split(','):
+  a=s.split()
+  if int(a[-2])>24-ord(a[-1][0])//9:break
+ else:t+=i
+ i+=1
+import math,re
+print(t,sum(math.prod(max(map(int,re.findall(r"(\d+) "+x,l)))for x in"rgb")for l in I))
