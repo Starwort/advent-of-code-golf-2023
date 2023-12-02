@@ -2,7 +2,7 @@ import re
 i=A=B=0
 for l in open(0):
  i+=1;g=[z:=0]*3
- for a,b in re.findall("(\d+) (\w)",l):O=ord(b);g[x]=max(g[x:=(O-97)//6],a:=int(a));z|=a>24-O//9
+ for a,b in re.findall("(\d+) (\w)",l):O=24-ord(b)//9;g[x]=max(g[x:=O-12],a:=int(a));z|=a>O
  A+=i*~-z
  x,y,z=g;B+=x*y*z
 print(-A,B)
