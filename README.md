@@ -3,7 +3,7 @@
 ![Advent of Code Golf icon](./advent-of-code-golf.png)
 
 This is a community project for Advent of Code Golf 2023 - anyone can submit a
-solution to any day, in any language (supported by [Attempt This
+solution to any day, in any language(supported by [Attempt This
 Online](https://ato.pxeger.com)), and the shortest one for each language wins.
 This file will be maintained by the `solution-bot` and will contain the current
 leaderboard.
@@ -26,4 +26,4 @@ leaderboard.
 Day | K (ngn/k) | Python
 --: | --- | ---
 1 | [110 - okras](./solutions/1/K%20%28ngn/k%29) | [187 - _tessaract](./solutions/1/Python)
-2 | - | [193 - starwort](./solutions/2/Python)
+2 | - | [192 - starwort](./solutions/2/Python)

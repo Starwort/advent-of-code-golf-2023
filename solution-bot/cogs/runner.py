@@ -26,6 +26,8 @@ Online](https://ato.pxeger.com)), and the shortest one for each language wins.
 This file will be maintained by the `solution-bot` and will contain the current
 leaderboard.
 
+If you wish to submit
+
 ## Submission rules
 
 - Each solution must be a full program, runnable on [Attempt This
