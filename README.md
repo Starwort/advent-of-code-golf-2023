@@ -28,4 +28,4 @@ If you wish to submit solutions, please use [the bot](https://discord.com/api/oa
 Day | J | K (ngn/k) | Lua | Perl | Python | Python (Orthoplex)
 --: | --- | --- | --- | --- | --- | ---
 1 | - | [110 - okras](./solutions/1/K%20%28ngn/k%29) | - | [365 - friedchickenblob](./solutions/1/Perl) | [187 - _tessaract](./solutions/1/Python) | -
-2 | [170 - frownyfrog](./solutions/2/J) | - | [187 - krowten024nabru](./solutions/2/Lua) | [119 - friedchickenblob](./solutions/2/Perl) | [144 - krowten024nabru](./solutions/2/Python) | [1073 - _tessaract](./solutions/2/Python%20%28Orthoplex%29)
+2 | [170 - frownyfrog](./solutions/2/J) | - | [187 - krowten024nabru](./solutions/2/Lua) | [119 - friedchickenblob](./solutions/2/Perl) | [144 - krowten024nabru](./solutions/2/Python) | [963 - okras](./solutions/2/Python%20%28Orthoplex%29)
