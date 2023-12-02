@@ -1,0 +1,5 @@
+r =. ([: (100 100 100#:do)&.> ';'cut cut@', + red 0000 green 00 blue' rplc~ 2 ;@}. cut)@> cutLF stdin 1
+
+echo +/ >: I. AND@,@( 12 13 14>:"1>)"1 r
+
+echo +/ */"1 >./"2 >r  
