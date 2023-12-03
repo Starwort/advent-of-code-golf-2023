@@ -1,0 +1,9 @@
+import math,re
+P={}
+*b,=open(0)
+x=range(140)
+for r,R in enumerate(b):
+ for m in re.finditer(r'\d+',R):
+  for c in{(r+s,c+d)for s in(-1,0,1)for d in(-1,0,1)for c in range(*m.span())}&{(r,c)for r in x for c in x if b[r][c]not in'01234566789.'}:P.setdefault(c,[]).append(int(m[0]))
+t=P.values()
+print(sum(map(sum,t)),sum(math.prod(p)*(len(p)>1)for p in t))
