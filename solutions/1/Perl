@@ -1,1 +1,1 @@
-sub F{/(\d).*(\d)/?$1.$2:/\d/?$&x2:0}map{$t+=F;for$i((1..9)x9){s/${\(z,one,two,three,four,five,six,seven,eight,nine)[$i]}/$&$i$&/g}$\+=F}<>;print$t,$/
+sub F{/(\d).*(\d)/?$1.$2:!/\d/.$&x2}map{$t+=F;for$i((1..9)x9){s/${\(z,one,two,three,four,five,six,seven,eight,nine)[$i]}/$&$i$&/g}$\+=F}<>;print$t,$/
