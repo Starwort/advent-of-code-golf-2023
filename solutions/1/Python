@@ -1,6 +1,6 @@
 from unicodedata import*
 *I,=open(0)
-for n in 0,10:
+for n in 0,6:
  t=0
- for l in I:[l:=l.replace(q:=name(x)[6:].lower(),q+x+q)for x in'123456789'*n];a,*_,b=filter(str.isdigit,l*2);t+=int(a+b)
+ for l in I:[l:=l.replace(q:=name(x)[n:].lower(),q+x+q)for x in'123456789'];a,*_,b=filter(str.isdigit,l*2);t+=int(a+b)
  print(t)
