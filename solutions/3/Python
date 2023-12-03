@@ -1,2 +1,2 @@
 *I,=open(0);R=range;D=str.isdigit
-print(*map(sum,zip(*[(sum(q:=[int(s)for m in I[i-1:i+2]for x in R(j-3,j+2)for k in R(x,x+4)if~-D(m[k:k+1])*~-D(m[x-1])*D(s:=m[x:k])*i>0<j<=k]),len(q)>1!=I[i][j]<"+"and q[0]*q[1])for i in R(140)for j in R(140)if I[i][j]in"*#%@&-=+/$"])))
+print(*map(sum,zip(*[(sum(q:=[int(s)for m in I[i-1:i+2]for x in R(j-3,j+2)for k in R(x,x+4)if~-D(m[k:k+1])*~-D(m[x-1])*D(s:=m[x:k])*i>0<j<=k]),~-len(q)*q[0]*q[-1])for i in R(140)for j in R(140)if I[i][j]in"*#%@&-=+/$"])))
