@@ -1,17 +1,1 @@
-$t=0;
-sub F {
-  @A = qw(one two three four five six seven eight nine);
-  $e=pop; 
-  $m=999999;
-  $M=-999999;
-  $I=0;
-  for$i(@A,1..9) {
-    $e=~/\Q$i/ && $m > "@-" and ($m="@-",$mm=$I<9?$I+1:$I-8);
-    $e=~/.*\K\Q$i/ && $M < "@-" and ($M="@-",$MM=$I<9?$I+1:$I-8);
-    $I++;
-  }
-  $G += $mm.$MM
-}
-
-$t+=/(\d).*(\d)/?$1.$2:/(\d)/?$1.$1:0, F($_) for <>;
-print($t,$/,$G)
+sub F{/(\d).*(\d)/?$1.$2:/(\d)/?$1x2:0}map{$t+=F;for$i((1..9)x9){s/${\(z,one,two,three,four,five,six,seven,eight,nine)[$i]}/$&$i$&/g}$\+=F}<>;print$t,$/
