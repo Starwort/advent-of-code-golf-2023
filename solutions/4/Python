@@ -1,6 +1,6 @@
 *I,=open(0)
 A=C=0;B=[1]*len(I)
 for l in I:
- a,b=map(s:=str.split,s(s(l,":")[1],"|"));o=len({*a}&{*b});A+=int(2**(o-1));C+=(i:=B.pop(0))
+ a,b=map(s:=str.split,s(s(l,":")[1],"|"));o=len({*a}&{*b});A+=2**o//2;C+=(i:=B.pop(0))
  for j in range(o):B[j]+=i
 print(A,C)
