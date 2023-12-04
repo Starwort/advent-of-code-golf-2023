@@ -1,6 +1,6 @@
 A=i=0;g=(B:={}).get
 for l in open(0):
- a,b=map(str.split,l.split(":")[1].split("|"));o=len({*a}&{*b});A+=int(2**(o-1))
+ a,b=map(s:=str.split,s(s(l,":")[1],"|"));o=len({*a}&{*b});A+=int(2**(o-1))
  for j in range(o):B[k]=g(k:=i+j+1,1)+g(i,1)
  i+=1
 print(A,sum(g(h,1)for h in range(i)))
