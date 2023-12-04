@@ -1,3 +1,6 @@
 A=C=0;B=[1]*999
-for l in open(0):a=l.split();i,*B=B;C+=i;j=0;exec('B[j]+=i;j+=1;'*len({*a[:12]}&{*a[12:]}));A+=2**j//2
+for l in open(0):
+ a=l.split();i,*B=B;C+=i;j=0
+ for _ in{*a[:12]}&{*a[12:]}:B[j]+=i;j+=1
+ A+=2**j//2
 print(A,C)
