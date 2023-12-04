@@ -29,5 +29,5 @@ Day | J | K (ngn/k) | Lua | Perl | Python | Python (Orthoplex)
 --: | --- | --- | --- | --- | --- | ---
 1 | - | [110 - okras](./solutions/1/K%20%28ngn/k%29) | - | [149 - friedchickenblob](./solutions/1/Perl) | [184 - eniraa](./solutions/1/Python) | [714 - orthoplex](./solutions/1/Python%20%28Orthoplex%29)
 2 | [170 - frownyfrog](./solutions/2/J) | - | [187 - krowten024nabru](./solutions/2/Lua) | [119 - friedchickenblob](./solutions/2/Perl) | [144 - krowten024nabru](./solutions/2/Python) | [752 - orthoplex](./solutions/2/Python%20%28Orthoplex%29)
-3 | - | - | - | - | [241 - eniraa](./solutions/3/Python) | [3681 - orthoplex](./solutions/3/Python%20%28Orthoplex%29)
+3 | - | - | - | - | [239 - eniraa](./solutions/3/Python) | [3681 - orthoplex](./solutions/3/Python%20%28Orthoplex%29)
 4 | - | - | - | - | [159 - eniraa](./solutions/4/Python) | -
