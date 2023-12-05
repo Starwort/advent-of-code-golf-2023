@@ -217,48 +217,62 @@ class Runner(commands.Cog):
     async def execute(
         self, ctx: commands.Context, code: str, language: str, input: str
     ) -> list[str]:
-        stdout = ""
-        stderr = ""
-        async with websockets.connect(
-            "wss://ato.pxeger.com/api/v1/ws/execute",
-            user_agent_header=(
-                f"Advent of Code Golf bot / websockets=={ws_version};"
-                f" Python=={py_version}"
-            ),
-        ) as ws:
-            await ws.send(
-                msgpack.dumps(
-                    {
-                        "language": language,
-                        "code": code,
-                        "input": input,
-                        "options": [],
-                        "arguments": [],
-                    }
+        async with ctx.typing():
+            stdout = ""
+            stderr = ""
+            async with websockets.connect(
+                "wss://ato.pxeger.com/api/v1/ws/execute",
+                user_agent_header=(
+                    f"Advent of Code Golf bot / websockets=={ws_version};"
+                    f" Python=={py_version}"
+                ),
+            ) as ws:
+                await ws.send(
+                    msgpack.dumps(
+                        {
+                            "language": language,
+                            "code": code,
+                            "input": input,
+                            "options": [],
+                            "arguments": [],
+                        }
+                    )
                 )
-            )
-            while True:
-                msg: Stdout | Stderr | Done = msgpack.loads(await ws.recv())  # type: ignore
-                match msg:
-                    case {"Stdout": data}:
-                        stdout += data.decode()
-                    case {"Stderr": data}:
-                        stderr += data.decode()
-                    case {"Done": data}:
-                        match data:
-                            case {"timed_out": True}:
-                                await ctx.reply("Your code timed out after 60 seconds.")
-                            case {"status_type": "killed", "status_value": why}:
-                                await ctx.reply(
-                                    f"Your code was killed by the server: {why}"
-                                )
-                            case {"status_type": "core_dumped", "status_value": why}:
-                                await ctx.reply(f"Your code caused a core dump: {why}")
+                while True:
+                    try:
+                        msg: Stdout | Stderr | Done = msgpack.loads(await ws.recv())  # type: ignore
+                    except Exception:
+                        # for some reason if the server kills the code
+                        # I get an exception instead of a value
+                        await ctx.reply("Your code timed out after 60 seconds.")
                         break
-            if stdout:
-                return stdout.split()
-            else:
-                return stderr.split()
+                    match msg:
+                        case {"Stdout": data}:
+                            stdout += data.decode()
+                        case {"Stderr": data}:
+                            stderr += data.decode()
+                        case {"Done": data}:
+                            match data:
+                                case {"timed_out": True}:
+                                    await ctx.reply(
+                                        "Your code timed out after 60 seconds."
+                                    )
+                                case {"status_type": "killed", "status_value": why}:
+                                    await ctx.reply(
+                                        f"Your code was killed by the server: {why}"
+                                    )
+                                case {
+                                    "status_type": "core_dumped",
+                                    "status_value": why,
+                                }:
+                                    await ctx.reply(
+                                        f"Your code caused a core dump: {why}"
+                                    )
+                            break
+                if stdout:
+                    return stdout.split()
+                else:
+                    return stderr.split()
 
     @commands.command()
     async def submit(
