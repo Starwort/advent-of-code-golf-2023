@@ -13,4 +13,4 @@ for P in 0,1:
     elif e:n+=[b,l-a+f],;v+=[f,a-f],
     elif(f<a)&(f+l>a+z):n+=[b,z],;v+=[f,a-f],[a+z,f+l-a-z]
     else:v+=[f,l],
- print(min(x for x,_ in v+n))
+ print(min(v+n)[0])
