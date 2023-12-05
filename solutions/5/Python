@@ -8,9 +8,9 @@ for P in 0,1:
    b,a,z=map(int,l.split());o=v;v=[]
    for f,l in o:
     s=a<=f<a+z;e=a<f+l<=a+z
-    if s&e:n+=[[f-a+b,l]]
-    elif s:n+=[[f-a+b,a+z-f]];v+=[[a+z,f+l-a-z]]
-    elif e:n+=[[b,l-a+f]];v+=[[f,a-f]]
-    elif(f<a)&(f+l>a+z):n+=[[b,z]];v+=[[f,a-f],[a+z,f+l-a-z]]
-    else:v+=[[f,l]]
+    if s&e:n+=[f-a+b,l],
+    elif s:n+=[f-a+b,a+z-f],;v+=[a+z,f+l-a-z],
+    elif e:n+=[b,l-a+f],;v+=[f,a-f],
+    elif(f<a)&(f+l>a+z):n+=[b,z],;v+=[f,a-f],[a+z,f+l-a-z]
+    else:v+=[f,l],
  print(min(x for x,_ in v+n))
