@@ -1,9 +1,9 @@
 S,*I=[[int(x)for x in l.split()if":">x]for l in open(0)]
-for P in 0,1:
- *d,=zip(S[::P+1],map(P.__mul__,S[P::P+1]));n=[]
- for l in I:
-  if l:
-   b,a,s,e,*d=*l,d
-   for f,l in e:N,D=[[[b,s]],[],[[b,(F:=f+l-(A:=a+s))+s]],[[g:=f-a+b,A-f]],[[g,l]],[P:=[f,a-f],Q:=[A,F]],[[f,l]],[P],[Q],[]][1-(a>f>0<F)+2*(a<=f<A)+(-s<F<1)::5];n+=N;d+=D
-  else:d+=n;n=[]
- print(min(d+n)[0])
+for p in 0,1:
+ *T,=zip(S[::p+1],map(p.__mul__,S[p::p+1]));n=[]
+ for h in I:
+  if h:
+   P,L,A,N,*T=*h,T
+   for o,h in N:O,D=[[[P,(F:=o+h-(a:=L+A))+A]],[],[[g:=o-L+P,a-o]],[[P,A]],[[g,h]],[p:=[o,L-o]],[[o,h]],[Q:=[a,F]],[p,Q],[]][((L>o)+3*(F>0)-(o>a)-(F>-A))%5::5];n+=O;T+=D
+  else:T+=n;n=[]
+ print(min(T+n)[0])
