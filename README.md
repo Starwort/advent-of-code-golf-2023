@@ -14,7 +14,7 @@ If you wish to submit solutions, please use [the bot](https://discord.com/api/oa
 ## Submission rules
 
 - Each solution must be a full program, runnable on [Attempt This
-  Online](https://ato.pxeger.com) -  this is how the bot will evaluate submissions.
+  Online](https://ato.pxeger.com) - this is how the bot will evaluate submissions.
 - Each solution must be a valid answer to the challenge - the bot will check this
   against my input/output for the day. If you believe a submission is *wrong*
   (i.e. doesn't solve the challenge on your input), please raise an issue
