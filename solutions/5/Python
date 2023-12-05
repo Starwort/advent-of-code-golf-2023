@@ -1,16 +1,10 @@
 s,*I=open(0)
 S=s.split()
 for P in 0,1:
- v=[[int(S[i]),(1,int(S[i+P]))[P]]for i in range(1,len(S),P+1)];n=[]
+ v=[[int(S[i]),int(S[i+1])if P else 1]for i in range(1,len(S),P+1)];n=[]
  for l in I:
   if"\n"==l:v+=n;n=[]
   elif":"!=l[-2]:
    b,a,z=map(int,l.split());o=v;v=[]
-   for f,l in o:
-    s=a<=f<a+z;e=a<f+l<=a+z
-    if s&e:n+=[f-a+b,l],
-    elif s:n+=[f-a+b,a+z-f],;v+=[a+z,f+l-a-z],
-    elif e:n+=[b,l-a+f],;v+=[f,a-f],
-    elif(f<a)&(f+l>a+z):n+=[b,z],;v+=[f,a-f],[a+z,f+l-a-z]
-    else:v+=[f,l],
+   for f,l in o:s=a<=f<a+z;e=a<f+l<=a+z;A=a+z;Q=[A,f+l-A];P=[f,a-f];N,V=[[[],[[f,l]]],[[[b,l-a+f]],[P]],[[[f-a+b,A-f]],[Q]],[[[f-a+b,l]],[]],[[[b,z]],[P,Q]],][4*((f<a)&(f+l>A))+2*s+e];n+=N;v+=V
  print(min(v+n)[0])
