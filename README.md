@@ -18,7 +18,8 @@ If you wish to submit solutions, please use [the bot](https://discord.com/api/oa
 - Each solution must be a valid answer to the challenge - the bot will check this
   against my input/output for the day. If you believe a submission is *wrong*
   (i.e. doesn't solve the challenge on your input), please raise an issue
-  including the submission, your input, and the expected answer.
+  indicating the last working solution for that language, and include your
+  Discord username so I can DM you to collect your input and answers.
 - Puzzles involving grid lettering do not need to OCR the letters themselves -
   outputting the grid is sufficient.
 - Input will be provided as stdin, and output should be to stdout.
