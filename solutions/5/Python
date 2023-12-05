@@ -1,4 +1,4 @@
-S,*I=[[int(x)for x in l.split()if"/"<x<":"]for l in open(0)]
+S,*I=[[int(x)for x in l.split()if":">x]for l in open(0)]
 for P in 0,1:
  *v,=zip(S[::P+1],map(P.__mul__,S[P::P+1]));n=[]
  for l in I:
