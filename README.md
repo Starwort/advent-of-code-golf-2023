@@ -31,4 +31,4 @@ Day | APL (Dyalog APL) | J | K (ngn/k) | Lua | Perl | Python | Python (Orthoplex
 2 | - | [170 - frownyfrog](./solutions/2/J) | - | [187 - krowten024nabru](./solutions/2/Lua) | [119 - friedchickenblob](./solutions/2/Perl) | [144 - krowten024nabru](./solutions/2/Python) | [752 - orthoplex](./solutions/2/Python%20%28Orthoplex%29) | -
 3 | - | - | - | - | - | [239 - eniraa](./solutions/3/Python) | [3681 - orthoplex](./solutions/3/Python%20%28Orthoplex%29) | -
 4 | [102 - okras](./solutions/4/APL%20%28Dyalog%20APL%29) | - | - | - | - | [113 - orthoplex](./solutions/4/Python) | - | -
-5 | - | - | [101 - okras](./solutions/5/K%20%28ngn/k%29) | - | - | [405 - starwort](./solutions/5/Python) | - | [295 - natt.e](./solutions/5/Ruby)
+5 | - | - | [101 - okras](./solutions/5/K%20%28ngn/k%29) | - | - | [401 - _tessaract](./solutions/5/Python) | - | [295 - natt.e](./solutions/5/Ruby)
