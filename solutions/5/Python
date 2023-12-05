@@ -4,6 +4,6 @@ for P in 0,1:
  for l in I:
   if l:
    b,a,z,o,*v=*l,v
-   for f,l in o:N,V=[[[[b,z]],[P:=[f,a-f],Q:=[A:=a+z,F:=f+l-A]]],[[],[[f,l]]],[[[b,F+z]],[P]],[[[f-a+b,A-f]],[Q]],[[[f-a+b,l]],[]]][1-(a>f>0<F)+2*(a<=f<A)+(-z<F<1)];n+=N;v+=V
+   for f,l in o:N,V=[[[[b,z]],[P:=[f,a-f],Q:=[A:=a+z,F:=f+l-A]]],[[],[[f,l]]],[[[b,F+z]],[P]],[[[g:=f-a+b,A-f]],[Q]],[[[g,l]],[]]][1-(a>f>0<F)+2*(a<=f<A)+(-z<F<1)];n+=N;v+=V
   else:v+=n;n=[]
  print(min(v+n)[0])
