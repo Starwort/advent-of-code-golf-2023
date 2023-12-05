@@ -6,5 +6,5 @@ for P in 0,1:
   if"">l:v+=n;n=[]
   elif":">l[-2]:
    b,a,z=map(int,l.split());o=v;v=[]
-   for f,l in o:N,V=[[[[b,z]],[P:=[f,a-f],Q:=[A:=a+z,F:=f+l-A]]],[[],[[f,l]]],[[[b,F+z]],[P]],[[[f-a+b,A-f]],[Q]],[[[f-a+b,l]],[]]][1-(a>f>0<F)+2*(a<=f<A)+(-z<F<=0)];n+=N;v+=V
+   for f,l in o:N,V=[[[[b,z]],[P:=[f,a-f],Q:=[A:=a+z,F:=f+l-A]]],[[],[[f,l]]],[[[b,F+z]],[P]],[[[f-a+b,A-f]],[Q]],[[[f-a+b,l]],[]]][1-(a>f>0<F)+2*(a<=f<A)+(-z<F<1)];n+=N;v+=V
  print(min(v+n)[0])
