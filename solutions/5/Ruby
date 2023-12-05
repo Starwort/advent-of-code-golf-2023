@@ -1,0 +1,6 @@
+(n,),*i=$<.read.split($/*2).map{|l|l.lines.map{_1.split.map &:to_i}}
+n.shift
+g=->x{i.inject(x){|r,m|a=[]
+r.map{|s,e|m[1..].any?{|x,y,z|e>=y&&s<y+z&&a<<[s<y ?(r<<[s,y-1];x):s-y+x,e<y+z ?e-y+x:(r<<[y+z,e];x+z-1)]}||a<<[s,e]}
+a}.map{_1[0]}.min}
+p g[n.map{[_1]*2}],g[n.each_slice(2).map{[_1,_1+_2]}]
