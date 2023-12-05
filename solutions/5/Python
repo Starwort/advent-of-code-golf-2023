@@ -1,10 +1,10 @@
 s,*I=open(0)
 S=s.split()
 for P in 0,1:
- v=[[int(S[i]),(1,int(S[i+P]))[P]]for i in range(1,21,P+1)];n=[]
+ v=[[int(S[i]),1+P*-~int(S[i+P])]for i in range(1,21,P+1)];n=[]
  for l in I:
   if"">l:v+=n;n=[]
   elif":">l[-2]:
    b,a,z=map(int,l.split());o=v;v=[]
-   for f,l in o:F=f+l;N,V=[[[[b,z]],[P:=[f,a-f],Q:=[A:=a+z,F-A]]],[[],[[f,l]]],[[[b,F-a]],[P]],[[[f-a+b,A-f]],[Q]],[[[f-a+b,l]],[]]][1-(a>f<F>A)+2*(a<=f<A)+(a<F<=A)];n+=N;v+=V
+   for f,l in o:N,V=[[[[b,z]],[P:=[f,a-f],Q:=[A:=a+z,F:=f+l-A]]],[[],[[f,l]]],[[[b,F+z]],[P]],[[[f-a+b,A-f]],[Q]],[[[f-a+b,l]],[]]][1-(a>f>0<F)+2*(a<=f<A)+(-z<F<=0)];n+=N;v+=V
  print(min(n)[0])
