@@ -9,6 +9,7 @@ This file will be maintained by the `solution-bot` and will contain the current
 leaderboard.
 
 If you wish to submit solutions, please use [the bot](https://discord.com/api/oauth2/authorize?client_id=1179753478214651915&permissions=0&scope=bot)
+(or [on the code.golf server](https://discord.gg/eVCTkYQ))
 
 ## Submission rules
 
