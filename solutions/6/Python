@@ -1,2 +1,2 @@
 *I,=open(0)
-for r in",_":a=1;[a:=a*sum(i*(t-i)>d for i in range(t))for t,d in zip(*(eval(r.join(e[9:].split())+',')for e in I))];print(a)
+for r in",_":a=1;[a:=a*sum(d<i*(t-i)for i in range(t))for t,d in zip(*(eval(r.join(e[9:].split())+',')for e in I))];print(a)
