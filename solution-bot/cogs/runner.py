@@ -221,7 +221,7 @@ class Runner(commands.Cog):
         stderr = ""
         async with websockets.connect(
             "wss://ato.pxeger.com/api/v1/ws/execute",
-            user_agent_header=(
+            user_agent_header=(  # type: ignore
                 f"Advent of Code Golf bot / websockets=={ws_version};"
                 f" Python=={py_version}"
             ),
