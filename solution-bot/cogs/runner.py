@@ -4,14 +4,15 @@ import re
 from datetime import datetime, timedelta
 from pathlib import Path
 from sys import version as py_version
-from typing import TYPE_CHECKING, Literal, TypedDict
+from typing import Literal, TypedDict
 from urllib.parse import quote
 
 import aoc_helper
-import discord
 import msgpack
 import websockets.client as websockets
 from aoc_helper.data import DATA_DIR as aoc_data_dir
+from bot import Bot
+from context import Context
 from discord.ext import commands
 from jishaku.codeblocks import Codeblock, codeblock_converter
 from thefuzz import fuzz, process
@@ -89,7 +90,7 @@ type SolutionAuthors = dict[SolutionDay, dict[SolutionLanguage, str]]
 class Runner(commands.Cog):
     """The description for Runner goes here."""
 
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot: Bot):
         self.bot = bot
 
     async def async_init(self):
@@ -157,7 +158,7 @@ class Runner(commands.Cog):
             return None, filtered[:top_n]
 
     @commands.command(name="search-langs", aliases=["langs"])
-    async def search_langs(self, ctx: commands.Context, query: str):
+    async def search_langs(self, ctx: Context, query: str):
         """Search the available languages. Returns the top 10 matches, or states
         an exact match.
         """
@@ -177,7 +178,7 @@ class Runner(commands.Cog):
             )
 
     @commands.command()
-    async def search(self, ctx: commands.Context, day: int, language: str):
+    async def search(self, ctx: Context, day: int, language: str):
         """Search for a solution in a language."""
         ato_lang, top_3_matches = self.get_language(language.lower())
         if ato_lang is None:
@@ -215,7 +216,7 @@ class Runner(commands.Cog):
         )
 
     async def execute(
-        self, ctx: commands.Context, code: str, language: str, input: str
+        self, ctx: Context, code: str, language: str, input: str
     ) -> list[str]:
         stdout = ""
         stderr = ""
@@ -253,18 +254,16 @@ class Runner(commands.Cog):
                     case {"Done": data}:
                         match data:
                             case {"timed_out": True}:
-                                await ctx.reply(
-                                    "Your code timed out after 60 seconds."
-                                )
+                                await ctx.reply("Your code timed out after 60 seconds.")
                             case {"status_type": "killed", "status_value": why}:
-                                await ctx.reply(
+                                await ctx.last_message.append_line(
                                     f"Your code was killed by the server: {why}"
                                 )
                             case {
                                 "status_type": "core_dumped",
                                 "status_value": why,
                             }:
-                                await ctx.reply(
+                                await ctx.last_message.append_line(
                                     f"Your code caused a core dump: {why}"
                                 )
                         break
@@ -276,7 +275,7 @@ class Runner(commands.Cog):
     @commands.command()
     async def submit(
         self,
-        ctx: commands.Context,
+        ctx: Context,
         day: int,
         language: str,
         *,
@@ -347,7 +346,7 @@ class Runner(commands.Cog):
                     second=0, microsecond=0, minute=now.minute - (now.minute % 15)
                 ) + timedelta(minutes=15)
                 timestamp = int(soon.timestamp())
-                await ctx.reply(
+                await ctx.last_message.append_line(
                     "Sorry, submissions for this day are not yet open. Please try again"
                     f" <t:{timestamp}:R>"
                 )
@@ -374,7 +373,7 @@ class Runner(commands.Cog):
                     if not await self.grade_solution(ctx, answers, real_answers):
                         return
 
-        await ctx.reply("That's the right answer!")
+        await ctx.last_message.append_line("That's the right answer!")
         await self.update_solutions(ctx, day, language, code.content)
 
     def row_to_bools(self, row: str) -> list[bool]:
@@ -395,11 +394,11 @@ class Runner(commands.Cog):
         return out_answers
 
     async def grade_solution(
-        self, ctx: commands.Context, answers: list[str], real_answers: tuple[str, str]
+        self, ctx: Context, answers: list[str], real_answers: tuple[str, str]
     ) -> bool:
         answers = self.parse_answers(answers)
         if len(answers) != 2:
-            await ctx.reply(
+            await ctx.last_message.append_line(
                 "Your solution gave the wrong number of answers; found:"
                 f" {len(answers)} ({', '.join(answers)}), expected: 2"
             )
@@ -407,34 +406,32 @@ class Runner(commands.Cog):
         if (answers[0], answers[1]) == real_answers:
             return True
         elif answers[0] == real_answers[0]:
-            await ctx.reply(
+            await ctx.last_message.append_line(
                 f"Solution gave wrong answer for part 2: {answers[1]}! Correct answer:"
                 f" {real_answers[1]}"
             )
             return False
         elif answers[1] == real_answers[1]:
-            await ctx.reply(
+            await ctx.last_message.append_line(
                 f"Solution gave wrong answer for part 1: {answers[0]}! Correct answer:"
                 f" {real_answers[0]}"
             )
             return False
         else:
-            await ctx.reply(
+            await ctx.last_message.append_line(
                 f"Solution gave wrong answers for both parts: {answers[0]},"
                 f" {answers[1]}! Correct answers: {real_answers[0]}, {real_answers[1]}"
             )
             return False
 
-    async def update_solutions(
-        self, ctx: commands.Context, day: int, language: str, code: str
-    ):
+    async def update_solutions(self, ctx: Context, day: int, language: str, code: str):
         solution_path = solutions_dir / f"{day}" / language
         solution_path.parent.mkdir(parents=True, exist_ok=True)
         if solution_path.exists():
             current_solution = solution_path.read_bytes()
             code_bytes = code.encode()
             if len(code_bytes) < len(current_solution):
-                reply = await ctx.reply(
+                await ctx.last_message.append_line(
                     "Your solution is shorter than the current one, updating..."
                 )
                 solution_path.write_bytes(code_bytes)
@@ -453,14 +450,9 @@ class Runner(commands.Cog):
                     " && git push"
                 )
                 await subprocess.wait()
-                await reply.edit(
-                    content=(
-                        "Your solution is shorter than the current one, updating..."
-                        " Done!"
-                    )
-                )
+                await ctx.last_message.append_line("Done!")
         else:
-            reply = await ctx.reply(
+            await ctx.last_message.append_line(
                 "Your solution is the first for this language, adding..."
             )
             code_bytes = code.encode()
@@ -479,9 +471,7 @@ class Runner(commands.Cog):
                 f' Day {day} {language} -> {len(code.encode())}" && git push'
             )
             await subprocess.wait()
-            await reply.edit(
-                content="Your solution is the first for this language, adding... Done!"
-            )
+            await ctx.last_message.append_line("Done!")
 
     def update_leaderboard(self):
         solution_authors: SolutionAuthors = json.loads(
@@ -520,7 +510,7 @@ readme_file = repo_root / "README.md"
 languages = repo_root / "attempt-this-online" / "languages.json"
 
 
-async def setup(bot: commands.Bot):
+async def setup(bot: Bot):
     cog = Runner(bot)
     await cog.async_init()
     await bot.add_cog(cog)

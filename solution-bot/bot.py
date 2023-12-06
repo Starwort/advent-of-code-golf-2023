@@ -2,7 +2,9 @@
 
 import config
 import discord
+from context import Context
 from discord.ext import commands
+from message import Message
 
 
 class Bot(commands.Bot):
@@ -12,6 +14,9 @@ class Bot(commands.Bot):
             intents=intents,
             **kwargs,
         )
+
+    async def get_context(self, message: Message, *, cls=Context):
+        return await super().get_context(message, cls=cls)
 
     async def setup_hook(self):
         for cog in config.cogs:
@@ -34,4 +39,5 @@ bot = Bot(intents=intents)
 
 # write general commands here
 
-bot.run(config.token)
+if __name__ == "__main__":
+    bot.run(config.token)
