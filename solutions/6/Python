@@ -1,2 +1,2 @@
-*p,=open(0)
-for i in',_':e=1;[e:=e*int(((p*p-4*l)**.5+p)//2*2-p+1)for p,l in zip(*(eval(i.join(e[9:].split())+',')for e in p))];print(e)
+*I,=open(0)
+for r in"; ":a=1;[a:=a*sum(d<i*(t-i)for i in range(t))for t,d in zip(*[map(int,l[9:].replace(r,"").split())for l in I])];print(a)
