@@ -217,62 +217,61 @@ class Runner(commands.Cog):
     async def execute(
         self, ctx: commands.Context, code: str, language: str, input: str
     ) -> list[str]:
-        async with ctx.typing():
-            stdout = ""
-            stderr = ""
-            async with websockets.connect(
-                "wss://ato.pxeger.com/api/v1/ws/execute",
-                user_agent_header=(
-                    f"Advent of Code Golf bot / websockets=={ws_version};"
-                    f" Python=={py_version}"
-                ),
-            ) as ws:
-                await ws.send(
-                    msgpack.dumps(
-                        {
-                            "language": language,
-                            "code": code,
-                            "input": input,
-                            "options": [],
-                            "arguments": [],
-                        }
-                    )
+        stdout = ""
+        stderr = ""
+        async with websockets.connect(
+            "wss://ato.pxeger.com/api/v1/ws/execute",
+            user_agent_header=(
+                f"Advent of Code Golf bot / websockets=={ws_version};"
+                f" Python=={py_version}"
+            ),
+        ) as ws:
+            await ws.send(
+                msgpack.dumps(
+                    {
+                        "language": language,
+                        "code": code,
+                        "input": input,
+                        "options": [],
+                        "arguments": [],
+                    }
                 )
-                while True:
-                    try:
-                        msg: Stdout | Stderr | Done = msgpack.loads(await ws.recv())  # type: ignore
-                    except Exception:
-                        # for some reason if the server kills the code
-                        # I get an exception instead of a value
-                        await ctx.reply("Your code timed out after 60 seconds.")
+            )
+            while True:
+                try:
+                    msg: Stdout | Stderr | Done = msgpack.loads(await ws.recv())  # type: ignore
+                except Exception:
+                    # for some reason if the server kills the code
+                    # I get an exception instead of a value
+                    await ctx.reply("Your code timed out after 60 seconds.")
+                    break
+                match msg:
+                    case {"Stdout": data}:
+                        stdout += data.decode()
+                    case {"Stderr": data}:
+                        stderr += data.decode()
+                    case {"Done": data}:
+                        match data:
+                            case {"timed_out": True}:
+                                await ctx.reply(
+                                    "Your code timed out after 60 seconds."
+                                )
+                            case {"status_type": "killed", "status_value": why}:
+                                await ctx.reply(
+                                    f"Your code was killed by the server: {why}"
+                                )
+                            case {
+                                "status_type": "core_dumped",
+                                "status_value": why,
+                            }:
+                                await ctx.reply(
+                                    f"Your code caused a core dump: {why}"
+                                )
                         break
-                    match msg:
-                        case {"Stdout": data}:
-                            stdout += data.decode()
-                        case {"Stderr": data}:
-                            stderr += data.decode()
-                        case {"Done": data}:
-                            match data:
-                                case {"timed_out": True}:
-                                    await ctx.reply(
-                                        "Your code timed out after 60 seconds."
-                                    )
-                                case {"status_type": "killed", "status_value": why}:
-                                    await ctx.reply(
-                                        f"Your code was killed by the server: {why}"
-                                    )
-                                case {
-                                    "status_type": "core_dumped",
-                                    "status_value": why,
-                                }:
-                                    await ctx.reply(
-                                        f"Your code caused a core dump: {why}"
-                                    )
-                            break
-                if stdout:
-                    return stdout.split()
-                else:
-                    return stderr.split()
+            if stdout:
+                return stdout.split()
+            else:
+                return stderr.split()
 
     @commands.command()
     async def submit(
@@ -329,50 +328,51 @@ class Runner(commands.Cog):
             f"Running your code ({len(code.content.encode())} bytes) in"
             f" {language} ({ato_lang['version']})..."
         )
-        answers = await self.execute(
-            ctx,
-            code.content,
-            language=ato_lang["ato_name"],
-            input=aoc_helper.fetch(day, year=2023),
-        )
-        real_answer_path = aoc_data_dir / "2023" / f"{day}"
-        try:
-            real_answers = (
-                (real_answer_path / "1.solution").read_text(),
-                (real_answer_path / "2.solution").read_text(),
+        async with ctx.typing():
+            answers = await self.execute(
+                ctx,
+                code.content,
+                language=ato_lang["ato_name"],
+                input=aoc_helper.fetch(day, year=2023),
             )
-        except FileNotFoundError:
-            now = datetime.utcnow()
-            soon = now.replace(
-                second=0, microsecond=0, minute=now.minute - (now.minute % 15)
-            ) + timedelta(minutes=15)
-            timestamp = int(soon.timestamp())
-            await ctx.reply(
-                "Sorry, submissions for this day are not yet open. Please try again"
-                f" <t:{timestamp}:R>"
-            )
-            return
-
-        if not await self.grade_solution(ctx, answers, real_answers):
-            return
-
-        cases_dir = extra_data_dir / f"{day}"
-
-        if cases_dir.exists():
-            for additional_case in cases_dir.iterdir():
-                input = (additional_case / "input").read_text()
+            real_answer_path = aoc_data_dir / "2023" / f"{day}"
+            try:
                 real_answers = (
-                    (additional_case / "1.solution").read_text(),
-                    (additional_case / "2.solution").read_text(),
+                    (real_answer_path / "1.solution").read_text(),
+                    (real_answer_path / "2.solution").read_text(),
                 )
-                answers = await self.execute(
-                    ctx,
-                    code.content,
-                    language=ato_lang["ato_name"],
-                    input=input,
+            except FileNotFoundError:
+                now = datetime.utcnow()
+                soon = now.replace(
+                    second=0, microsecond=0, minute=now.minute - (now.minute % 15)
+                ) + timedelta(minutes=15)
+                timestamp = int(soon.timestamp())
+                await ctx.reply(
+                    "Sorry, submissions for this day are not yet open. Please try again"
+                    f" <t:{timestamp}:R>"
                 )
-                if not await self.grade_solution(ctx, answers, real_answers):
-                    return
+                return
+
+            if not await self.grade_solution(ctx, answers, real_answers):
+                return
+
+            cases_dir = extra_data_dir / f"{day}"
+
+            if cases_dir.exists():
+                for additional_case in cases_dir.iterdir():
+                    input = (additional_case / "input").read_text()
+                    real_answers = (
+                        (additional_case / "1.solution").read_text(),
+                        (additional_case / "2.solution").read_text(),
+                    )
+                    answers = await self.execute(
+                        ctx,
+                        code.content,
+                        language=ato_lang["ato_name"],
+                        input=input,
+                    )
+                    if not await self.grade_solution(ctx, answers, real_answers):
+                        return
 
         await ctx.reply("That's the right answer!")
         await self.update_solutions(ctx, day, language, code.content)
