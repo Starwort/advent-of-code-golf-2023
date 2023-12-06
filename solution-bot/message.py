@@ -1,5 +1,4 @@
 import discord
-import discord.state
 
 
 def custom_create_message(
