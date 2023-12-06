@@ -1,0 +1,1 @@
+I=io.read a=I()b=I()repeat S=i and" "or""i=b:gsub(S,""):gmatch"%d+"e=1 for t in a:gsub(S,""):gmatch"%d+"do d=i() z=0 for n=0,t do z=-d>-n*(t-n)and z+1 or z end e=e*z end print(~~e)until""<S
