@@ -1,5 +1,2 @@
 *I,=open(0)
-for r in"; ":
- a=1
- for t,d in zip(*[map(int,l[9:].replace(r,"").split())for l in I]):a*=sum(d<i*(t-i)for i in range(t))
- print(a)
+for r in"; ":a=1;[a:=a*sum(d<i*(t-i)for i in range(t))for t,d in zip(*[map(int,l[9:].replace(r,"").split())for l in I])];print(a)
