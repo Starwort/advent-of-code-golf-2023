@@ -1,3 +1,4 @@
-def V(h,d):n=sorted(h.count(x)for x in{*h}if x!=d)[::-1]+[0];n[0]+=h.count(d);return n
-*I,=map(str.split,open(0))
-for d in"_J":print(sum(i*int(b)for i,(_,b)in enumerate(sorted(I,key=lambda l:[V(l[0],d),[*map("23456789TJQKA".find,l[0].replace(d,"1"))]]),1)))    
+S=sorted
+B=lambda h,r:max((S(map((n:=h.replace(r,p)).count,{*n}))[::-1],*map(f"{r}23456789TJQKA".find,h))for p in{*h})
+*l,=map(str.split,open(0))
+for r in":J":i=0;print(sum(b*(i:=i+1)for(_,b)in S((B(h,r),int(b))for h,b in l)))
