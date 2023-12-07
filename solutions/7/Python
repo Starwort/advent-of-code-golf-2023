@@ -1,4 +1,3 @@
 S=sorted
-B=lambda h,r:max((S(map((n:=h.replace(r,p)).count,{*n}))[::-1],*map(f"{r}23456789TJQKA".find,h))for p in{*h})
 *l,=map(str.split,open(0))
-for r in":J":i=0;print(sum(b*(i:=i+1)for(_,b)in S((B(h,r),int(b))for h,b in l)))
+for r in":J":B=lambda h:max((S(map((n:=h.replace(r,p)).count,{*n}))[::-1],*map(f"{r}23456789TJQKA".find,h))for p in{*h});i=0;print(sum(b*(i:=i+1)for(_,b)in S((B(h),int(b))for h,b in l)))
