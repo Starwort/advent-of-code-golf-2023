@@ -1,3 +1,2 @@
-S=sorted
-*l,=map(str.split,open(0))
-for r in":J":B=lambda h:max((S(map((n:=h.replace(r,p)).count,{*n}))[::-1],*map(f"{r}23456789TJQKA".find,h))for p in{*h});i=0;print(sum(b*(i:=i+1)for(_,b)in S((B(h),int(b))for h,b in l)))
+*l,=open(0)
+for k in'#J':l=sorted(l,key=lambda l:(-max(sum(map((v:=l[:5].replace(k,c)).count,v))for c in l),*map(f'KQJT98765432{k}'.rfind,l)));i=0;print(sum(i:=i+int(l[6:])for l in l))
