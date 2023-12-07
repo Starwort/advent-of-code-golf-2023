@@ -1,3 +1,3 @@
-def V(h,d):n=sorted([h.count(x)for x in list(set(h))if x!=d])[::-1]+[0];n[0]+=h.count(d);return n
+def V(h,d):n=sorted(h.count(x)for x in{*h}if x!=d)[::-1]+[0];n[0]+=h.count(d);return n
 *I,=map(str.split,open(0))
-for d in"_J":print(sum([int(b)*i for i,(_,b)in enumerate(sorted(I,key=lambda l:[V(l[0],d),list(map("23456789TJQKA".find,[x if x!=d else"1"for x in l[0]]))]),1)]))
+for d in"_J":print(sum(i*int(b)for i,(_,b)in enumerate(sorted(I,key=lambda l:[V(l[0],d),[*map("23456789TJQKA".find,l[0].replace(d,"1"))]]),1)))    
