@@ -1,2 +1,2 @@
 *l,=open(0)
-for k in'#J':l=sorted(l,key=lambda l:(-max(sum(map((v:=l[:5].replace(k,c)).count,v))for c in l),*map(f'KQJT98765432{k}'.rfind,l)));i=0;print(sum(i:=i+int(l[6:])for l in l))
+for k in'#J':l.sort(key=lambda l:(-max(sum(map((v:=l[:5].replace(k,c)).count,v))for c in l),*map(f'KQJT98765432{k}'.rfind,l)));i=0;print(sum(i:=i+int(l[6:])for l in l))
