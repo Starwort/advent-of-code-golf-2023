@@ -1,4 +1,3 @@
 x,_,*l=open(0)
-o,*L=[len([c:={l[:3]:l for l in l}[c[:3]][(v>"L")*5+7:]for v in 99*x[:-1]if'Z'>c[2]])for C in['AAA',*l]if(c:=C)[2]<"B"]
 import math
-print(o);print(math.lcm(*L))
+for k in 0,1:print(math.lcm(*[len([c:={l[:3]:l for l in l}[c[:3]][(v>"L")*5+7:]for v in 99*x[:-1]if'Z'>c[2]])for C in['AAA']+l*k if(c:=C)[2]<"B"]))
