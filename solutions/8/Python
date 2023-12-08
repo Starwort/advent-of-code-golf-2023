@@ -1,4 +1,3 @@
 import math
-M,*I=open(0)
-S={l[:3]:l[7:].split()for l in I}
-for s in 3,1:print(math.lcm(*[len([p:=S[p][m>"L"][:3]for m in M[:-1]*99if"Z"*s>p[-s:]])for q in S if"A"*s==(p:=q)[-s:]]))
+M,*I=open(0,'rb')
+for s in 1,2:print(math.lcm(*[len([p:={l[:3]:l for l in I}[p[3*m%13:][:3]]for m in M[:-1]*99if{*p[s:3]}-{90}])for q in I if{65}=={*(p:=q)[s:3]}]))
