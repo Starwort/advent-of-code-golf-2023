@@ -1,11 +1,10 @@
 import math
 M,*I=open(0)
 S={l[:3]:[l[7:10],l[12:15]]for l in I}
-def f(s):
+for s in 3,1:
  a=[]
- for p in filter(lambda x:x[-s:]=="A"*s,S.keys()):
+ for p in[x for x in S if"A"*s==x[-s:]]:
   c=0
-  while p[-s:]!="Z"*s:p=S[p][M[c%~-len(M)]=="R"];c+=1
+  while"Z"*s>p[-s:]:p=S[p][M[c%~-len(M)]>"L"];c+=1
   a+=[c]
- return math.lcm(*a)
-print(f(3),f(1))
+ print(math.lcm(*a))
