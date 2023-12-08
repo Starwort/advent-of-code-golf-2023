@@ -1,3 +1,2 @@
-x,_,*l=open(0)
-import math
-for k in['AAA'],l:print(math.lcm(*[len([c:={l[:3]:l for l in l}[c[:3]][(v>"L")*5+7:]for v in 99*x[:-1]if'Z'>c[2]])for C in k if(c:=C)[2]<"B"]))
+(*x,_),_,*l=open(0)
+for k in['AAA'],l:w=q=len(x);[q:=q//w*len([c:={l[:3]:l for l in l}[c[:3]][(v>"L")*5+7:]for v in x*99if'Z'>c[2]])for C in k if(c:=C)[2]<"B"];print(q)
