@@ -1,10 +1,4 @@
 import math
 M,*I=open(0)
 S={l[:3]:[l[7:10],l[12:15]]for l in I}
-for s in 3,1:
- a=[]
- for p in[x for x in S if"A"*s==x[-s:]]:
-  c=0
-  while"Z"*s>p[-s:]:p=S[p][M[c%~-len(M)]>"L"];c+=1
-  a+=[c]
- print(math.lcm(*a))
+for s in 3,1:print(math.lcm(*[len([p:=S[p][m>"L"]for m in M[:-1]*99if"Z"*s>p[-s:]])for q in[x for x in S if"A"*s==x[-s:]]if(p:=q)]))
