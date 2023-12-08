@@ -5,7 +5,7 @@ def f(s):
  a=[]
  for p in filter(lambda x:x[-s:]=="A"*s,S.keys()):
   c=0
-  while p[-s:]!="Z"*s:p=S[p][M[c%(len(M)-1)]=="R"];c+=1
+  while p[-s:]!="Z"*s:p=S[p][M[c%~-len(M)]=="R"];c+=1
   a+=[c]
  return math.lcm(*a)
 print(f(3),f(1))
