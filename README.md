@@ -36,4 +36,4 @@ Day | APL (Dyalog APL) | J | K (ngn/k) | Lua | Perl | Python | Python (Orthoplex
 5 | - | - | [101 - okras](./solutions/5/K%20%28ngn/k%29) | - | - | [364 - starwort](./solutions/5/Python) | - | [295 - natt.e](./solutions/5/Ruby)
 6 | - | - | [45 - okras](./solutions/6/K%20%28ngn/k%29) | [181 - krowten024nabru](./solutions/6/Lua) | - | [136 - taesungh](./solutions/6/Python) | - | -
 7 | - | - | [87 - okras](./solutions/7/K%20%28ngn/k%29) | - | - | [180 - biz314](./solutions/7/Python) | - | -
-8 | - | - | - | - | - | [172 - biz314](./solutions/8/Python) | - | -
+8 | - | - | - | - | - | [170 - biz314](./solutions/8/Python) | - | -
