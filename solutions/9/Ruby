@@ -1,0 +1,8 @@
+x=0
+y=$<.sum{|l|a=l.split.map &:to_i
+t=0
+a.map{t=a[0]-t
+x+=a[-1]
+a=a.each_cons(2).map{_2-_1}}
+t}
+p x,y
