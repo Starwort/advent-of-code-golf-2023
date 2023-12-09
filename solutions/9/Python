@@ -1,5 +1,3 @@
-A=B=0
-for l in open(0):
- *g,=map(int,l.split());D=1
- while any(g):a,*_,b=g;B+=b;A+=D*a;D=1|-D;*g,=map(int.__sub__,g[1:],g)
-print(B,A)
+x=y=0
+exec("s,*d=map(int,input().split());f=1;exec('x+=d[-1];y+=s*f;f=-f;s,*d=map(int.__sub__,d,[s]+d);'*20);"*200)
+print(x,y)
