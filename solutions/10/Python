@@ -1,6 +1,7 @@
 *G,=open(0)
-x,y=max((G[t].find("S"),t)for t in range(140))
+t=-1
+x,y=max((l.find("S"),t:=t+1)for l in G)
 v=G[y+1][x]in'|'or-(G[y-1][x]in'|')
-P=Q=h=t=0
-while'S'!=t:P+=1;Q+=34<y<105>x>34;x+=h;y+=v;h+='-|LF'.find(t:=G[y][x])//2;v+='-|F7'.find(t)//2
+P=Q=h=0
+while'S'!=t:P+=1;Q+=x>34<y<105>x;x+=h;y+=v;h+='-|LF'.find(t:=G[y][x])//2;v+='-|F7'.find(t)//2
 print(P//2,4900-Q)
