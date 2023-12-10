@@ -2,5 +2,5 @@ G=open(U:=0,'rb').read()
 D=K=141;C=4900
 p=G.find(83)
 v=G[p+K]//41-3^K
-while 83^D:U+=1;C-=34<p//K<105>p%K>34;p+=v;D=G[p];v+=1-9*D%14%3+D%38%3*K-K
+while 83^D:U+=1;C-=34<p//K<105>p%K>34;p+=v;D=G[p];v+=~D&44and 6-D%13^143
 print(U//2,C)
