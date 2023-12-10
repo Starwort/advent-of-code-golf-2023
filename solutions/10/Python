@@ -2,5 +2,5 @@ G=open(0,'rb').read()
 D=U=C=0;K=141
 p=G.find(83)
 v=(G[p+K]>99or-1)*K
-while 83!=D:U+=1;C+=34<p//K<105>p%K>34;p+=v;v+=1-9*(D:=G[p])%14%3+(D%38%3-1)*K
+while 83!=D:U+=1;C+=34<p//K<105>p%K>34;p+=v;v+=1-9*(D:=G[p])%14%3+D%38%3*K-K
 print(U//2,4900-C)
