@@ -1,7 +1,6 @@
 *G,=open(0)
-R=range(140)
-x,y,*P=max((G[t].find("S"),t)for t in R)
-v=-(q:=G[y-1][x]in'|')or(G[y+1][x]in'|')
+x,y,*P=max((G[t].find("S"),t)for t in range(140))
+v=G[y+1][x]in'|JL'or-(G[y-1][x]in'|F7')
 h=t=v==0
-while'S'!=t:P+=[[x,y]];x+=h;y+=v;t=G[y][x];h+=t in'LF';h-=t in'J7';v+=t in'F7';v-=t in'JL'
-print(len(P)//2,sum(sum(G[b][a]in'||FJ7LSS'[q::2]for a,b in P if b==t and a<s)%(2-([s,t]in P))for t in R for s in R))
+while'S'!=t:P+=[(x,y)];x+=h;y+=v;t=G[y][x];h+=t in'LF';h-=t in'J7';v+=t in'F7';v-=t in'JL'
+print(len(P)//2,4900-sum(34<y<105>x>34for x,y in P))
