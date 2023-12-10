@@ -1,6 +1,6 @@
-*G,=open(0,'rb')
-x=y=D=U=C=K=0
-while x<1:y+=1;x=G[y].find(83)
-v=G[y+1][x]>99or-1
-while 83!=D:U+=1;C+=x>34<y<105>x;x+=K;y+=v;K+=1-9*(D:=G[y][x])%14%3;v+=D%38%3-1
+G=open(0,'rb').read()
+D=U=C=K=0
+p=G.find(83)
+v=G[p+141]>99or-1
+while 83!=D:U+=1;C+=34<p//141<105>p%141>34;p+=K+v*141;K+=1-9*(D:=G[p])%14%3;v+=D%38%3-1
 print(U//2,4900-C)
