@@ -1,2 +1,2 @@
 a=open(0)
-for f in 2,10**6:s=0;exec("\nu=d=0;*a,=zip(*a)\nfor l in a:c=l.count('#');s+=d*c;u+=c;d+=u*f**(c<1)"*2);print(s)
+for f in 2,10**6:s=0;exec("\nu=d=0;*a,=zip(*a)\nfor l in a:c=l.count('#');s+=d*c;u+=c;d+=u*f**0**c"*2);print(s)
