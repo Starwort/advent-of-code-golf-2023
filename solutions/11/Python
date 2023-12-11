@@ -1,3 +1,2 @@
-import sys
 *k,=open(t:=0)
 for p in 2,10**6:u=0;[(o:=0,s:=0,[(c:=l.count("#"),t:=t+p**(c<1),u:=u+c*(t*o-s),o:=o+c,s:=s+c*t)for l in R])for R in(zip(*k),k)];print(u)
