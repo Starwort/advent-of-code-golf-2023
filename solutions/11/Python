@@ -1,2 +1,2 @@
-k=open(t:=0)
-for p in 2,10**6:u=0;exec('\no=s=0;*k,=zip(*k)\nfor l in k:c=l.count("#");t+=p**(c<1);u+=c*(t*o-s);o+=c;s+=c*t'*2);print(u)
+*a,=open(0)
+for f in 1,999999:s=0;exec("u=d=0\nfor l in a:c=l.count('#');s+=d*c;u+=c;d+=u+u*f*(c<1)\n*a,=zip(*a);"*2);print(s)
