@@ -1,2 +1,2 @@
 *k,=open(t:=0)
-for c in 2,10**6:r,s=[[t:=t+[1,c][all(c!="#"for c in l)]for l in arr]for arr in(zip(*k),k)];e=[(x,y)for l,y in zip(k,s)for c,x in zip(l,r)if c=="#"];print(sum(abs(a[0]-b[0])+abs(a[1]-b[1])for a in e for b in e if a<b))
+for c in 2,10**6:r,s=[[t:=t+[1,c][all(c!="#"for c in l)]for l in R]for R in(zip(*k),k)];e=[(x,y)for l,y in zip(k,s)for c,x in zip(l,r)if c=="#"];print(sum(abs(a[0]-b[0])+abs(a[1]-b[1])for a in e for b in e if a<b))
