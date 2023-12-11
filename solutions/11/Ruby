@@ -1,21 +1,7 @@
-g = $<.map &:chomp
-solve = -> space {
-    inds = g.size.times
-    rows = inds.map{|y| g[y].chars.all?(".") ? space : 1 }
-    cols = inds.map{|x| g.all?{_1[x] == "."} ? space : 1 }
-
-    coords = []
-
-    inds.each{|y|
-        inds.each{|x|
-            coords << [x,y] if g[y][x] == "#"
-        }
-    }
-
-    coords.combination(2).sum{|(x1,y1),(x2,y2)|
-        x = x1, x2
-        y = y1, y2
-        cols[x.min...x.max].sum + rows[y.min...y.max].sum
-    }
-}
-p solve.(2), solve.(1000000)
+g=$<.map &:chomp
+f=->s{i=*0..139
+r=i.map{g[_1][?#]?1:s}
+c=i.map{|x|g.all?{_1[x]==?.}?s:1}
+i.product(i).select{g[_2][_1]==?#}.combination(2).sum{|(k,l),(m,n)|x=k,m;y=l,n
+(c[x.min...x.max]+r[y.min...y.max]).sum}}
+p f[2],f[10**6]
