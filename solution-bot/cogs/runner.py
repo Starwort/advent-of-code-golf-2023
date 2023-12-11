@@ -242,6 +242,9 @@ class Runner(commands.Cog):
                 try:
                     msg: Stdout | Stderr | Done = msgpack.loads(await ws.recv())  # type: ignore
                 except Exception:
+                    import traceback
+
+                    traceback.print_exc()
                     # for some reason if the server kills the code
                     # I get an exception instead of a value
                     await ctx.reply("Your code timed out after 60 seconds.")
