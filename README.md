@@ -39,4 +39,4 @@ Day | APL (Dyalog APL) | J | K (ngn/k) | Lua | Perl | Python | Python (Orthoplex
 8 | - | - | - | - | - | [168 - okras](./solutions/8/Python) | - | -
 9 | - | [43 - frownyfrog](./solutions/9/J) | [25 - okras](./solutions/9/K%20%28ngn/k%29) | - | - | [110 - biz314](./solutions/9/Python) | - | [102 - natt.e](./solutions/9/Ruby)
 10 | - | - | - | - | - | [156 - duckyluuk](./solutions/10/Python) | - | -
-11 | - | - | - | - | - | [204 - livingboxy](./solutions/11/Python) | - | [226 - natt.e](./solutions/11/Ruby)
+11 | - | - | - | - | - | [203 - krowten024nabru](./solutions/11/Python) | - | [226 - natt.e](./solutions/11/Ruby)
