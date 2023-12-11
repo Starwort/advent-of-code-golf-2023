@@ -1,7 +1,2 @@
-*k,=open(t:=0)
-for p in 2,10**6:
- u=0
- for R in zip(*k),k:
-  o=s=0
-  for l in R:c=l.count("#");t+=p**(c<1);u+=c*(t*o-s);o+=c;s+=c*t
- print(u)
+k=open(t:=0)
+for p in 2,10**6:u=0;exec('\no=s=0;*k,=zip(*k)\nfor l in k:c=l.count("#");t+=p**(c<1);u+=c*(t*o-s);o+=c;s+=c*t'*2);print(u)
