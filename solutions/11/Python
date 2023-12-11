@@ -1,2 +1,3 @@
-*w,=open(0);R=range;T=R(140)
-for i in 2,10**6:print(sum((Q:=[sum(p in q or i for p in R(p))for p in q])and sum(abs(a-b)for a in Q for b in Q)for q in zip(*[(x,y)for y in T for x in T if'.'>w[y][x]]))//2)
+import sys
+*k,=open(t:=0)
+for p in 2,10**6:u=0;[(o:=0,s:=0,[(c:=l.count("#"),t:=t+p**(c<1),u:=u+c*(t*o-s),o:=o+c,s:=s+c*t)for l in R])for R in(zip(*k),k)];print(u)
