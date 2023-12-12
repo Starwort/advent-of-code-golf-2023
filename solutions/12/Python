@@ -6,7 +6,7 @@ def t(x,y):
  if not y:return 0
  h,g=0,x[0] 
  if"."not in y[0:g]and len(y)>=g and y[g:g+1]!='#':h+=t(x[1:],y[g+1:]) 
- if y[0]>"#":h+=t(x,y[1:])
+ if"#"<y[0]:h+=t(x,y[1:])
  return h
 a=b=0
 for l in f:
