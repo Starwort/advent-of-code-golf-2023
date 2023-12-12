@@ -1,0 +1,17 @@
+from functools import*
+*f,=open(0)
+@cache
+def t(x, y): 
+ if not x:return"#"not in y
+ if not y:return 0
+ h,g=0,x[0] 
+ if"."not in y[0:g]and len(y)>=g and y[g:g+1]!='#':h+=t(x[1:],y[g+1:]) 
+ if y[0]>"#":h+=t(x,y[1:])
+ return h
+a=b=0
+for l in f:
+ s,g=l.split()
+ g=tuple(map(int,g.split(",")))
+ a+=t(g,s)
+ b+=t(g*5,"?".join([s]*5))
+print(a,b)
