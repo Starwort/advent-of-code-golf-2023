@@ -8,5 +8,5 @@ def t(x,y):
  if"#"<y[0]:h+=t(x,y[1:])
  return h
 a=b=0
-for l in open(0):s,g=l.split();g=*map(int,g.split(",")),;a+=t(g,s);b+=t(g*5,"?".join([s]*5))
+for l in open(0):s,g=l.split();g=eval(g);a+=t(g,s);b+=t(g*5,"?".join([s]*5))
 print(a,b)
