@@ -1,4 +1,4 @@
 from functools import*
-f=cache(lambda s,c=0,*l,b='.':(c<=s.find(b))*f(s[c:],*l,b='')+(s[0]>'#')*f(s[1:],c,*l)if(c*s)else s>'#'not in s)
+f=cache(lambda s,c=0,*l,b='.':(s.find(b)>=c)*f(s[c:],*l,b='')+(s>'#z')*f(s[1:],c,*l)if(c*s)else s>'#'not in s)
 L=*open(0),
 for k in 1,5:print(sum(f(s+('?'+s)*~-k+'.',*eval(l)*k)for s,l in map(str.split,L)))
