@@ -1,4 +1,4 @@
 from functools import*
-C=cache(lambda l,c=0,*e:c and~((l[c]>='.'not in l[:c])*~C(l[c+1:],*e)+(l>'.'!={'.'}<{*l}and~C(l[1:],c,*e)))or('#'in l)-2)
-*i,=open(0)
-for n in 1,5:print(sum(~C(l+('?'+l)*~-n+'.'*199,*eval(r)*n)for l,r in map(str.split,i)))
+f=cache(lambda s,l,b=1:(s.find(b*'.')>=l[0]and f(s[l[0]:],l[1:],0))+(s[0]>'#'and f(s[1:],l))if(l and s)else s>'#'not in s)
+L=*open(0),
+for k in 1,5:print(sum(f('?'.join([(z:=r.split())[0]]*k)+'.',eval(z[1])*k)for r in L))
