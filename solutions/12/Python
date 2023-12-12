@@ -1,5 +1,5 @@
 from functools import*
-*f,=open(0)
+f=open(0)
 @cache
 def t(x,y): 
  if not x:return"#"not in y
