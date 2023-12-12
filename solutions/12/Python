@@ -11,7 +11,7 @@ def t(x,y):
 a=b=0
 for l in f:
  s,g=l.split()
- g=(*map(int,g.split(",")),)
+ g=*map(int,g.split(",")),
  a+=t(g,s)
  b+=t(g*5,"?".join([s]*5))
 print(a,b)
