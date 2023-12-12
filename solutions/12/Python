@@ -1,7 +1,7 @@
 from functools import*
 *f,=open(0)
 @cache
-def t(x, y): 
+def t(x,y): 
  if not x:return"#"not in y
  if not y:return 0
  h,g=0,x[0] 
