@@ -10,8 +10,6 @@ def t(x,y):
  return h
 a=b=0
 for l in f:
- s,g=l.split()
- g=*map(int,g.split(",")),
- a+=t(g,s)
- b+=t(g*5,"?".join([s]*5))
+ s,g=l.split();g=*map(int,g.split(",")),
+ a+=t(g,s);b+=t(g*5,"?".join([s]*5))
 print(a,b)
