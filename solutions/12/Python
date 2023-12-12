@@ -1,5 +1,4 @@
 from functools import*
-f=open(0)
 @cache
 def t(x,y): 
  if not x:return"#"not in y
@@ -9,7 +8,7 @@ def t(x,y):
  if"#"<y[0]:h+=t(x,y[1:])
  return h
 a=b=0
-for l in f:
+for l in open(0):
  s,g=l.split();g=*map(int,g.split(",")),
  a+=t(g,s);b+=t(g*5,"?".join([s]*5))
 print(a,b)
