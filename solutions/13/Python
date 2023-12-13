@@ -1,5 +1,6 @@
 R=[0]*99
-for G in map(str.split,open(0).read().split('\n\n')):
- for*g,n in[*G,100],[*zip(*G),1]:
-  for i in range(len(g)):R[sum(a!=b for r in zip(g[:i][::-1],g[i:])for a,b in zip(*r))]+=n*i
+for G in open(0).read().split('\n\n'):
+ G=G.split()
+ for g in[*zip(*G)],G:
+  for i in range(len(g)):R[sum(a!=b for r in zip(g[:i][::-1],g[i:])for a,b in zip(*r))]+=i*100**(G==g)
 print(*R[:2])
