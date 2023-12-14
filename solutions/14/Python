@@ -3,18 +3,16 @@ R=range(100)
 D={}
 S=lambda:print(sum((len(I)-y)*I[y].count('O')for y in R))
 while c<1e9:
- c+=1
- for d in 1,2,3,4:
+ for d in 0,1,2,3:
   *I,=map(list,I)
   for x in R:
+   p=0
    for y in R:
-    if'.'<I[y][x]:
-     I[y][x]='.'
-     while'.'==I[y-1][x]and y:y-=1
-     I[y][x]='O'
-  if c<2>d:S()
+    if'.'<I[y][x]:I[y][x]='.';I[p][x]='O';p+=1
+    if'.'>I[y][x]:p=y+1
+  if c<1>d:S()
   *I,=zip(*I[::-1])
- s=str(I)
+ s=str(I);c+=1
  if s in D:d=c-D[s];c+=d*((1e9-c)//d)
  D[s]=c
 S()
