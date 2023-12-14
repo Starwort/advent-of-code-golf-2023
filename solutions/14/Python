@@ -8,8 +8,8 @@ while c<1e9:
   for x in R:
    p=0
    for y in R:
-    if'.'<I[y][x]:I[y][x]='.';I[p][x]='O';p+=1
-    if'.'>I[y][x]:p=y+1
+    if'.'<(C:=I[y][x]):I[y][x]='.';I[p][x]='O';p+=1
+    if'.'>C:p=y+1
   c<1>d==S();*I,=zip(*I[::-1])
  d=c-D.get(s:=str(I),-1e9)+1;c+=(1e9-c)//d*d+1;D[s]=c
 S()
