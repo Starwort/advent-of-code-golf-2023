@@ -1,11 +1,5 @@
-from itertools import*
-*I,=open(c:=0)
-R=range(100)
+l=*open(k:=0),
 D={}
-S=lambda:print(sum((x+1)*(y[x]>'.')for y in I for x in R))
-while c<1e9:
- for d in R[:4]:
-  I=[[i for _,r in groupby(r,'.'.__gt__)for i in sorted(r)]for r in zip(*I[::-1])]
-  c<1>d==S()
- d=c-D.get(s:=str(I),-1e9)+1;c+=(1e9-c)//d*d+1;D[s]=c
-*I,=zip(*I[::-1]);S()
+f=lambda l,t=0:print(sum(t:=t+r.count('O')for r in l))
+while k<4e9:l=[eval("''.join(k)"+".replace('O.','.O')"*50)for k in zip(*l[::-1])];k<1!=f([*zip(*l)][::-1]);v=k-D.get(s:=str(l),-4e9)+1;k+=(4e9-k)//v*v+1;D[s]=k
+f(l)
