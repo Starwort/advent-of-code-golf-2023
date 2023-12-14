@@ -8,7 +8,7 @@ while c<1e9:
   *I,=map(list,I)
   for x in R:
    for y in R:
-    if I[y][x]>'.':
+    if'.'<I[y][x]:
      I[y][x]='.'
      while y and'.'==I[y-1][x]:y-=1
      I[y][x]='O'
