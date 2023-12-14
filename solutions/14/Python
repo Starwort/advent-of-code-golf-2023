@@ -1,5 +1,5 @@
 l=*open(k:=0),
 D={}
 f=lambda l,t=0:print(sum(t:=t+r.count('O')for r in l))
-while k<4e9:l=[eval("''.join(k)"+".replace('O.','.O')"*50)for k in zip(*l[::-1])];k<1!=f([*zip(*l)][::-1]);v=k-D.get(s:=str(l),-4e9)+1;k+=(4e9-k)//v*v+1;D[s]=k
+while k<4e9:l=[eval("''.join(k)"+".replace('O.','.O')"*50)for k in zip(*l[::-1])];k<1!=f([*zip(*l)][::-1]);v=k-D.get((*l,),-4e9)+1;k+=(4e9-k)//v*v+1;D[*l,]=k
 f(l)
