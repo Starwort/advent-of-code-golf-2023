@@ -2,7 +2,7 @@ from itertools import*
 *I,=open(c:=0)
 R=range(100)
 D={}
-S=lambda:print(sum((x+1)*sum(I[y][x]>'.'for y in R)for x in R))
+S=lambda:print(sum((x+1)*(I[y][x]>'.')for y in R for x in R))
 while c<1e9:
  for d in R[:4]:
   I=[[i for _,r in groupby(r,'.'.__gt__)for i in sorted(r)]for r in zip(*I[::-1])]
