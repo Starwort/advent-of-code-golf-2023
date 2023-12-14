@@ -12,7 +12,5 @@ while c<1e9:
     if'.'>I[y][x]:p=y+1
   if c<1>d:S()
   *I,=zip(*I[::-1])
- s=str(I);c+=1
- if s in D:d=c-D[s];c+=(1e9-c)//d*d
- D[s]=c
+ s=str(I);c+=1;d=c-D.get(s,-1e9);c+=(1e9-c)//d*d;D[s]=c
 S()
