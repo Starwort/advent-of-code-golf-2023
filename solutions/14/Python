@@ -1,7 +1,7 @@
 *I,=open(c:=0)
 R=range(100)
 D={}
-S=lambda:print(sum((len(I)-y)*I[y].count('O')for y in R))
+S=lambda:print(sum((100-y)*I[y].count('O')for y in R))
 while c<1e9:
  for d in 0,1,2,3:
   *I,=map(list,I)
