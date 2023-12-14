@@ -1,0 +1,20 @@
+*I,=open(c:=0)
+R=range(100)
+D={}
+S=lambda:print(sum((len(I)-y)*I[y].count('O')for y in R))
+while c<1e9:
+ c+=1
+ for d in 1,2,3,4:
+  *I,=map(list,I)
+  for x in R:
+   for y in R:
+    if I[y][x]>'.':
+     I[y][x]='.'
+     while y and I[y-1][x]=='.':y-=1
+     I[y][x]='O'
+  if c<2>d:S()
+  *I,=zip(*I[::-1])
+ s=str(I)
+ if s in D:d=c-D[s];c+=d*((1e9-c)//d)
+ D[s]=c
+S()
