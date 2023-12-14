@@ -10,7 +10,7 @@ while c<1e9:
    for y in R:
     if'.'<I[y][x]:
      I[y][x]='.'
-     while y and'.'==I[y-1][x]:y-=1
+     while'.'==I[y-1][x]and y:y-=1
      I[y][x]='O'
   if c<2>d:S()
   *I,=zip(*I[::-1])
