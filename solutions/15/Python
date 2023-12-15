@@ -1,6 +1,6 @@
 b=eval('{},'*256)
 p=q=u=0
-for s in input().split(','):d=s[:~(x:='='in s)];k=0;exec("b[[k:=17*(k+ord(c))%256for c in s][~x-1]]"+[".pop(d,0)","[d]="+s][x]);p+=k
+for s in input().split(','):x='='in s;d=s[:~x];k=0;exec("b[[k:=17*(k+ord(c))%256for c in s][~-~x]]"+[".pop(d,0)","[d]="+s][x]);p+=k
 for c in b:
  u+=1;v=0
  for i in c:v+=1;q+=u*v*c[i]
