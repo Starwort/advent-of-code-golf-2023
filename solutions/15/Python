@@ -1,9 +1,10 @@
-A=B=n=0;b=eval('{},'*256)
-for y in input().split(','):
- t=i=0
- for x in y:x in'-='!=exec("I=i;T=t");t=(t+ord(x))*17%256;i+=1
- b[T][l:=y[:I]]=int(g:=y[I+1:]or 0);g==0<b[T].pop(l,0);A+=t
-for x in b:
- n+=1;j=0
- for z in x:j+=1;B+=n*j*x[z]
-print(A,B)
+b=eval('{},'*256)
+p=q=u=0
+for s in input().split(','):
+ d=s[:s.find('=')];k=0;*_,x,y,_=[k:=17*(k+ord(c))%256for c in s];p+=k
+ if s>d+'-':b[x][d]=s
+ else:b[y].pop(d,0)
+for c in b:
+ u+=1;v=0
+ for i in c:v+=1;q+=u*v*int(c[i][-1])
+print(p,q)
