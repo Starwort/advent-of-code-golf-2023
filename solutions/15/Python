@@ -1,7 +1,7 @@
 b=eval('{},'*256)
 p=q=u=0
-for s in input().split(','):d=s[:s.find('=')];k=0;*_,x,y,_=[k:=17*(k+ord(c))%256for c in s];p+=k;s>d+'-'!=exec("b[x][d]=s")or b[y].pop(d,0)
+for s in input().split(','):d=s[:s.find('=')];k=0;*_,x,y,_=[k:=17*(k+ord(c))%256for c in s];p+=k;s>d+'-'!=exec("b[x][d]="+s[-1])or b[y].pop(d,0)
 for c in b:
  u+=1;v=0
- for i in c:v+=1;q+=u*v*int(c[i][-1])
+ for i in c:v+=1;q+=u*v*c[i]
 print(p,q)
