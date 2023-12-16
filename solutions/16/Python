@@ -5,6 +5,6 @@ for p in S:
  Q=[p];V=set()
  while Q:
   q=Q.pop(0);x,y,s,t=q
-  if(q in V)==0<=x<110>y>=0:V.add(q);Q+=[[(x+s,y+t,s,t)],[[(x+1,y,1,0),(x-1,y,-1,0)],[(x+s,y+t,s,t)]][s],[[(x,y+1,0,1),(x,y-1,0,-1)],[(x+s,y+t,s,t)]][t],[(x-t,y-s,-t,-s)],[(x+t,y+s,t,s)]][".-|/".find(I[y][x])]
+  if(q in V)==0<=x<110>y>=0:V.add(q);Q+=[[z:=(x+s,y+t,s,t)],[[(x+1,y,1,0),(x-1,y,-1,0)],[z]][s],[[(x,y+1,0,1),(x,y-1,0,-1)],[z]][t],[(x-t,y-s,-t,-s)],[(x+t,y+s,t,s)]][".-|/".find(I[y][x])]
  V=len({(v[0],v[1])for v in V});h<1==print(V);h=max(h,V)
 print(h)
