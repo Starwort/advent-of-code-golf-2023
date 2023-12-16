@@ -5,6 +5,6 @@ for i in range(l:=111):
   q=[t];v={s};V={s}
   while q:
    c,d=t=q.pop();k=[-l,l,-1,1][d%9%4]
-   if{t}-v and-~c*s[c:c+1]>" ":v|={t};V|={c};q+=[(c+d,d)for d in[{1,-1}-{-d},(d,),(-k,),{l,-l}-{-d},(k,)][ord(s[c])%48%5]]
+   if{t}-v and-~c*s[c:c+1]>" ":v|={t};V|={c};q+=[(c+d,d)for d in[{1,-1}-{-d},[d],[-k],{l,-l}-{-d},[k]][ord(s[c])%48%5]]
   z+=len(V)-1,
 print(z[0],max(z))
