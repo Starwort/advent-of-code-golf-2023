@@ -1,10 +1,10 @@
 z=[]
 s=open(0).read()
 for i in range(l:=111):
-    for t in[(i*l,1),(len(s)-i,-l),(i,l),(i*l+l-2,-1)]:
-        q=[t];v={s};V={s}
-        while q:
-            c,d=t=q.pop()
-            if{t}-v and-~c*s[c:c+1]>" ":v|={t};V|={c};k={1:l,-1:-l,l:1,-l:-1}[d];q+=[(c+d,d)for d in[{1,-1}-{-d},(d,),(-k,),{l,-l}-{-d},(k,)][ord(s[c])%48%5]]
-        z+=len(V)-1,
+ for t in[(i*l,1),(len(s)-i,-l),(i,l),(i*l+l-2,-1)]:
+  q=[t];v={s};V={s}
+  while q:
+   c,d=t=q.pop()
+   if{t}-v and-~c*s[c:c+1]>" ":v|={t};V|={c};k={1:l,-1:-l,l:1,-l:-1}[d];q+=[(c+d,d)for d in[{1,-1}-{-d},(d,),(-k,),{l,-l}-{-d},(k,)][ord(s[c])%48%5]]
+  z+=len(V)-1,
 print(z[0],max(z))
