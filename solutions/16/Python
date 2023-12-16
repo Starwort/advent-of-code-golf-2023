@@ -1,0 +1,10 @@
+I=*open(h:=0),
+S=[]
+for i in range(110):S+=[(0,i,1,0),(i,0,0,1),(i,109,0,-1),(109,i,-1,0)]
+for p in S:
+ Q=[p];V=set()
+ while Q:
+  q=Q.pop(0);x,y,s,t=q
+  if(q in V)==0<=x<110>y>=0:V.add(q);Q+=[[(x+s,y+t,s,t)],[[(x+1,y,1,0),(x-1,y,-1,0)],[(x+s,y+t,s,t)]][s],[[(x,y+1,0,1),(x,y-1,0,-1)],[(x+s,y+t,s,t)]][t],[(x-t,y-s,-t,-s)],[(x+t,y+s,t,s)]][".-|/".find(I[y][x])]
+ V=len({(v[0],v[1])for v in V});h<1==print(V);h=max(h,V)
+print(h)
