@@ -1,6 +1,6 @@
 *z,s=open(0).read(),
 for i in range(l:=111):
- for t in(i*l,1),(i,l),(i*l+l-2,-1):
+ for t in(i*l,1),(i,l),(i*l-2,-1):
   q=[t];v={s};V={s}
   for c,d in q:
    if{t:=(c,d)}-v and-~c*s[c:c+1]>" ":k=[-l,l,-1,1][d%9%4];v|={t};V|={c};q+=[(c+d,d)for d in[{1,-1},[d],[-k],{l,-l},[k]][ord(s[c])%48%5]]
