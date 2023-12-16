@@ -323,6 +323,26 @@ class Runner(commands.Cog):
                     f" contains disallowed text `{match[0]}`"
                 )
                 return
+        real_answer_path = aoc_data_dir / "2023" / f"{day}"
+        try:
+            real_answers = (
+                (real_answer_path / "1.solution").read_text(),
+                (real_answer_path / "2.solution").read_text(),
+            )
+        except FileNotFoundError:
+            now = datetime.utcnow()
+            soon = now.replace(
+                second=0, microsecond=0, minute=now.minute - (now.minute % 15)
+            ) + timedelta(minutes=15)
+            timestamp = int(soon.timestamp())
+            await ctx.last_message.append_line(
+                "Sorry, submissions for this day are not yet open. Please try again"
+                f" <t:{timestamp}:R>"
+            )
+            return
+        if real_answers[0] in code.content or real_answers[1] in code.content:
+            await ctx.reply("Don't cheat, that's not cool")
+            return
         language = ato_lang["name"]
         await ctx.reply(
             f"Running your code ({len(code.content.encode())} bytes) in"
@@ -335,23 +355,6 @@ class Runner(commands.Cog):
                 language=ato_lang["ato_name"],
                 input=aoc_helper.fetch(day, year=2023),
             )
-            real_answer_path = aoc_data_dir / "2023" / f"{day}"
-            try:
-                real_answers = (
-                    (real_answer_path / "1.solution").read_text(),
-                    (real_answer_path / "2.solution").read_text(),
-                )
-            except FileNotFoundError:
-                now = datetime.utcnow()
-                soon = now.replace(
-                    second=0, microsecond=0, minute=now.minute - (now.minute % 15)
-                ) + timedelta(minutes=15)
-                timestamp = int(soon.timestamp())
-                await ctx.last_message.append_line(
-                    "Sorry, submissions for this day are not yet open. Please try again"
-                    f" <t:{timestamp}:R>"
-                )
-                return
 
             if not await self.grade_solution(ctx, answers, real_answers):
                 return
