@@ -505,6 +505,39 @@ class Runner(commands.Cog):
             leaderboard += f"\n{day} | " + " | ".join(get_entry(lang) for lang in langs)
         readme_file.write_text(README_TEMPLATE.format(leaderboard))
 
+    AUTHORISED_USERS = {
+        232948417087668235,  # starwort
+        417374125015695373,  # tessaract
+    }
+
+    @commands.command(name="add-test-case")
+    @commands.check(lambda ctx: ctx.author.id in AUTHORISED_USERS)
+    async def add_test_case(
+        self, ctx: Context, day: int, case_name: str, answer_1: str, answer_2: str
+    ):
+        attachments = ctx.message.attachments
+        if not attachments:
+            await ctx.reply("Missing input file")
+            return
+        elif len(attachments) > 1:
+            await ctx.reply("Too many input files")
+            return
+        file = attachments[0]
+        if not file.content_type.startswith("test/"):
+            await ctx.reply(
+                f"Bad file type: {file.content_type!r} - expected 'text/plain'"
+            )
+            return
+        test_case_path = extra_data_dir / str(day) / case_name
+        if test_case_path.exists():
+            await ctx.reply(f"Bad case name {case_name!r} - already exists")
+            return
+        test_case_path.mkdir(parents=True)
+        (test_case_path / "input").write_text(await file.read())
+        (test_case_path / "1.solution").write_text(answer_1)
+        (test_case_path / "2.solution").write_text(answer_2)
+        await ctx.reply(f"Added test case {case_name!r} successfully.")
+
 
 repo_root = Path(__file__).parent.parent.parent
 solutions_dir = repo_root / "solutions"
