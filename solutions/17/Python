@@ -5,7 +5,7 @@ for P in 0,1:
  while Q:
   c,x,y,h,v=heappop(Q)
   if(x,y,h,v)in V:continue
-  if x==141-1==y:print(c);break
+  if x==140==y:print(c);break
   V.add((x,y,h,v))
   for h,v in{(0,1),(0,-1),(1,0),(-1,0)}-{(h,v),(-h,-v)}:
    n,s,t=c,x,y
