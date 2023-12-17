@@ -505,13 +505,16 @@ class Runner(commands.Cog):
             leaderboard += f"\n{day} | " + " | ".join(get_entry(lang) for lang in langs)
         readme_file.write_text(README_TEMPLATE.format(leaderboard))
 
-    AUTHORISED_USERS = {
-        232948417087668235,  # starwort
-        417374125015695373,  # tessaract
-    }
-
     @commands.command(name="add-test-case")
-    @commands.check(lambda ctx: ctx.author.id in AUTHORISED_USERS)
+    @commands.check(
+        lambda ctx: (
+            ctx.author.id
+            in {
+                232948417087668235,  # starwort
+                417374125015695373,  # tessaract
+            }
+        )
+    )
     async def add_test_case(
         self, ctx: Context, day: int, case_name: str, answer_1: str, answer_2: str
     ):
