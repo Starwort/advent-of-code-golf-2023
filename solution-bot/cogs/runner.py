@@ -539,7 +539,9 @@ class Runner(commands.Cog):
             await ctx.reply(f"Bad case name {case_name!r} - already exists")
             return
         test_case_path.mkdir(parents=True)
-        (test_case_path / "input").write_text(await file.read())
+        (test_case_path / "input").write_text(
+            (await file.read()).decode(file.content_type.split("charset=")[1])
+        )
         (test_case_path / "1.solution").write_text(answer_1)
         (test_case_path / "2.solution").write_text(answer_2)
         await ctx.reply(f"Added test case {case_name!r} successfully.")
