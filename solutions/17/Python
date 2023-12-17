@@ -1,5 +1,5 @@
 from heapq import*
-I=*map(list,[*open(0)]),
+*I,=open(0)
 for P in 0,1:
  Q,V,C=[(0,)*5],set(),{}
  while Q:
