@@ -6,9 +6,5 @@ for P in 0,1:
   c,x,y,h,v=R=heappop(Q)
   if R[1:]in V:continue
   V[R[1:]]=0
-  for h,v in[{(0,1),(1,0)},{(v,h),(-v,-h)}][h+v]:
-   n,s,t=c,x,y
-   for d in range(10):
-    s+=h;t+=v
-    if-1<s<141>t>-1:n+=int(I[t][s]);(d<3)!=P!=heappush(Q,(n,s,t,h,v))
+  for h,v in[{(0,1),(1,0)},{(v,h),(-v,-h)}][h+v]:n,s,t=c,x,y;[[n:=n+int(I[t][s]),(d<3)!=P!=heappush(Q,(n,s,t,h,v))]for d in range(10) if-1<(s:=s+h)<141>(t:=t+v)>-1]
   if x>139<y:print(c);Q=[]
