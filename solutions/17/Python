@@ -3,10 +3,10 @@ I=*open(0),
 for P in 0,1:
  *Q,V,C=(0,)*5,set(),{}
  while Q:
-  c,x,y,h,v=heappop(Q)
-  if(x,y,h,v)in V:continue
+  R=heappop(Q);c,x,y,h,v=R
+  if R[1:]in V:continue
   if x>139<y:print(c);break
-  V.add((x,y,h,v))
+  V.add(R[1:])
   for h,v in{(0,1),(0,-1),(1,0),(-1,0)}-{(h,v),(-h,-v)}:
    n,s,t=c,x,y
    for d in range(1,11):
