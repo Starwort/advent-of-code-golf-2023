@@ -6,7 +6,7 @@ for P in 0,1:
   c,x,y,h,v=R=heappop(Q)
   if R[1:]in V:continue
   V[R[1:]]=0
-  for h,v in{(0,1),(0,-1),(1,0),(-1,0)}-{(h,v),(-h,-v)}:
+  for h,v in[{(0,1),(1,0)},{(v,h),(-v,-h)}][h+v]:
    n,s,t=c,x,y
    for d in range(1,11):
     s+=h;t+=v
