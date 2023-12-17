@@ -5,12 +5,12 @@ for P in 0,1:
  while Q:
   c,x,y,h,v=heappop(Q)
   if(x,y,h,v)in V:continue
-  if x==len(I)-1==y:print(c);break
+  if x==141-1==y:print(c);break
   V.add((x,y,h,v))
   for h,v in{(0,1),(0,-1),(1,0),(-1,0)}-{(h,v),(-h,-v)}:
    n,s,t=c,x,y
    for d in range(1,11):
     s+=h;t+=v
-    if-1<s<len(I)>t>-1:
+    if-1<s<141>t>-1:
      n+=int(I[t][s])
      if(d<4)^P:C[s,t,h,v]=n;heappush(Q,(n,s,t,h,v))
