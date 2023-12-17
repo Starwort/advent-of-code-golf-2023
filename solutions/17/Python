@@ -4,6 +4,6 @@ for P in 0,1:
  *Q,V=(0,)*5,{}
  while Q:
   c,x,y,h,v=R=heappop(Q)
-  for h,v in[{(0,1),(1,0)},{(v,h),(-v,-h)}][h+v]:n,s,t=c,x,y;[[n:=n+int(I[t][s]),(d<3)!=P!=heappush(Q,(n,s,t,h,v))]for d in range(10)if R[1:]not in V and-1<(s:=s+h)<141>(t:=t+v)>-1]
+  for h,v in[{(0,1),(1,0)},{(v,h),(-v,-h)}][h+v]:n,s,t=c,x,y;[[n:=n+int(I[t][s]),(d<3)!=P!=heappush(Q,(n,s,t,h,v))]for d in range(10)if R[1:]not in V if-1<(s:=s+h)<141>(t:=t+v)>-1]
   V[R[1:]]=0
-  if x>139<y:print(c);Q=[]
+  if x>139<y:Q=print(c)
