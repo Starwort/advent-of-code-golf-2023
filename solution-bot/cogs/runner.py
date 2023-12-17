@@ -526,7 +526,10 @@ class Runner(commands.Cog):
             await ctx.reply("Too many input files")
             return
         file = attachments[0]
-        if not file.content_type.startswith("test/"):
+        if file.content_type is None:
+            await ctx.reply("Sorry, could not determine content type")
+            return
+        if not file.content_type.startswith("text/"):
             await ctx.reply(
                 f"Bad file type: {file.content_type!r} - expected 'text/plain'"
             )
