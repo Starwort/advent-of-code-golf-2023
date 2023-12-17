@@ -1,16 +1,16 @@
 from heapq import*
 *l,=open(0)
-for(n,m)in(1,3),(4,10):
+for(n,m)in(0,1),(3,8):
  h=[(0,)*6]
  o={}
  while h:
   s=heappop(h);a,x,y,b,c,d=s
-  if (x,y)==(q:=len(l)-1,q) and d>n-2:print(a);break
+  if (x,y)==(q:=len(l)-1,q) and d>=n:print(a);break
   if s[1:]in o:continue
   o[s[1:]]=0
   v={(1,0),(-1,0),(0,1),(0,-1)}-{(-b,-c)}
-  if d<n-1 and b^c!=0:v={(b,c)}
-  if d==m-1:v-={(b,c)}
+  if d<n and b^c!=0:v={(b,c)}
+  if d>m:v-={(b,c)}
   for e,f in v:
     g,i=x+e,y+f
     if g<0 or g>q or i<0 or i>q:continue
