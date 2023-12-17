@@ -1,4 +1,4 @@
 s=open(0).read()
 l=111
-a,*z=[len({c:q.extend((c+d,d)for d in[l,1,d,-k,k,-l,-1][ord(s[c])%22%7:v.add(t):5])for(c,d)in q if{t:=(c,d)}-v-{k:=[-l,l,-1,1][d%9%4]}if-~c*s[c:c+1]>" "})for i in range(l)for q in[[(i*l,1)],[(i*l-2,-1)]]if(v:={s})]
-print(a,max(z))
+z=[len({c:q.extend((c+d,d)for d in[l,1,d,-l//d,l//d,-l,-1][ord(s[c])%22%7:v.add(t):5])for(c,d)in q if{t:=(c,d)}-v if-~c*s[c:c+1]>" "})for i in range(l)for q in[[(i*l,1)],[(i*l-2,-1)]]if(v:={s})]
+print(z[0],max(z))
