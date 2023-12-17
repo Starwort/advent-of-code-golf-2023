@@ -1,11 +1,11 @@
 from heapq import*
-*I,=open(0)
+I=*open(0),
 for P in 0,1:
- Q,V,C=[(0,)*5],set(),{}
+ *Q,V,C=(0,)*5,set(),{}
  while Q:
   c,x,y,h,v=heappop(Q)
   if(x,y,h,v)in V:continue
-  if x==140==y:print(c);break
+  if x>139<y:print(c);break
   V.add((x,y,h,v))
   for h,v in{(0,1),(0,-1),(1,0),(-1,0)}-{(h,v),(-h,-v)}:
    n,s,t=c,x,y
