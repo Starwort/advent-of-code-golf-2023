@@ -5,10 +5,10 @@ for P in 0,1:
  while Q:
   c,x,y,h,v=R=heappop(Q)
   if R[1:]in V:continue
-  if x>139<y:print(c);break
   V[R[1:]]=0
   for h,v in{(0,1),(0,-1),(1,0),(-1,0)}-{(h,v),(-h,-v)}:
    n,s,t=c,x,y
    for d in range(1,11):
     s+=h;t+=v
     if-1<s<141>t>-1:n+=int(I[t][s]);(d<4)!=P!=heappush(Q,(n,s,t,h,v))
+  if x>139<y:print(c);Q=[]
