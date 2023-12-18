@@ -1,5 +1,5 @@
 *l,v=open(0)
-for p in 1,7:
+for p in 0,-3:
  y=a=3
- for h in *l,v+"o":d=int(h[~p:-3]or h[2:4],p+9);r=ord(h[(1-p)//2])%35%4;a+=d+2*(r-4&2-r)*d*y;y+=7%~r*d+d
+ for h in*l,v+"o":d=int(h[-8:p]or h[2:4],10-2*p);r=ord(h[p])%35%4;a+=d+2*(r-4&2-r)*d*y;y+=7%~r*d+d
  print(a//2)
