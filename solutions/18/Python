@@ -2,8 +2,7 @@
 for p in 0,1:
  y=a=b=0
  for h in l: 
-  r,d,c=h.split();q="RDLU".index(r)
-  d=int(d)
+  r,d,c=h.split();q="RDLU".index(r);d=int(d)
   if p:d,q=int(c[2:7],16),int(c[-2])
   e,f=[(1,0),(0,1),(-1,0),(0,-1)][q];a+=e*d*(2*y+f*d);b+=d;y+=f*d
  print((abs(a)+b+3)//2)
