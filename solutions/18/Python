@@ -1,5 +1,5 @@
 *l,=open(0)
 for p in 1,7:
- y=a=b=0
- for h in l:r,d,c=h.split();p>1==exec('d,r=c[2:7],"RDLU"[int(c[-2])]');d=int(d,p+9);f='UDR'.find(r)//2;y+=f*d;b+=d;a+='LRD'.find(r)//2*d*(2*y-f*d)
- print((a+b+3)//2)
+ y=a=3
+ for h in l:r,d,c=h.split();p>1==exec('d,r=c[2:7],"RDLU"[int(c[-2])]');d=int(d,p+9);f='UDR'.find(r)//2;y+=f*d;a+=d+'LRD'.find(r)//2*d*(2*y-f*d)
+ print(a//2)
