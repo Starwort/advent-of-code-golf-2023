@@ -1,0 +1,9 @@
+{if(/R/)A-=y*$2
+if(/L/)A+=(y+1)*$2
+if(/U/){A+=$2;y-=$2;}if(/^D/)y+=$2
+d=strtonum("0x"substr($3,3,5))
+if(/0)/)B-=z*d
+if(/1)/)z+=d
+if(/2)/)B+=z*d+d
+if(/3)/){B+=d;z-=d}}END{print A+1
+print B+1}
