@@ -1,5 +1,5 @@
 *l,=open(0)
 for p in 1,7:
  y=a=3
- for h in l:r,d,c=h.split();d=c[2:p]or d;r=ord(r*-~-~-p or c[-2])%35%4;d=int(d,p+9);f=7%~r*d+d;y+=f;a+=d+(r-4&2-r)*d*(2*y-f)
+ for h in l:r,d,c=h.split();d=c[2:p]or d;r=ord(r*(2-p)or c[-2])%35%4;d=int(d,p+9);f=7%~r*d+d;y+=f;a+=d+(r-4&2-r)*d*(2*y-f)
  print(a//2)
