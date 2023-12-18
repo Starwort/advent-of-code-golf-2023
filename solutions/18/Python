@@ -1,8 +1,8 @@
 *l,=open(0)
-for p in 0,1:
+for p in 10,16:
  y=a=b=0
  for h in l: 
-  r,d,c=h.split();d=int(d)
-  if p:d,r=int(c[2:7],16),"RDLU"[int(c[-2])]
-  e="LRD".find(r)//2;f="UDR".find(r)//2;a+=e*d*(2*y+f*d);b+=d;y+=f*d
+  r,d,c=h.split()
+  if p>10:d,r=c[2:7],"RDLU"[int(c[-2])]
+  d=int(d,p);f="UDR".find(r)//2;a+="LRD".find(r)//2*d*(2*y+f*d);b+=d;y+=f*d
  print((abs(a)+b+3)//2)
