@@ -1,10 +1,9 @@
 *l,=open(0)
-m=[(1,0),(0,1),(-1,0),(0,-1)]
 for p in 0,1:
  y=a=b=0
  for h in l: 
-  r,d,c=h.split();e,f=m["RDLU".index(r)]
+  r,d,c=h.split();q="RDLU".index(r)
   d=int(d)
-  if p:d,(e,f)=int(c[2:7],16),m[int(c[-2])]
-  a+=e*d*(2*y+f*d);b+=d;y+=f*d
+  if p:d,q=int(c[2:7],16),int(c[-2])
+  e,f=[(1,0),(0,1),(-1,0),(0,-1)][q];a+=e*d*(2*y+f*d);b+=d;y+=f*d
  print((abs(a)+b+3)//2)
