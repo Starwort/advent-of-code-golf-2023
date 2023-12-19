@@ -12,7 +12,5 @@ while Q:
  p,xl,xh,ml,mh,al,ah,sl,sh=Q.pop(0)
  if p<"B":B+=(xh-xl+1)*(mh-ml+1)*(ah-al+1)*(sh-sl+1)
  if(xl<xh)*(ml<mh)*(al<ah)*(sl<sh)*(p in I):
-  for r in I[p]:
-   if len(r)<2:Q+=[(r[0],xl,xh,ml,mh,al,ah,sl,sh)]
-   else:[v,o,*n],r=r;n=int(''.join(n));Q+=[eval("(r,xl,xh,ml,mh,al,ah,sl,sh)".replace(*[v+'l',v+'h',f'max({v}l,{n+1})',f'min({v}h,{n-1})'][o=="<"::2]))];exec([f"{v}h=min({v}h,{n})",f"{v}l=max({v}l,{n})"][o=="<"])
+  for r in I[p]:Q+=[(r[0],xl,xh,ml,mh,al,ah,sl,sh)*(len(r)<2)or eval("(r[1],xl,xh,ml,mh,al,ah,sl,sh)".replace(*[(v:=r[0][0])+'l',v+'h',f'max({v}l,{(n:=int(r[0][2:]))+1})',f'min({v}h,{n-1})'][(o:=r[0][1]=="<")::2]))];exec([f"{v}h=min({v}h,{n})",f"{v}l=max({v}l,{n})"][o])
 print(A,B)
