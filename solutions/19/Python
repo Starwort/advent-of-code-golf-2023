@@ -1,7 +1,7 @@
 B=C=0
 I={}
 T,F,*Q=str.split,exec,('in',[1,4001]*4)
-for l in open(0):' '<l!=F(["n,r=T(l[:-2],'{');I[n]=*map(T,T(r,','),':'*4),","p='in';F(l.strip()[1:-1].replace(*',;'))\nwhile'Z'<p:p=[r[-1]for r in I[p]if len(r)<2or eval(r[0])][0];B+=p<'B'and x+m+a+s"]['{'<l])
+for l in open(0):' '<l!=F(["n,r=T(l[:-2],'{');I[n]=*map(T,T(r,','),':'*4),","p='in';F(l.strip()[1:-1].replace(*',;'))\nwhile'Z'<p:p=[R for*r,R in I[p]if[]==r or eval(r[0])][0];B+=p<'B'and x+m+a+s"]['{'<l])
 for p,L in Q:
  F(f"C+={'(%d-%d)*'*4%(*L,)}(p<'B')")
  for*r,R in I.get(p,[]):K=L*1;r>[]!=F(f'l=ord(z[0])//3%5*2^(">"in z);L[l]=K[l^1]={(z:=r[0])[2:]}+l%2');Q+=(R,K),
