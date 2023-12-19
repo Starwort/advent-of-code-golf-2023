@@ -33,7 +33,7 @@ Day | APL (Dyalog APL) | AWK | J | K (ngn/k) | Lua | Perl | Python | Python (Ort
 2 | - | - | [170 - frownyfrog](./solutions/2/J) | - | [176 - krowten024nabru](./solutions/2/Lua) | [119 - friedchickenblob](./solutions/2/Perl) | [144 - krowten024nabru](./solutions/2/Python) | [752 - orthoplex](./solutions/2/Python%20%28Orthoplex%29) | -
 3 | - | - | - | - | - | - | [239 - eniraa](./solutions/3/Python) | [3681 - orthoplex](./solutions/3/Python%20%28Orthoplex%29) | -
 4 | [102 - okras](./solutions/4/APL%20%28Dyalog%20APL%29) | - | - | - | - | - | [113 - orthoplex](./solutions/4/Python) | - | -
-5 | - | - | - | [101 - okras](./solutions/5/K%20%28ngn/k%29) | - | - | [331 - okras](./solutions/5/Python) | - | [295 - natt.e](./solutions/5/Ruby)
+5 | - | - | - | [101 - okras](./solutions/5/K%20%28ngn/k%29) | - | - | [329 - okras](./solutions/5/Python) | - | [295 - natt.e](./solutions/5/Ruby)
 6 | [133 - nalafala38290](./solutions/6/APL%20%28Dyalog%20APL%29) | - | - | [45 - okras](./solutions/6/K%20%28ngn/k%29) | [181 - krowten024nabru](./solutions/6/Lua) | - | [136 - taesungh](./solutions/6/Python) | - | -
 7 | - | - | - | [87 - okras](./solutions/7/K%20%28ngn/k%29) | - | - | [180 - biz314](./solutions/7/Python) | - | -
 8 | - | - | - | - | - | - | [168 - okras](./solutions/8/Python) | - | -
