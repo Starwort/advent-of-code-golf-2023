@@ -1,27 +1,18 @@
-f,p=open(0).read().split('\n\n')
-A_=lambda:1+x+m+a+s
-R_=lambda:1
-for i in f.split():exec(i.translate({44:'_()or ',58:'and ',123:'_=lambda:',125:'_()'}))
-S=0
-for i in p.split():exec(i.replace(*',;')[1:-1]+';S+=in_()-1')
-r={}
-for l in [f.split('\n')+p.split('\n')][0]:n,l=l.split('{');r[n]=[p.split(":")for p in l[:-1].split(',')]
-from math import*
-C=lambda l,h:prod(max(h[i]-l[i],0)for i in'xmas')
-t=0
-def P(l,h,w):
- if w=='A':global t;t+=C(l,h);return
- if w=='R':return
- for i in r[w]:
-  if len(i)<2:P(l,h,i[0])
-  if'<'in i[0]:
-   k,v=i[0].split('<');H=h.copy();H[k]=int(v)
-   if C(l,H)>0:P(l.copy(),H,i[1])
-   l[k]=int(v)
-  if'>'in i[0]:
-   k,v=i[0].split('>');L=l.copy();L[k]=int(v)+1
-   if C(L,h)>0:P(L,h.copy(),i[1])
-   h[k]=int(v)+1
-e=4001;x,m,a,s='xmas'
-P({x:1,m:1,a:1,s:1},{x:e,m:e,a:e,s:e},"in")
-print(S,t)
+A=-1
+I={}
+S=str.split
+for l in open(0):
+ if' '>l:A=B=0
+ elif A<0:n,r=S(l[:-2],"{");I[n]=*map(S,S(r,','),':'*4),
+ else:
+  p='in';exec(l[1:~(l[-2]>"|")].replace(*',;'))
+  while'Z'<p:q=0;[p:=r[q:=-1]for r in I[p]if 1+q&(len(r)<2or eval(r[0]))];A+=p<'B'and x+m+a+s
+Q=[('in',*[1,4000]*4)]
+while Q:
+ p,xl,xh,ml,mh,al,ah,sl,sh=Q.pop(0)
+ if p<"B":B+=(xh-xl+1)*(mh-ml+1)*(ah-al+1)*(sh-sl+1)
+ if(xl<xh)*(ml<mh)*(al<ah)*(sl<sh)*(p in I):
+  for r in I[p]:
+   if len(r)<2:Q+=[(r[0],xl,xh,ml,mh,al,ah,sl,sh)]
+   else:[v,o,*n],r=r;n=int(''.join(n));Q+=[eval("(r,xl,xh,ml,mh,al,ah,sl,sh)".replace(*[v+'l',v+'h',f'max({v}l,{n+1})',f'min({v}h,{n-1})'][o=="<"::2]))];exec([f"{v}h=min({v}h,{n})",f"{v}l=max({v}l,{n})"][o=="<"])
+print(A,B)
