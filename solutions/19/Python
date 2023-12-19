@@ -1,9 +1,9 @@
 import re
 B=C=0
-T,I,*Q=str.split,{},('in',[1,4001]*4)
-Y=[[*map(int,re.findall('\d+',l))]for l in open(0)if' '<l for n,I[n]in[T(l,'{')]if' '>n]
+I,*Q={},('in',[1,4001]*4)
+F=re.findall
+Y=[[*map(int,F('\d+',l))]for l in open(0)if' '<l for n,I[n]in[l.split('{')]if' '>n]
 for p,L in Q:
  'B'>p==exec(f"C+={'(%d-%d)*'*4%(*L,)}1\nfor x in Y:i=-1;B+=sum(x)*all(L[i+1]<=v<L[i:=i+2]for v in x)")
- if p in I:
-  for X in T(I[p][:-2],','):*r,R=T(X,':');Q+=(R,K:=L*1),;r>[]!=exec('l=ord(X[0])//3%5*2^(">"in X);L[l]=K[l^1]=l%2+'+r[0][2:])
+ for z,R in F('(.\W\w+)?:?(\w+)',I.get(p,'')):Q+=(R,K:=L*1),;exec(z and'l=ord(z[0])//3%5*2^(">"in z);L[l]=K[l^1]=l%2+'+z[2:])
 print(B,C)
