@@ -1,0 +1,27 @@
+f,p=open(0).read().split('\n\n')
+A_=lambda:1+x+m+a+s
+R_=lambda:1
+for i in f.split():exec(i.translate({44:'_()or ',58:'and ',123:'_=lambda:',125:'_()'}))
+S=0
+for i in p.split():exec(i.replace(*',;')[1:-1]+';S+=in_()-1')
+r={}
+for l in [f.split('\n')+p.split('\n')][0]:n,l=l.split('{');r[n]=[p.split(":")for p in l[:-1].split(',')]
+from math import*
+C=lambda l,h:prod(max(h[i]-l[i],0)for i in'xmas')
+t=0
+def P(l,h,w):
+ if w=='A':global t;t+=C(l,h);return
+ if w=='R':return
+ for i in r[w]:
+  if len(i)<2:P(l,h,i[0])
+  if'<'in i[0]:
+   k,v=i[0].split('<');H=h.copy();H[k]=min(H[k],int(v))
+   if C(l,H)>0:P(l.copy(),H,i[1])
+   l[k]=max(l[k],int(v))
+  if'>'in i[0]:
+   k,v=i[0].split('>');L=l.copy();L[k]=max(L[k],int(v)+1)
+   if C(L,h)>0:P(L,h.copy(),i[1])
+   h[k]=min(h[k],int(v)+1)
+e=4001;x,m,a,s='xmas'
+P({x:1,m:1,a:1,s:1},{x:e,m:e,a:e,s:e},"in")
+print(S,t)
