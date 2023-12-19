@@ -1,10 +1,9 @@
 S,*I=[[int(x)for x in l.split()if":">x]for l in open(0)]
-B=[0]*99
-for S in S,S[::2]:
- *T,=zip(S,B);n=[]
+for*T,in zip(S,[0]*99),zip(S[::2],S[1::2]):
+ n=[]
  for h in I:
   if h:
    P,L,A,N,*T=*h,T
    for o,h in N:O,D=[[[g:=o-L+P,h]],[[P,(F:=o+h-(a:=L+A))+A]],[],[[g,a-o]],[[P,A]],[],[p:=[o,L-o]],[[o,h]],[Q:=[a,F]],[p,Q]][(L>o)+3*(F>0)-(o>a)+(-F>A)::5];n+=O;T+=D
   else:T+=n;n=[]
- print(min(T+n)[0]);B=S[1::2]
+ print(min(T+n)[0])
