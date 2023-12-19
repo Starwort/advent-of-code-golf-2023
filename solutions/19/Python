@@ -1,16 +1,16 @@
-A=-1
+B=-1
 I={}
-S=str.split
+T=str.split
 for l in open(0):
- if' '>l:A=B=0
- elif A<0:n,r=S(l[:-2],"{");I[n]=*map(S,S(r,','),':'*4),
+ if' '>l:B=C=0
+ elif B<0:n,r=T(l[:-2],"{");I[n]=*map(T,T(r,','),':'*4),
  else:
   p='in';exec(l[1:~(l[-2]>"|")].replace(*',;'))
-  while'Z'<p:q=0;[p:=r[q:=-1]for r in I[p]if 1+q&(len(r)<2or eval(r[0]))];A+=p<'B'and x+m+a+s
+  while'Z'<p:q=0;[p:=r[q:=-1]for r in I[p]if 1+q&(len(r)<2or eval(r[0]))];B+=p<'B'and x+m+a+s
 Q=[('in',*[1,4000]*4)]
 while Q:
- p,xl,xh,ml,mh,al,ah,sl,sh=Q.pop(0)
- if p<"B":B+=(xh-xl+1)*(mh-ml+1)*(ah-al+1)*(sh-sl+1)
- if(xl<xh)*(ml<mh)*(al<ah)*(sl<sh)*(p in I):
-  for r in I[p]:Q+=[(r[0],xl,xh,ml,mh,al,ah,sl,sh)*(len(r)<2)or eval("(r[1],xl,xh,ml,mh,al,ah,sl,sh)".replace(*[(v:=r[0][0])+'l',v+'h',f'max({v}l,{(n:=int(r[0][2:]))+1})',f'min({v}h,{n-1})'][(o:=r[0][1]=="<")::2]))];exec([f"{v}h=min({v}h,{n})",f"{v}l=max({v}l,{n})"][o])
-print(A,B)
+ p,x,X,m,M,a,A,s,S=Q.pop(0)
+ if p<"B":C+=(X-x+1)*(M-m+1)*(A-a+1)*(S-s+1)
+ if(x<X)*(m<M)*(a<A)*(s<S)*(p in I):
+  for r in I[p]:Q+=[(r[0],x,X,m,M,a,A,s,S)*(len(r)<2)or eval("(r[1],x,X,m,M,a,A,s,S)".replace(*[(L:=(v:=r[0][0]).lower()),(U:=v.upper()),f'max({L},{(n:=int(r[0][2:]))+1})',f'min({U},{n-1})'][(o:=r[0][1]=="<")::2]))];exec([f"{U}=min({U},{n})",f"{L}=max({L},{n})"][o])
+print(B,C)
