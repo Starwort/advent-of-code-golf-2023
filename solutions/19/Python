@@ -4,5 +4,5 @@ T,E,F,*Q=str.split,eval,exec,('in',[1,4000]*4)
 for l in open(0):S|=' '>l;' '<l!=F(["n,r=T(l[:-2],'{');I[n]=*map(T,T(r,','),':'*4),","p='in';F(l[1:~(l[-2]>'|')].replace(*',;'))\nwhile'Z'<p:q=0;[p:=r[q:=-1]for r in I[p]if-~q&(len(r)<2or E(r[0]))];B+=p<'B'and x+m+a+s"][S])
 for p,L in Q:
  C+=E('~-(%d-%d)*'*4%(*L,)+'(p<"B")')
- for*r,R in I.get(p,[]):K=L*1;r>[]!=F('z=r[0];l="xmas".find(z[0])*2^("<"in z);n=E(z[2:]);K[l]=n+1-l%2*2');Q+=(R,K),;L[l^1]=n
+ for*r,R in I.get(p,[]):K=L*1;r>[]!=F('z=r[0];l=ord(z[0])//3%5*2^("<"in z);n=E(z[2:]);K[l]=n+1-l%2*2');Q+=(R,K),;L[l^1]=n
 print(B,C)
