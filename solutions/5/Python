@@ -4,6 +4,6 @@ for*T,in zip(S,[0]*99),zip(S[::2],S[1::2]):
  for h in I:
   if h:
    P,L,A,N,*T=*h,T
-   for o,h in N:a=L+A;F=o+h-a;i=(L>o)+3*(F>0)-(o>a)+(-F>A);n+=[[[o-L+P,P,0][i%3],[h,F+A,0,a-o,A][i]]][:i^2];T+=[[o,L-o],[a,F]][i%3!=1:i//3+1]or[[o,h]][:i]
+   for o,h in N:a=L+A;F=o+h-a;i=(L>o)+3*(F>0)-(o>a)+(-F>A);n+=[[P+(o-L)*(i%3<1),[h,F+A,0,a-o,A][i]]][:i^2];T+=[[o,L-o],[a,F]][i%3!=1:i//3+1]or[[o,h]][:i]
   else:T+=n;n=[]
  print(min(T+n)[0])
