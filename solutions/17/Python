@@ -1,7 +1,7 @@
 from heapq import*
 g=open(0).read()
 for j in 1,2:
- q,v=[(0,0,1),(0,0,k:=142)],{0}
+ *q,v=(0,0,1),(0,0,k:=142),{0}
  while q:
   c,p,d=heappop(q)
   if{t:=(p,d)}-v:
