@@ -7,5 +7,5 @@ for l in open(0):
   p='in';F(l[1:~(l[-2]>"|")].replace(*',;'))
   while'Z'<p:q=0;[p:=r[q:=-1]for r in I[p]if-~q&(len(r)<2or E(r[0]))];B+=p<'B'and x+m+a+s
  else:n,r=T(l[:-2],"{");I[n]=*map(T,T(r,','),':'*4),
-for p,x,X,m,M,a,A,s,S in Q:C+=~(X-x)*~(M-m)*~(A-a)*~(S-s)*(p<"B");p in I!=F('for r in I[p]:Q+=E("r[-1],x,X,m,M,a,A,s,S".replace(*(len(r)<2)*"~~"or[L:=r[0][0],U:=L.upper(),f"max({L},{(n:=E(r[0][2:]))+1})",f"{n-1}"][(o:="<"in r[0])::2])),;F([f"{U}={n}",f"{L}={n}"][o])')
+for p,x,X,m,M,a,A,s,S in Q:C+=~(X-x)*~(M-m)*~(A-a)*~(S-s)*(p<"B");p in I!=F('for r in I[p]:Q+=E("r[-1],x,X,m,M,a,A,s,S".replace(*(len(r)<2)*"~~"or[L:=r[0][0],U:=L.upper(),f"{(n:=E(r[0][2:]))+1}",f"{n-1}"][(o:="<"in r[0])::2])),;F([f"{U}={n}",f"{L}={n}"][o])')
 print(B,C)
