@@ -2,5 +2,5 @@ B=C=S=0
 I={}
 T,E,F,*Q=str.split,eval,exec,('in',*[1,4000]*4)
 for l in open(0):S|=' '>l;' '<=l!=F(["n,r=T(l[:-2],'{');I[n]=*map(T,T(r,','),':'*4),","p='in';F(l[1:~(l[-2]>'|')].replace(*',;'))\nwhile'Z'<p:q=0;[p:=r[q:=-1]for r in I[p]if-~q&(len(r)<2or E(r[0]))];B+=p<'B'and x+m+a+s"][S])
-for p,x,X,m,M,a,A,s,S in Q:C+=~(X-x)*~(M-m)*~(A-a)*~(S-s)*(p<"B");p in I!=F('for r in I[p]:Q+=E("r[-1],x,X,m,M,a,A,s,S".replace(*(len(r)<2)*"~~"or[L:=r[0][0],U:=L.upper(),f"{(n:=E(r[0][2:]))+1}",f"{n-1}"][(o:="<"in r[0])::2])),;F([U,L][o]+f"={n}")')
+for p,x,X,m,M,a,A,s,S in Q:C+=~(X-x)*~(M-m)*~(A-a)*~(S-s)*(p<"B");p in I!=F('for r in I[p]:o="<"in r[0];Q+=E("r[-1],x,X,m,M,a,A,s,S".replace(*(len(r)<2)*"~~"or([L:=r[0][0],U:=L.upper()][o],f"{(n:=E(r[0][2:]))+(-1)**o}"))),;F([U,L][o]+f"={n}")')
 print(B,C)
