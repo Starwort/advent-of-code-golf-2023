@@ -2,5 +2,8 @@ B=C=S=0
 I={}
 T,E,F,*Q=str.split,eval,exec,('in',[1,4000]*4)
 for l in open(0):S|=' '>l;' '<l!=F(["n,r=T(l[:-2],'{');I[n]=*map(T,T(r,','),':'*4),","p='in';F(l[1:~(l[-2]>'|')].replace(*',;'))\nwhile'Z'<p:q=0;[p:=r[q:=-1]for r in I[p]if-~q&(len(r)<2or E(r[0]))];B+=p<'B'and x+m+a+s"][S])
-for p,L in Q:C+=E('~-(%d-%d)*'*4%(*L,)+'(p<"B")');p in I!=F('for r in I[p]:\n K=L*1\n if len(r)>1:l="xmas".find(r[0][0])*2;o="<"in r[0];n=E(r[0][2:]);K[l|o]=n-o-~-o\n Q+=(r[-1],K*1),;L[l^o^1]=n')
+for p,L in Q:
+ C+=E('~-(%d-%d)*'*4%(*L,)+'(p<"B")')
+ if p in I:
+  for r in I[p]:K=L*1;len(r)>1!=F('l="xmas".find(r[0][0])*2;o="<"in r[0];n=E(r[0][2:]);K[l|o]=n-o-~-o');Q+=(r[-1],K*1),;L[l^o^1]=n
 print(B,C)
