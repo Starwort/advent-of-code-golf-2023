@@ -4,6 +4,6 @@ for j in 4,11:
  *q,v=(0,0,1),(0,0,k:=142),{0}
  while q:
   c,p,d=heappop(q)
-  if{t:=(p,d)}-v:[[len(S:=g[p::D][1:i+1])==i!=heappush(q,(c+sum((ord(x)-48)%999for x in S),p+D*i,D))for i in range(-~j//3,j)]for D in[-k//d,k//d]]
+  if{t:=(p,d)}-v:[len(S:=g[p::D][1:i+1])==i!=heappush(q,(c+sum((ord(x)-48)%999for x in S),p+D*i,D))for i in range(-~j//3,j)for D in[-k//d,k//d]]
   if p>20019:print(c);q=0
   v|={t}
