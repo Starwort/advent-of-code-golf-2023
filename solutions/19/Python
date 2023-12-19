@@ -10,7 +10,7 @@ for l in open(0):
 Q=[('in',*[1,4000]*4)]
 while Q:
  p,x,X,m,M,a,A,s,S=Q.pop(0)
- if p<"B":C+=(X-x+1)*(M-m+1)*(A-a+1)*(S-s+1)
+ if p<"B":C+=~(X-x)*~(M-m)*~(A-a)*~(S-s)
  if(x<X)*(m<M)*(a<A)*(s<S)*(p in I):
   for r in I[p]:Q+=[(r[0],x,X,m,M,a,A,s,S)*(len(r)<2)or eval("(r[1],x,X,m,M,a,A,s,S)".replace(*[L:=(v:=r[0][0]).lower(),U:=v.upper(),f'max({L},{(n:=int(r[0][2:]))+1})',f'min({U},{n-1})'][(o:=r[0][1]=="<")::2]))];exec([f"{U}=min({U},{n})",f"{L}=max({L},{n})"][o])
 print(B,C)
