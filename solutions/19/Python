@@ -1,12 +1,12 @@
-B=-1
+B=C=S=0
 I={}
 T=str.split;E=eval
 for l in open(0):
- if' '>l:B=C=0
- elif B<0:n,r=T(l[:-2],"{");I[n]=*map(T,T(r,','),':'*4),
- else:
+ if' '>l:S=1
+ elif S:
   p='in';exec(l[1:~(l[-2]>"|")].replace(*',;'))
   while'Z'<p:q=0;[p:=r[q:=-1]for r in I[p]if-~q&(len(r)<2or E(r[0]))];B+=p<'B'and x+m+a+s
+ else:n,r=T(l[:-2],"{");I[n]=*map(T,T(r,','),':'*4),
 Q=[('in',*[1,4000]*4)]
 for p,x,X,m,M,a,A,s,S in Q:
  C+=~(X-x)*~(M-m)*~(A-a)*~(S-s)*(p<"B")
