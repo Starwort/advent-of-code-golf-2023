@@ -3,8 +3,9 @@ B=C=0
 T,I,*Y=str.split,{}
 F,*Q=exec,('in',[1,4001]*4)
 for l in open(0):
- if' '<l:n,r=T(l[:-2],'{');I[n]=*map(T,T(r,','),':'*4),;Y+=[[*map(int,re.findall('\d+',l))]]*(n<' ')
+ if' '<l:n,I[n]=T(l,'{');Y+=[[*map(int,re.findall('\d+',l))]]*(n<' ')
 for p,L in Q:
  if'B'>p:F(f"C+={'(%d-%d)*'*4%(*L,)}1\nfor x in Y:i=-1;B+=sum(x)*all(L[i+1]<=v<L[i:=i+2]for v in x)")
- for*r,R in I.get(p,[]):Q+=(R,K:=L*1),;r>[]!=F('l=ord(z[0])//3%5*2^(">"in z);L[l]=K[l^1]=l%2+'+(z:=r[0])[2:])
+ if p in I:
+  for X in T(I[p][:-2],','):*r,R=T(X,':');Q+=(R,K:=L*1),;r>[]!=F('l=ord(X[0])//3%5*2^(">"in X);L[l]=K[l^1]=l%2+'+r[0][2:])
 print(B,C)
