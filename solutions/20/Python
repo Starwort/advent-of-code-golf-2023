@@ -1,17 +1,17 @@
 I={}
-R=1
-S=L=H=P=0
+q=1
+G=O=L=F=0
 for i in open(0):
  n,_,*d=i.replace(*', ').split();I[n[1:3]]=[n[0],0,d]
- if'rx'in d:S=n[1:]
+ if'rx'in d:G=n[1:]
 D={k:{j:0for j in I if k in I[j][2]}for k in I}
-C={k:0for k in D[S]}
-while P<9e3:
- L+=1;Q=[[d,0,'ro']for d in I['ro'][2]]
+C=dict(D[G])
+while F<1e4:
+ O+=1;Q=[[d,0,'ro']for d in I['ro'][2]]
  for e,p,o in Q:
-  if(e in C)>p:R*=-~P;C.pop(e)
-  L+=1-p;H+=p;t,s,l=I.get(e,'***')
-  if'&'==t:D[e][o]=p;s=all(D[e].values())
-  if(t<'&')>p or'&'==t:s=1-s;I[e][1]=s;Q+=[[d,s,e]for d in l]
- P==999==print(L*H);P+=1
-print(R)
+  O+=1-p;L+=p;t,s,l=I.get(e,'$$$')
+  if(e in C)>p:q*=-~F;C.pop(e)
+  if'%'<t:D[e][o]=p;s=all(D[e].values())
+  if(t<'&')>p or'%'<t:s=1-s;I[e][1]=s;Q+=[[d,s,e]for d in l]
+ F==999==print(O*L);F+=1
+print(q)
