@@ -8,7 +8,7 @@ for i in open(0):
  for x in d:D[x]={**D.get(x,{}),z:0}
 C={*D[G]}
 while C:
- F==1e3==print(O*L);F+=1;O+=1;Q=[[d,0,'ro']for d in I['ro'][2]]
+ I['ro'][:2]=['%',1];F==1e3==print(O*L);F+=1;Q=[['ro',0,'']]
  for e,p,o in Q:
   O+=1-p;L+=p;t,s,l=I.get(e,'$$$')
   if(e in C)>p:q*=F;C-={e}
