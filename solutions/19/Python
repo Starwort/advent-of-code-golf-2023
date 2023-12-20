@@ -1,8 +1,6 @@
 import re
 B=C=0
-F,*Q=re.findall,('in',[1,4001]*4)
+F,*Q=re.findall,([1,4001]*4,'in')
 I=open(0).read()
-for p,L in Q:
- 'B'>p==exec(f"C+={'(%d-%d)*'*4}1\nfor*x,in zip(*4*[map(int,F('=(\d+)',I))]):B+=sum(x){'*(%d<=x.pop(0)<%d)'*4}"%(*L*2,))
- for z,R in F('(.\W\w+)?:?(\w+)',max(F('^%s{(.+)|'%p,I,8))):Q+=(R,K:=L*1),;exec(z and'l=ord(z[0])//3%5*2^(">"in z);L[l]=K[l^1]=l%2+'+z[2:])
+for L,p in Q:'B'>p==exec(f"C+={'(%d-%d)*'*4}1\nfor*x,in zip(*4*[map(int,F('=(\d+)',I))]):B+=sum(x){'*(%d<=x.pop(0)<%d)'*4}"%(*L*2,));Q+=[(K:=L*1,exec(z and'l=ord(z[0])//3%5*2^(">"in z);L[l]=K[l^1]=l%2+'+z[2:])or R)for z,R in F('(.\W\w+)?:?(\w+)',max(F('^%s{(.+)|'%p,I,8)))]
 print(B,C)
