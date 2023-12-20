@@ -6,7 +6,7 @@ for i in open(0):
  if'rx'in d:S=n[1:]
 D={k:{j:0for j in I if k in I[j][2]}for k in I}
 C={k:0for k in D[S]}
-while P<9000:
+while P<9e3:
  L+=1;Q=[[d,0,'ro']for d in I['ro'][2]]
  for e,p,o in Q:
   if(e in C)>p:R//=C[e]or 1;C[e]=P-C[e];R*=C[e]
