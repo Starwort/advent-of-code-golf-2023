@@ -7,12 +7,11 @@ for i in open(0):
  if'rx'in d:G=n[1:]
  for x in d:D[x]={**D.get(x,{}),z:0}
 C={*D[G]}
-while F<1e4:
- O+=1;Q=[[d,0,'ro']for d in I['ro'][2]]
+while C:
+ F==1e3==print(O*L);F+=1;O+=1;Q=[[d,0,'ro']for d in I['ro'][2]]
  for e,p,o in Q:
   O+=1-p;L+=p;t,s,l=I.get(e,'$$$')
-  if(e in C)>p:q*=-~F;C-={e}
+  if(e in C)>p:q*=F;C-={e}
   if'%'<t:D[e][o]=p;s=all(D[e].values())
   if(t<'&')>p or'%'<t:s=1-s;I[e][1]=s;Q+=[[d,s,e]for d in l]
- F==999==print(O*L);F+=1
 print(q)
