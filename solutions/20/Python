@@ -1,16 +1,8 @@
-I={}
-q=1
-O=L=F=0
-D={}
-for i in open(0):
- I[z:=i[1:3]]=[i,0,d:=i.replace(*', ').split()[2:]]
- if'rx'in d:G=z
- for x in d:D[x]=D.get(x,{})|{z:0}
-C={*D[G]}
-while C:
- z=F<1e3;I['ro'][:2],*Q=[P:='%{{',1],['ro',0,0];F+=1
- for e,p,o in Q:
-  O+=z>p;L+=z*p;t,s,l=I.get(e,P);q*=F**(C>(C:=C-{e[p:]}))
-  if P<t:D[e][o]=p;s=all(D[e].values())
-  if(t>P)+1-p:I[e][1]^=1;Q+=[[d,1-s,e]for d in l]
-print(O*L,q)
+d={a[0][1:]:[k[0],a[2:],0]for k in sorted(open(0))if'rx'!=(a:=k.replace(*', ').split())[2]or(P:=a[0][1:])}
+l=h=i=0
+t=1
+while q:=[(n,0)for n in a[1:]]:
+    for n,v in q:
+        l+=v<1;h+=v>0
+        if(k:=d.get(n))and'%'!=v*k[0]:t*=i*(P in k[1]*k[2])+1;t>1e11>print(t);k[2]=1-(all(V for _,N,V in d.values()if a!=n in N),k[2])[k[0]<'&'];q+=[(o,k[2])for o in k[1]]
+    i==999!=print(l*h);i+=1
