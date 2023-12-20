@@ -47,5 +47,5 @@ Day | APL (Dyalog APL) | AWK | J | K (ngn/k) | Lua | Perl | Python | Python (Ort
 16 | - | - | - | - | - | - | [235 - biz314](./solutions/16/Python) | - | -
 17 | - | - | - | - | - | - | [277 - biz314](./solutions/17/Python) | - | -
 18 | - | [153 - garth_16184](./solutions/18/AWK) | - | - | - | - | [146 - .___uho](./solutions/18/Python) | - | -
-19 | - | [618 - garth_16184](./solutions/19/AWK) | - | [311 - okras](./solutions/19/K%20%28ngn/k%29) | - | - | [351 - okras](./solutions/19/Python) | - | -
+19 | - | [399 - .___uho](./solutions/19/AWK) | - | [311 - okras](./solutions/19/K%20%28ngn/k%29) | - | - | [351 - okras](./solutions/19/Python) | - | -
 20 | - | - | - | - | - | - | [393 - .___uho](./solutions/20/Python) | - | -

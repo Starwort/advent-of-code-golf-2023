@@ -1,1 +1,5 @@
-BEGIN{FS="[{},=]"}/^[^{]/{for(i=2;i<NF;++i){s=$1i;if(2<split($i,P,/[<>:]/)){G[s]=P[1];if($i~/</){V[s]=P[2];L[s]=P[3]"2";R[s]=$1(i+1)}else{V[s]=P[2]+1;L[s]=$1(i+1);R[s]=P[3]"2"}}else L[s]=$i 2}}function f(s,x,X,m,M,a,A,q,Q,v,g){v=V[s];w=v-1;g=G[s];return s~/A/?(X-x+1)*(M-m+1)*(A-a+1)*(Q-q+1):s~/R/?0:f(L[s],x,g~/x/?w:X,m,g~/m/?w:M,a,g~/a/?w:A,q,g~/s/?w:Q)+f(g~/./?R[s]:"R",g~/x/?v:x,X,g~/m/?v:m,M,g~/a/?v:a,A,g~/s/?v:q,Q)}function h(s,x,m,a,q,g){g=G[s];return s~/R/?0:s~/A/?x+m+a+q:h(g&&(g~/x/?x:g~/m/?m:g~/a/?a:q)>=V[s]?R[s]:L[s],x,m,a,q)}/^{/{S+=h("in2",$3,$5,$7,$9)}END{print S,f("in2",1,4000,1,4000,1,4000,1,4000)}
+function M(a,r,i,e){if($0=W[a]){if(NF>r+=2){e=$r;(l=+$++r--)||p=--$++r;n=$(r+1)
+i[e]=$0=z[e];b=$2;if(l?$1>l&&z[e]=$1s ($1=l>b?l:b):b<p&&z[e]=($2=p<$1?p:$1)s b)
+z[e]=$0M(n);M(a,r)}M($NF)}p=a~/A/;for(e in z){$0=z[e];p*=$2-$1}B+=p;for(e in i)
+z[e]=i[e]}B=gsub(/[{:,>=}]/,y=s=FS){W[$1]=gsub(/</,s"&"s)$0}+$NF{for(++B;B-=2;)
+y+=z[$(B-1)]=$B--s$B;A+=M(I="in")B*y}END{for(B in z)z[B]=4e3;M(I);print A"\n"B}
