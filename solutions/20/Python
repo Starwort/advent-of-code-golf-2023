@@ -12,5 +12,5 @@ while C:
  for e,p,o in Q:
   O+=z>p;L+=z*p;t,s,l=I.get(e,P);q*=F**(C>(C:=C-{e[p:]}))
   if P<t:D[e][o]=p;s=all(D[e].values())
-  if(t>P)+1-p:I[e][1]=s=1-s;Q+=[[d,s,e]for d in l]
+  if(t>P)+1-p:I[e][1]^=1;Q+=[[d,1-s,e]for d in l]
 print(O*L,q)
