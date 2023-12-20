@@ -2,7 +2,7 @@ d={a[0][1:]:[k[0],a[2:],0]for k in sorted(open(0))if'rx'!=(a:=k.replace(*', ').s
 l=h=i=0
 t=1
 while q:=[(n,0)for n in a[1:]]:
-    for n,v in q:
-        l+=v<1;h+=v>0
-        if(k:=d.get(n))and'%'!=v*k[0]:t*=i*(P in k[1]*k[2])+1;t>1e11>print(t);k[2]=1-(all(V for _,N,V in d.values()if a!=n in N),k[2])[k[0]<'&'];q+=[(o,k[2])for o in k[1]]
-    i==999!=print(l*h);i+=1
+ for n,v in q:
+  l+=v<1;h+=v>0
+  if(k:=d.get(n))and'%'!=v*k[0]:t*=i*(P in k[1]*k[2])+1;t>1e11>print(t);k[2]=1-(all(V for _,N,V in d.values()if a!=n in N),k[2])[k[0]<'&'];q+=[(o,k[2])for o in k[1]]
+ i==999!=print(l*h);i+=1
