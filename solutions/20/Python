@@ -1,8 +1,9 @@
 d={a[0][1:]:[k[0],a[2:],0]for k in sorted(open(0))if'rx'!=(a:=k.replace(*', ').split())[2]or(P:=a[0][1:])}
 l=h=i=0
 t=1
-while q:=[(n,0)for n in a[1:]]:
- z=i<1e3;i+=1
+while t<1e11:
+ z=i<1e3;i+=1;q=[(n,0)for n in a[1:]]
  for n,v in q:
   l+=z>v;h+=z*v
-  if(k:=d.get(n))and'%'!=v*k[0]:A,B,C=k;t*=i**(P in B*C);Z=k[2]=1-C*(A<'&')-all(d[c][2]for c in d if n in d[c][1]);q+=[(o,Z)for o in B];t>1e11<print(l*h,t)
+  if(k:=d.get(n))and'%'!=v*k[0]:A,B,C=k;t*=i**(P in B*C);Z=k[2]=1-C*(A<'&')-all(d[c][2]for c in d if n in d[c][1]);q+=[(o,Z)for o in B]
+print(l*h,t)
