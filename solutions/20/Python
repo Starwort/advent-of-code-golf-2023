@@ -1,41 +1,22 @@
-from math import*
-from collections import*
-adj,conjs,ffs = {},{},{}
-rx_conj = ""
-for i in open(0).read().split('\n'):
- m, d = i.split(" -> ");d = d.split(", ");t = m[0]
- if m == "broadcaster":adj["broadcaster"] = d
- else:l = m[1:];adj[l] = d
- if "rx" in d:rx_conj = l
- if t == "&":conjs[l] = {}
- if t == "%":ffs[l] = False
-for i, d in adj.items():
- for dest in d:
-  if dest in conjs:conjs[dest][i] = 0
-low_pulses = 0
-high_pulses = 0
-presses = 0
-rx_conj_presses = {}
-def press():
- global low_pulses, high_pulses, presses
- presses += 1
- low_pulses += 1 + len(adj["broadcaster"])
- queue = deque()
- for dest in adj["broadcaster"]:queue+=(0, "broadcaster", dest),
- while queue:
-  pulse, src, label = queue.popleft()
-  if label == "rx":continue
-  to_send = 0
-  if label in conjs:conjs[label][src] = pulse;to_send = any(n == 0 for n in conjs[label].values())
-  if label in ffs:
-   if pulse == 1:continue
-   ffs[label] = not ffs[label];to_send = (ffs[label])
-  high_pulses += len(adj[label])*to_send
-  low_pulses += len(adj[label])*(not to_send)
-  for dest in adj[label]:queue+=(to_send, label, dest),
-  for label, val in conjs[rx_conj].items():
-   if val >0 and label not in rx_conj_presses:rx_conj_presses[label] = presses
-for _ in range(1000):press()
-print(low_pulses * high_pulses)
-while len(rx_conj_presses) < 4:press()
-print(lcm(*rx_conj_presses.values()))
+import math
+I={}
+S=L=H=0
+for i in open(0):
+ n,_,*d=i.replace(',','').split()
+ I[n[1:3]]=[n[0],n[0]=='&',d]
+ if'rx'in d:S=n[1:]
+D={k:{j:0 for j in I if k in I[j][2]}for k in I}
+C={k:0 for k in D[S]}
+for P in range(9000):
+ L+=1;Q=[[d,0,'ro']for d in I['ro'][2]]
+ for e,p,o in Q:
+  if(e in C)>p:C[e]=P-C[e]
+  L+=1-p;H+=p;t,s,l=I.get(e,'***')
+  if(t=='%')>p:
+    s=1-s;I[e][1]=s
+    for d in l:Q.append([d,s,e])
+  if t=='&':
+   D[e][o]=p
+   for d in l:Q+=([d,1-all(D[e][d]for d in D[e]),e]),
+ if P==999:print(L*H)
+print(math.lcm(*C.values()))
