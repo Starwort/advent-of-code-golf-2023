@@ -10,7 +10,7 @@ C={*D[G]}
 while C:
  I['ro'][:2],*Q=[P:='%',1],['ro',0,0];F+=1
  for e,p,o in Q:
-  z=F<1001;O+=z*-~-p;L+=z*p;t,s,l=I.get(e,3*P)
+  z=F<1001;O+=z>p;L+=z*p;t,s,l=I.get(e,3*P)
   if(e in C)>p:q*=F;C-={e}
   if P<t:D[e][o]=p;s=all(D[e].values())
   if(t>P)+1-p:I[e][1]=s=1-s;Q+=[[d,s,e]for d in l]
