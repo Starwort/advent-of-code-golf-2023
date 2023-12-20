@@ -5,4 +5,4 @@ while q:=[(n,0)for n in a[1:]]:
  z=i<1e3;i+=1
  for n,v in q:
   l+=z>v;h+=z*v
-  if(k:=d.get(n))and'%'!=v*k[0]:A,B,C=k;t*=i**(P in B*C);t>1e11>print(l*h,t);Z=k[2]=1-(all(V for _,N,V in d.values()if a!=n in N),C)[A<'&'];q+=[(o,Z)for o in B]
+  if(k:=d.get(n))and'%'!=v*k[0]:A,B,C=k;t*=i**(P in B*C);Z=k[2]=1-C*(A<'&')-all(V for _,N,V in d.values()if a!=n in N);q+=[(o,Z)for o in B];t>1e11<print(l*h,t)
