@@ -13,5 +13,5 @@ while C:
   O+=F<1001*-~-p;L+=F<1001*p;t,s,l=I.get(e,3*P)
   if(e in C)>p:q*=F;C-={e}
   if P<t:D[e][o]=p;s=all(D[e].values())
-  if(t<=P)>p or P<t:s^=1;I[e][1]=s;Q+=[[d,s,e]for d in l]
+  if t>P or p==0:s^=1;I[e][1]=s;Q+=[[d,s,e]for d in l]
 print(O*L,q)
