@@ -11,7 +11,7 @@ for P in range(9000):
  for e,p,o in Q:
   if(e in C)>p:R//=C[e]or 1;C[e]=P-C[e];R*=C[e]
   L+=1-p;H+=p;t,s,l=I.get(e,'***')
-  if(t=='%')>p:s=1-s;I[e][1]=s;Q+=[[d,s,e]for d in l]
-  if'&'==t:D[e][o]=p;Q+=[[d,1-all(D[e].values()),e]for d in l]
+  if'&'==t:D[e][o]=p;s=all(D[e].values())
+  if(t=='%')>p or'&'==t:s=1-s;I[e][1]=s;Q+=[[d,s,e]for d in l]
  P==999==print(L*H)
 print(R)
