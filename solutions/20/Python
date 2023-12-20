@@ -1,4 +1,4 @@
-d={k[1:3]:[k[0],a[2:],0]for k in sorted(open(0))if'rx'!=(a:=k.replace(*', ').split())[2]or(P:=a[0][1:])}
+d={k[1:3]:[k[0],a[2:],0]for k in sorted(open(0))if'rx'!=(a:=k.replace(*', ').split())[2]or(P:=k[1:3])}
 l=h=i=0
 t=1
 while t<1e11:
