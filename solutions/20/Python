@@ -8,10 +8,10 @@ for i in open(0):
  for x in d:D[x]={**D.get(x,{}),z:0}
 C={*D[G]}
 while C:
- I['ro'][:2]=['%',1];F==1e3==print(O*L);F+=1;Q=[['ro',0,'']]
+ I['ro'][:2],*Q=['%',1],['ro',0,0];F+=1
  for e,p,o in Q:
-  O+=1-p;L+=p;t,s,l=I.get(e,'$$$')
+  O+=F<1001*-~-p;L+=F<1001*p;t,s,l=I.get(e,'$$$')
   if(e in C)>p:q*=F;C-={e}
   if'%'<t:D[e][o]=p;s=all(D[e].values())
   if(t<'&')>p or'%'<t:s=1-s;I[e][1]=s;Q+=[[d,s,e]for d in l]
-print(q)
+print(O*L,q)
