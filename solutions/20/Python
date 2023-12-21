@@ -5,5 +5,5 @@ while t<1e11:
  *q,z=('ro',0),i<1e3;i+=1
  for n,v in q:
   l+=z>v;h+=z*v
-  if(k:=d.get(n))and'%'!=v*k[0]:A,B,C=k;t*=i**(P in B*C);Z=k[2]=1-C*(A<'&')-all(d[c][2]for c in d if n in str(d[c][1]));q+=[(o[:2],Z)for o in B]
+  if(k:=d.get(n))and'%'!=v*k[0]:A,B,C=k;t*=i**(P in B*C);Z=k[2]=1-C*(A<'&')-all(d[c][2]for c in d if n in str(d[c]));q+=[(o[:2],Z)for o in B]
 print(l*h,t)
