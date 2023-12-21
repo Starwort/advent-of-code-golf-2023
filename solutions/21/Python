@@ -1,21 +1,17 @@
-
-
-s = open(0).read()
-lines = s.split('\n')
-lgroups = s.split('\n\n')
-g ={x+y*1j: (c) for y,line in enumerate(lines) for x,c in enumerate(line)}
-s = [k for k in g.keys() if g[k]=='S'][0]
+e=enumerate
+g={x+y*1j:c for y,L in e(open(0).read().split('\n')) for x,c in e(L)}
+s=[k for k in g.keys() if g[k]=='S'][0]
 f=202300
-def reachable(start, steps):
- q = {start}
- for t in range(steps):
+def R(S,E):
+ q={S}
+ for t in range(E):
   nq = set()
   for p in q:
-   for d in range(4):
-    np = p + 1j ** d
-    if np in g and g[np] != '#':nq.add(np)
-  q = nq
+   for d in 1,2,3,4:
+    np=p+1j**d
+    if np in g and g[np]!='#':nq.add(np)
+  q=nq
  return len(q)
-print(reachable(s, 64))
-corners = [0, 0+130j,130,130+130j]
-print(reachable(s, 132)*(f*f) + reachable(s, 131)*(f-1)*(f-1) + sum(reachable(p,64) for p in corners)*f + sum(reachable(p,64+131) for p in corners)*(f-1) + sum(reachable(p,130) for p in[65, 65j, 65+130j, 130+65j]))
+print(R(s,64))
+C=[0,0+130j,130,130+130j]
+print(R(s,132)*f*f+R(s,131)*~-f*~-f+sum(R(p,64)for p in C)*f+sum(R(p,195)for p in C)*~-f+sum(R(p,130)for p in[65,65j,65+130j,130+65j]))
