@@ -7,4 +7,4 @@ G=e(196,").real%N+(p+d).imag%N*1j}")
 B=e(N)
 C=G-B
 W=e(132)
-print(e(64),k*k*B+(k*(k-2)+1)*W+(k-1)*(C-e(65)+W)+C)
+print(e(64),k*k*B+(k*(k-2)+1)*W+~-k*(C-e(65)+W)+C)
