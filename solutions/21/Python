@@ -1,5 +1,4 @@
-k=202300
-n=enumerate
-I={i+j*1jfor i,l in n(open(0))for j,c in n(l)if'$'<c}
-e=lambda t,L="":len(eval("{d for p in"*t+"{65+65j}"+"for d in[p+1,p+1j,p-1,p-1j]if{d%s}&I}"%L*t))
-print(e(64),~-k*(k*(e(132)+e(N:=131))-e(65))+k*e(196,".real%N+d.imag%N*1j"))
+k,K,n=202300,393,enumerate
+I={i*K+j for i,l in n(open(0))for j,c in n(l)if'$'<c}
+e=lambda t,L="":len(eval("{d for p in"*t+"{25610}"+"for d in[p+1,p+K,p-1,p-K]if{d%s}&I}"%L*t))
+print(e(64),~-k*(k*e(132)+k*e(N:=131)-e(65))+k*e(196,"%N+(d+N)//K%N*K"))
