@@ -1,4 +1,11 @@
-k,K=202300,393
-I={i//132*K+i%132for i,c in enumerate(open(0).read())if'$'<c}
-e=lambda t,L="":len(eval("{d for p in"*t+"{25610}"+"for d in[p+1,p+K,p-1,p-K]if{d%s}&I}"%L*t))
-print(e(64),~-k*(k*e(132)+k*e(N:=131)-e(65))+k*e(196,"%N+(d+N)//K%N*K"))
+S=open(0).read()
+i=A=B=0
+n=202300
+O={n}
+f=S.index("S"),
+while f:
+ s=[]
+ for k in f:
+  if k>=0 and S[k:]>"$" and k not in O:O.add(k);A+=(i<65)>i%2;B+=(n+i%2)*(n+(i>65)^i%2);s+=[k+132,k-132,k+1,k-1]
+ f=s;i+=1
+print(A,B)
