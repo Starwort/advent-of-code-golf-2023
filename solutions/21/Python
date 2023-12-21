@@ -3,6 +3,6 @@ s=65+65j
 T=202300
 e=enumerate
 g={x+y*1j:c!='#'for y,L in e(open(0))for x,c in e(L.strip())}
-C=[s+s*d for d in D]
-r=lambda t=64:lambda S=s:len(eval("{p+d for p in"*t+'{S}'+"for d in D if g.get(p+d,0)}"*t))
-print(r()(),T*(T*r(132)()+sum(map(r(),C)))+~-T*(~-T*r(131)()+sum(map(r(195),C)))+sum(r(130)(s+65*d)for d in D))
+C=[s*d for d in D]
+r=lambda t=64:lambda S=0:len(eval("{p+d for p in"*t+'{S+s}'+"for d in D if g.get(p+d,0)}"*t))
+print(r()(),T*(T*r(132)()+sum(map(r(),C)))+~-T*(~-T*r(131)()+sum(map(r(195),C)))+sum(r(130)(65*d)for d in D))
