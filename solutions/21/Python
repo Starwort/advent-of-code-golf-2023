@@ -4,5 +4,5 @@ T=202300
 e=enumerate
 g={x+y*1j:c!='#'for y,L in e(open(0))for x,c in e(L.strip())}
 C=[s+s*d for d in D]
-r=lambda S,t:len(eval("{p+d for p in"*t+'{S}'+"for d in D if g.get(p+d,0)}"*t))
-print(r(s,64),T*T*r(s,132)+T*sum(r(p,64)for p in C)+~-T*(~-T*r(s,131)+sum(r(p,195)for p in C))+sum(r(s+65*d,130)for d in D))
+r=lambda t=64:lambda S=s:len(eval("{p+d for p in"*t+'{S}'+"for d in D if g.get(p+d,0)}"*t))
+print(r()(),T*(T*r(132)()+sum(map(r(),C)))+~-T*(~-T*r(131)()+sum(map(r(195),C)))+sum(r(130)(s+65*d)for d in D))
