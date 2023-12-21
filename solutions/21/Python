@@ -1,14 +1,13 @@
 e=enumerate
-g={x+y*1j:c!='#'for y,L in e(open(0).read().split('\n'))for x,c in e(L)}
+g={x+y*1j:c!='#'for y,L in e(open(0))for x,c in e(L.strip())}
 D=[1,1j,-1,-1j]
 def r(S,t):
  q={S}
- for t in range(t):
-  q={N for p in q for d in D if g.get(N:=p+d,0)}
+ for t in range(t):q={N for p in q for d in D if g.get(N:=p+d,0)}
  return len(q)
 s=65+65j
 C=[0,0+130j,130,130+130j]
 T=202300
 t=T-1
 print(r(s,64))
-print(T*T*r(s,132)+t*t*r(s,131)+T*sum(r(p,64)for p in C)+t*sum(r(p,195)for p in C)+sum(r(p,130)for p in[65,65j,65+130j,130+65j]))
+print(T*T*r(s,132)+t*t*r(s,131)+T*sum(r(p,64)for p in C)+t*sum(r(p,195)for p in C)+sum(r(s+65*d,130)for d in D))
