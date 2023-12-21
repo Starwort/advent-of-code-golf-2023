@@ -1,10 +1,7 @@
 e=enumerate
 g={x+y*1j:c!='#'for y,L in e(open(0))for x,c in e(L.strip())}
 D=1,1j,-1,-1j
-def r(S,t):
- q={S}
- while t:t-=1;q={N for p in q for d in D if g.get(N:=p+d,0)}
- return len(q)
+r=lambda S,t:len(eval("{p+d for p in"*t+'{S}'+"for d in[1,1j,-1,-1j]if g.get(p+d,0)}"*t))
 s=65+65j
 C=[s+s*d for d in D]
 T=202300
