@@ -1,8 +1,8 @@
+D=1,1j,-1,-1j
+s=65+65j
+T=202300
 e=enumerate
 g={x+y*1j:c!='#'for y,L in e(open(0))for x,c in e(L.strip())}
-D=1,1j,-1,-1j
-r=lambda S,t:len(eval("{p+d for p in"*t+'{S}'+"for d in[1,1j,-1,-1j]if g.get(p+d,0)}"*t))
-s=65+65j
 C=[s+s*d for d in D]
-T=202300
-print(r(s,64),T*(T*r(s,132)+sum(r(p,64)for p in C))+~-T*(~-T*r(s,131)+sum(r(p,195)for p in C))+sum(r(s+65*d,130)for d in D))
+r=lambda S,t:len(eval("{p+d for p in"*t+'{S}'+"for d in D if g.get(p+d,0)}"*t))
+print(r(s,64),T*T*r(s,132)+T*sum(r(p,64)for p in C)+~-T*(~-T*r(s,131)+sum(r(p,195)for p in C))+sum(r(s+65*d,130)for d in D))
