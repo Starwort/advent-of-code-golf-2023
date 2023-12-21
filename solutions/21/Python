@@ -5,6 +5,6 @@ def r(S,t):
  q={S}
  for t in range(t):q={N for p in q for d in D if g.get(N:=p+d,0)}
  return len(q)
-C=0,0+130j,130,130+130j
+C=0,130j,130,130+130j
 T=202300
 print(r(s:=65+65j,64),T*T*r(s,132)+~-T*~-T*r(s,131)+T*sum(r(p,64)for p in C)+~-T*sum(r(p,195)for p in C)+sum(r(s+65*d,130)for d in D))
