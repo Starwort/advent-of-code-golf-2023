@@ -2,7 +2,7 @@
 *e,=zip(g:=range(A:=len(E:=sorted([*eval(s.replace(*'~,'))*2][2:]for s in open(0)))),E)
 v=[{x}for x in g]
 for i,a in e:
- while len(s:=[j for j,b in e[:i][-99:]if 2+b[3]>a[0]and all(max(a[i+3],b[i+3])<=min(a[i],b[i])for i in(1,2))])==0<a[0]:a[0]-=1;a[3]-=1;e[i]=i,a
+ while len(s:=[j for j,b in e[:i]if 2+b[3]>a[0]and all(max(a[i+3],b[i+3])<=min(a[i],b[i])for i in(1,2))])==0<a[0]:a[0]-=1;a[3]-=1;e[i]=i,a
  t+=[s]
  for z in g:
   if({*s}<=v[z])*s:A-=v[z]=={z};v[z]|={i};B+=1
