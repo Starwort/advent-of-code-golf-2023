@@ -50,4 +50,4 @@ Day | APL (Dyalog APL) | AWK | J | K (ngn/k) | Lua | Perl | Python | Python (Ort
 19 | - | [395 - shanethegamer](./solutions/19/AWK) | - | [311 - okras](./solutions/19/K%20%28ngn/k%29) | - | - | [351 - okras](./solutions/19/Python) | - | -
 20 | - | [311 - shanethegamer](./solutions/20/AWK) | - | - | - | - | [305 - krowten024nabru](./solutions/20/Python) | - | -
 21 | - | - | - | - | - | - | [170 - biz314](./solutions/21/Python) | - | -
-22 | - | - | - | - | - | - | [297 - _justconfused](./solutions/22/Python) | - | -
+22 | - | - | - | - | - | - | [288 - _justconfused](./solutions/22/Python) | - | -
