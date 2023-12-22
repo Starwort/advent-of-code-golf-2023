@@ -1,10 +1,9 @@
-*S,=open(0).read()
-i=A=B=0
 n=202300
+*S,=open(0).read()+n*'$'
+i=A=B=0
 f=8645,
 while f:
- s=[]
- for k in f:
-  if-1<k<17291!='$'<S[k]:S[k]='';A+=i<~i%2*65;B+=(n+i%2)*(n+(i>65)^i%2);s+=k+132,k-132,k+1,k-1
- f=s;i+=1
+ *f,s=f,;i+=1
+ for k in s:
+  if'$'<S[k]:S[k]='';A+=i<i%2*66;B+=(n+~i%2)*(n+(i<67)^i%2);f+=k+132,k-132,k+1,k-1
 print(A,B)
