@@ -1,9 +1,8 @@
-B=i=0
-A=len(e:=sorted((eval(s.replace(*'~,'))*2)[2:]for s in open(0)))
-v={}
-for a in e:
- while(s:=[b for b in e[:i]if-~b[3]==a[0]and~-any(a[i+3]>b[i]or b[i+3]>a[i]for i in(1,2))])<[()]*a[0]:N,*a=a;a[2]-=1;e[i]=a=N-1,*a
- v[a]={a};i+=1
+A=B=i=0
+S,v=[],{}
+for a in sorted([*eval(s.replace(*'~,'))*2][2:]for s in open(0)):
+ while(s:=[b for b in S if-~b[3]==a[0]and~-any(a[i+3]>b[i]or b[i+3]>a[i]for i in(1,2))])<[()]*a[0]:a[0]-=1;a[3]-=1
+ a=*a,;S+=[a];v[a]={a};i+=1
  for y in v:
   if({*s}<=v[y])*s:A-=v[y]=={y};v[y]|={a};B+=1
-print(A,B)
+print(A+i,B)
