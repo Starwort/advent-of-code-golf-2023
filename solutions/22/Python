@@ -1,0 +1,56 @@
+import sys
+
+data = [line.rstrip('\n') for line in sys.stdin.readlines()]
+
+bs = []
+t = X = Y = 0
+for line in data:
+    a, b = line.split('~')
+    x1, y1, z1 = map(int, a.split(','))
+    x2, y2, z2 = map(int, b.split(','))
+    assert x2 >= x1 and y2 >= y1 and z2 >= z1
+    X = max(X, x2)
+    Y = max(Y, y2)
+    bs.append((x1, y1, z1, x2, y2, z2))
+
+bs.sort(key=lambda b:b[2])
+
+nbs = []
+Z = 0
+m = [[0 for j in range(Y+1)] for i in range(X+1)]
+for b in bs:
+    max_z = 0
+    for x in range(b[0], b[3]+1):
+        for y in range(b[1], b[4]+1):
+            max_z = max(max_z, m[x][y])
+    nh = max_z + 1
+    apex = nh + b[5] - b[2]
+    for x in range(b[0], b[3]+1):
+        for y in range(b[1], b[4]+1):
+            m[x][y] = apex
+    Z = max(Z, apex)
+    nbs.append((b[0],b[1],nh,b[3],b[4],apex))
+
+nbs.sort(key=lambda b:b[2])
+
+Z += 1
+m3 = [[[-1 for k in range(Z+1)] for j in range(Y+1)] for i in range(X+1)]
+by = [set() for i in range(len(nbs))]
+for i,b in enumerate(nbs):
+    for x in range(b[0], b[3]+1):
+        for y in range(b[1], b[4]+1):
+            if m3[x][y][b[2]-1] != -1:
+                by[i].add(m3[x][y][b[2]-1])
+            for z in range(b[2], b[5]+1):
+                m3[x][y][z] = i
+
+a1, a2 = 0, 0
+for u in range(len(nbs)):
+    vis = set()
+    vis.add(u)
+    for v in range(u+1,len(nbs)):
+        if len(by[v]) > 0 and by[v] <= vis:
+            vis.add(v)
+    if len(vis) == 1: a1 += 1
+    a2 += len(vis)-1
+print(a1, a2)
