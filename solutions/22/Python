@@ -2,7 +2,7 @@ B=0
 *e,=enumerate(sorted([*eval(s.replace(*'~,'))*2][2:]for s in open(0)))
 A=len(v:=[{x}for x,_ in e])
 for i,a in e:
- while(s:=[j for j,b in e[:i]if-~b[3]==a[0]and 1-any(a[i+3]>b[i]or b[i+3]>a[i]for i in(1,2))])<[0]*a[0]:a[0]-=1;a[3]-=1;e[i]=i,a
+ while(s:=[j for j,b in e[:i]if-~b[3]==a[0]and~-any(a[i+3]>b[i]or b[i+3]>a[i]for i in(1,2))])<[0]*a[0]:a[0]-=1;a[3]-=1;e[i]=i,a
  for z,_ in e:
   if({*s}<=v[z])*s:A-=v[z]=={z};v[z]|={i};B+=1
 print(A,B)
