@@ -1,10 +1,10 @@
-*S,=open(0,"rb").read()
+*S,=open(0).read()
 i=A=B=0
 n=202300
 f=8645,
 while f:
  s=[]
  for k in f:
-  if-1<k<len(S)>35<S[k]:S[k]=0;A+=(i<65)>i%2;B+=(n+i%2)*(n+(i>65)^i%2);s+=[k+132,k-132,k+1,k-1]
+  if-1<k<len(S)!='$'<S[k]:S[k]='';A+=(i<65)>i%2;B+=(n+i%2)*(n+(i>65)^i%2);s+=k+132,k-132,k+1,k-1
  f=s;i+=1
 print(A,B)
