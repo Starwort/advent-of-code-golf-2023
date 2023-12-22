@@ -1,13 +1,14 @@
 import bisect
-def F(bricks):
- S,f=[],0
- for x,y,z,a,b,c in bricks:
+k=lambda x:x[5]
+def F(B):
+ *S,f=[0]
+ for x,y,z,a,b,c in B:
   h=c-z;t=1
-  for r,s,t,u,v,w in reversed(S):
-   if not(a<r or u<x)and not(v<y or b<s):f+=z!=w+1;z=w+1;break
+  for r,s,t,u,v,w in S[::-1]:
+   if all([a>=r,b>=s,u>=x,v>=y]):f+=z!=w+1;z=w+1;break
   else:f+=z!=t;z=t
-  bisect.insort(S,[x,y,z,a,b,z+h],key=lambda x:x[5])
+  bisect.insort(S,[x,y,z,a,b,z+h],key=k)
  return S,f
-S,_=F(b:=sorted([eval(l.replace(*'~,'))for l in open(0)],key=lambda x:x[5]))
+S,_=F(sorted([eval(l.replace(*'~,'))for l in open(0)],key=k))
 z=[F(S[:i]+S[i+1:])[1]for i in range(len(S))]
 print(z.count(0),sum(z))
