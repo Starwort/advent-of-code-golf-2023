@@ -1,12 +1,13 @@
-import sys,re,bisect
-def fall(bricks):
- stack, fell = [], 0
- for x1, y1, z1, x2, y2, z2 in bricks:
-  h=z2-z1;t1=1
-  for r1, s1, t1, r2, s2, t2 in reversed(stack):
-   if not (x2 < r1 or r2 < x1) and not (s2 < y1 or y2 < s1):fell += z1 != t2 + 1;z1 = t2 + 1;break
-  else:fell += z1 != t1;z1 = t1
-  bisect.insort(stack, [x1, y1, z1, x2, y2, z1 + h], key=lambda x:x[5])
- return stack,fell
-s,_=fall(b:=sorted([[*map(int,re.findall('\d+',l))]for l in open(0)],key=lambda x:x[5]))
-print(sum(fall(s[:i]+s[i+1:])[1]==0 for i in range(len(s))),sum(fall(s[:i]+s[i+1:])[1]for i in range(len(s))))
+import bisect
+def F(bricks):
+ S,f=[],0
+ for x,y,z,a,b,c in bricks:
+  h=c-z;t=1
+  for r,s,t,u,v,w in reversed(S):
+   if not(a<r or u<x)and not(v<y or b<s):f+=z!=w+1;z=w+1;break
+  else:f+=z!=t;z=t
+  bisect.insort(S,[x,y,z,a,b,z+h],key=lambda x:x[5])
+ return S,f
+S,_=F(b:=sorted([eval(l.replace(*'~,'))for l in open(0)],key=lambda x:x[5]))
+z=[F(S[:i]+S[i+1:])[1]for i in range(len(S))]
+print(z.count(0),sum(z))
