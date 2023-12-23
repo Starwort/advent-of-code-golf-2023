@@ -8,11 +8,11 @@ for x in 1,0:
   l=[c+z for z in[k,-k,-1,1]*(x*s[c]<'>')or[[1,k][s[c]=='v']]if(c+z!=p)*s[c+z]>'#'if(c in g[P])-1]
   if len(l)>1 or c>len(s)-k-3:
    g[P][c]=L
-   if c<len(s)-k-3:q.extend((new,1,c,c)for new in l);g[c]=g.get(c,{})
+   if c<len(s)-k-3:q+=[(new,1,c,c)for new in l];g[c]=g.get(c,{})
    else:i,t=P,L
   else:q+=[(new,L+1,c,P)for new in l]
  def d(c): 
-  if c==i:return True
+  if c==i:return 1
   v.add(c)
   b=0 
   for n in g[c]:
