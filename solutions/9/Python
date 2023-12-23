@@ -1,3 +1,4 @@
+from numpy import*
 x=y=0
-exec(f"s,*d=map(int,input().split());{'x+=d[-1];y=s-y;s,*d=[-s+(s:=v)for v in d];'*20}"*200)
+exec(f'd=ravel(mat(input()));{"x+=d[-1];y=d[0]-y;d=diff(d);"*20}'*200)
 print(x,-y)
