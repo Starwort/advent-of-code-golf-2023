@@ -1,0 +1,76 @@
+N=enumerate
+M=len
+L=max
+F=True
+A=False
+import sys
+sys.setrecursionlimit(10**6)
+P=0
+Q=1
+R=2
+S=3
+class T:
+ def __init__(B,x,y,t,s=A,e=A):B.x=x;B.y=y;B.t=t;B.i=[None]*4;B.o=[None]*4;B.v=A;B.s=s;B.e=e
+ def D(A,d):return A.t=='.'or A.t=='^><v'[d]
+ def C(A,d,o,i=A):
+  B=o
+  if i or A.D(d)and B.D(d):A.o[d]=B;B.i[3-d]=A
+ def F(B):
+  if B.e:return 1
+  else:
+   B.v=F;C=0
+   for n in B.o:
+    if n and not n.v:C=L(C,n.F())
+   B.v=A;return(C>0)+C
+ def T(B):
+  if B.e:return{B}
+  else:
+   B.v=F;C=[]
+   for n in B.o:
+    if n and not n.v:C.append(n.T())
+   B.v=A
+   if C:
+    D=L(C,key=M)
+    if M(D)>0:D.add(B)
+    return D
+   else:return set()
+class U:
+ def __init__(B,x,y,s=A,e=A):B.x=x;B.y=y;B.a=[];B.v=A;B.s=s;B.e=e
+ def I(A):return M(A.a)!=2
+ def C(A,o):B=o;A.a.append((1,B));B.a.append((1,A))
+ def J(A):B,D=A.a[0];C,E=A.a[1];D.R((B,A),(B+C,E));E.R((C,A),(B+C,D))
+ def R(A,o,n):B=A.a.index(o);A.a[B]=n
+ def F(B):
+  if B.e:return 1
+  else:
+   B.v=F;C=0
+   for(E,n)in B.a:
+    if not n.v:
+     D=n.F()
+     if D>0:C=L(C,E+D)
+   B.v=A;return C
+ def T(B):
+  if B.e:return 1,{B}
+  else:
+   C=0,set();B.v=F
+   for(E,n)in B.a:
+    if not n.v:
+     D,G=n.T()
+     if D>0 and E+D>C[0]:G.add(B);C=E+D,G
+   B.v=A;return C
+with open(0)as V:
+ C={};G={};W=0;X=0
+ for(B,Y)in N(V.readlines()):
+  X+=1
+  for(D,H)in N(Y.strip()):
+   if B==0:W+=1
+   if H!='#':
+    E=T(D,B,H,s=B==0);I=U(D,B,s=B==0);C[D,B]=E;G[D,B]=I;J=D,B-1;K=D-1,B
+    if J in C:E.C(P,C[J]);C[J].C(S,E);I.C(G[J])
+    if K in C:E.C(R,C[K]);C[K].C(Q,E);I.C(G[K])
+ E.e=F;I.e=F
+Z=(A for A in C.values()if A.s).__next__()
+a=(A for A in G.values()if A.s).__next__()
+for H in G.values():
+ if not H.I():H.J()
+print(Z.F()-1, a.F()-1)
