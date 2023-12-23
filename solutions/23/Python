@@ -1,20 +1,20 @@
 s=open(0).read()
 k=142
+v=[1]*k*k
 for x in 1,0:
- q=[(1,1,0,0)];g={0:{}}
+ q=[(1,1,0,0)];g=[{} for _ in v]
  for c,L,p,P in q:
   l=[c+z for z in[k,-k,-1,1]*(x*s[c]<'>')or[[1,k][s[c]>'>']]if(c+z!=p)*s[c+z]>'#'if(c in g[P])-1]
   if len(l)>1 or c>len(s)-k-3:
    g[P][c]=L
-   if c<len(s)-k-3:q+=[(n,1,c,c)for n in l];g[c]=g.get(c,{})
+   if c<len(s)-k-3:q+=[(n,1,c,c)for n in l]
    else:i,t=P,L
   else:q+=[(n,L+1,c,P)for n in l]
- v={0}
- def d(c): 
+ def d(c):
   if c==i:return t
-  v.add(c);b=0 
+  v[c]=b=0
   for n in g[c]:
-   if(n in v)-1:b=max(b,g[c][n]+d(n))
-  v.remove(c)
+   if v[n]:b=max(b,g[c][n]+d(n))
+  v[c]=1
   return b
  print(d(0))
