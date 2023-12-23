@@ -1,14 +1,9 @@
 N=enumerate
 M=len
 L=max
-F=True
-A=False
 import sys
-sys.setrecursionlimit(10**6)
-P=0
-Q=1
-R=2
-S=3
+sys.setrecursionlimit(10000)
+A=P=0;F=Q=1;R=2;S=3
 class T:
  def __init__(B,x,y,t,s=A,e=A):B.x=x;B.y=y;B.t=t;B.i=[None]*4;B.o=[None]*4;B.v=A;B.s=s;B.e=e
  def D(A,d):return A.t=='.'or A.t=='^><v'[d]
@@ -37,7 +32,7 @@ class T:
 class U:
  def __init__(B,x,y,s=A,e=A):B.x=x;B.y=y;B.a=[];B.v=A;B.s=s;B.e=e
  def I(A):return M(A.a)!=2
- def C(A,o):B=o;A.a.append((1,B));B.a.append((1,A))
+ def C(A,o):B=o;A.a.append((1,B));B.a+=(1,A),
  def J(A):B,D=A.a[0];C,E=A.a[1];D.R((B,A),(B+C,E));E.R((C,A),(B+C,D))
  def R(A,o,n):B=A.a.index(o);A.a[B]=n
  def F(B):
@@ -62,7 +57,7 @@ with open(0)as V:
  C={};G={};W=0;X=0
  for(B,Y)in N(V.readlines()):
   X+=1
-  for(D,H)in N(Y.strip()):
+  for(D,H)in N(Y):
    if B==0:W+=1
    if H!='#':
     E=T(D,B,H,s=B==0);I=U(D,B,s=B==0);C[D,B]=E;G[D,B]=I;J=D,B-1;K=D-1,B
