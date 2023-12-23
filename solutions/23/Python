@@ -4,8 +4,7 @@ v=[1]*k*k
 def d(c):
  if c==i:return t
  v[c]=b=0
- for n in g[c]:
-  if v[n]:b=max(b,g[c][n]+d(n))
+ for n in g[c]:v[n]and(b:=max(b,g[c][n]+d(n)))
  v[c]=1
  return b
 for x in 1,0:
