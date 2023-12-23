@@ -14,7 +14,7 @@ for x in 1,0:
   if c==i:return t
   v.add(c);b=0 
   for n in g[c]:
-   if n not in v:b=max(b,g[c][n]+d(n))
+   if(n in v)-1:b=max(b,g[c][n]+d(n))
   v.remove(c)
   return b
  print(d(0))
