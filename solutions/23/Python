@@ -1,28 +1,22 @@
-import sys
-sys.setrecursionlimit(9000)
-e=enumerate
-G={(i,j):c for j,r in e(open(0))for i,c in e(r)if c!='#'}
-W=(1,0),(-1,0),(0,1),(0,-1)
-def v(c):
- if c>"u":return(0,1),
- if c>"=":return(1,0),
- return W
-def C(A,p,n,d=1):
- while len(A[n])==2:p,n,d=n,[*{*A[n]}-{p}][0],d+1
- return n,d
-def c(A,m):
- E={p:[]for p in G}
- for p in G:
-  l=[]
-  for n in A[p]:k,d=C(A,p,n) if m else(n,1);l+=(E[k],d),
-  E[p].extend([l,0,p])
- return E
-def S(N,D,s=[*G][-1]):
- if N[2]==s:return D
- N[1]=1;B=0
- for n,d in N[0]:
-  if not n[1]:B=max(B,S(n,d+D))
- N[1]=0
- return B
-f=[*G][0]
-print(S(c({(x,y):[(x+X,y+Y)for X,Y in v(G[x,y])if(x+X,y+Y)in G]for x,y in G},0)[f],0),S(c({(x,y):[(x+X,y+Y)for X,Y in W if(x+X,y+Y)in G]for x,y in G},1)[f],0))
+s=open(0).read()
+k=142
+i,t=0,0
+q=[(1,1,0,0)]
+g={0:{}}
+for x in 1,0:
+ for c,L,p,P in q:
+  l=[c+z for z in[k,-k,-1,1]*(x*s[c]<'>')or[[1,k][s[c]=='v']]if(c+z!=p)*s[c+z]>'#'if(c in g[P])-1]
+  if len(l)>1 or c>len(s)-k-3:
+   g[P][c]=L
+   if c<len(s)-k-3:q.extend((new,1,c,c)for new in l);g[c]=g.get(c,{})
+   else:i,t=P,L
+  else:q+=[(new,L+1,c,P)for new in l]
+ def d(c): 
+  if c==i:return True
+  v.add(c)
+  b=0 
+  for n in g[c]:
+   if n not in v:b=max(b,g[c][n]+d(n))
+  v.remove(c)
+  return b
+ v={0};print(d(0)+t-1)
