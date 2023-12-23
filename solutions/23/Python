@@ -1,6 +1,13 @@
 s=open(0).read()
 k=142
 v=[1]*k*k
+def d(c):
+ if c==i:return t
+ v[c]=b=0
+ for n in g[c]:
+  if v[n]:b=max(b,g[c][n]+d(n))
+ v[c]=1
+ return b
 for x in 1,0:
  q=[(1,1,0,0)];g=[{}for _ in v]
  for c,L,p,P in q:
@@ -10,11 +17,4 @@ for x in 1,0:
    if c<len(s)-k-3:q+=[(n,1,c,c)for n in l]
    else:i,t=P,L
   else:q+=[(n,L+1,c,P)for n in l]
- def d(c):
-  if c==i:return t
-  v[c]=b=0
-  for n in g[c]:
-   if v[n]:b=max(b,g[c][n]+d(n))
-  v[c]=1
-  return b
  print(d(0))
