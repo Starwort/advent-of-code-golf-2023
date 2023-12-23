@@ -5,9 +5,9 @@ def d(c):b=t;v[c]=0;[b:=max(b,g[c][n]+d(n))for n in g[c]if v[n]if c!=i];v[c]=1;r
 for x in 1,0:
  q=[(1,1,0,0)];g=[{}for _ in v]
  for c,L,p,P in q:
-  if len(l:=[c+z for z in[k,-k,-1,1]*(x*s[c]<'>')or[[1,k][s[c]>'>']]if(c+z!=p)*s[c+z]>'#'if(c in g[P])-1])>1or c>len(s)-k-3:
+  if len(l:=[c+z for z in[k,-k,-1,1]*(x*s[c]<'>')or[[1,k][s[c]>'>']]if(c+z!=p)*s[c+z]>'#'if(c in g[P])-1])>1or c>(z:=len(s)-k-3):
    g[P][c]=L
-   if c<len(s)-k-3:q+=[(n,1,c,c)for n in l]
+   if c<z:q+=[(n,1,c,c)for n in l]
    else:i,t=P,L
   else:q+=[(n,L+1,c,P)for n in l]
  print(d(0))
