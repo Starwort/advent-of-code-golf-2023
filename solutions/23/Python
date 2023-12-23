@@ -1,33 +1,27 @@
-from collections import defaultdict
-G = {(i,j): c for j,r in enumerate(open(0))
-               for i,c in enumerate(r.strip()) if c != '#'}
+from collections import*
+G = {(i,j): c for j,r in enumerate(open(0))for i,c in enumerate(r.strip()) if c != '#'}
 def v(c): 
-   if c=="v": return ((0,1),)
-   if c==">": return ((1,0),)
-   return ((1,0),(-1,0),(0,1),(0,-1))
+ if c=="v": return ((0,1),)
+ if c==">": return ((1,0),)
+ return ((1,0),(-1,0),(0,1),(0,-1))
 E1 = {(x,y): [(x+xd,y+yd) for xd,yd in ((1,0),(-1,0),(0,1),(0,-1)) if (x+xd,y+yd) in G] for x,y in G}
 E2 = {(x,y): [(x+xd,y+yd) for xd,yd in v(G[x,y]) if (x+xd,y+yd) in G] for x,y in G}
 def collapse(E1, p, n, d=1):
-    while len(E1[n]) == 2:
-        p, n, d = n, [*{*E1[n]}-{p}][0], d+1
-    return n, d
+ while len(E1[n]) == 2:p, n, d = n, [*{*E1[n]}-{p}][0], d+1
+ return n, d
 def c(E1):
  E=defaultdict(list)
  for p in G: 
-   l = []
-   for n in E1[p]: k, d = collapse(E1, p, n); l.append((E[k], d)) 
-   E[p].extend([l, False, p])
+  l = []
+  for n in E1[p]: k, d = collapse(E1, p, n); l.append((E[k], d)) 
+  E[p].extend([l, False, p])
  return E
 def search(node, dist, stop=[*G][-1], seen=set()):
-    if node[2] == stop: return dist
-    node[1] = True
-    best = 0
-    for n, d in node[0]: 
-        if not n[1]: 
-            best = max(best, search(n, d + dist))
-    node[1] = False
-    return best
-E=c(E1)
-E3=c(E2)
-print(search(E3[[*G][0]], 0))
-print(search(E[[*G][0]], 0))
+ if node[2] == stop: return dist
+ node[1] = True
+ best = 0
+ for n,d in node[0]: 
+  if not n[1]:best = max(best, search(n, d + dist))
+ node[1] = False
+ return best
+print(search(c(E2)[[*G][0]],0),search(c(E1)[[*G][0]],0))
