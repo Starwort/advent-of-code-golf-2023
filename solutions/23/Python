@@ -12,11 +12,11 @@ for x in 1,0:
   else:q+=[(n,L+1,c,P)for n in l]
  v={0};
  def d(c): 
-  if c==i:return True
+  if c==i:return t
   v.add(c)
   b=0 
   for n in g[c]:
    if n not in v:b=max(b,g[c][n]+d(n))
   v.remove(c)
   return b
- print(d(0)+t-1)
+ print(d(0))
