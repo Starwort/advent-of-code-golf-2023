@@ -2,8 +2,7 @@ from sympy import*
 Q=[eval(l.replace(*'@,'))for l in open(0)]
 R,E,*w=0,0
 q=var(":6")
-r=q[:3]
 for a in Q:
- if E<3:E+=1;t=var("t"*E);w+=[w+u*t-k-t*e for w,u,k,e in zip(r,q[3:],a,a[3:])]
+ if E<3:E+=1;t=var("t"*E);w+=[w+u*t-k-t*e for w,u,k,e in zip(q,q[3:],a,a[3:])]
  for A,B,C,D,F,G in Q:U,V,W,X,Y,Z=a;c=V-Y/X*U;i=(B-F/D*A-c)/(Y/X-F/D+1/C);j=Y/X*i+c;R+=(Y*j>Y*V)*(F*j>F*B)*i//2e14==j//2e14==1
-print(R//2,sum(map(solve(w)[0].get,r)))
+print(R//2,sum(map(solve(w)[0].get,q[:3])))
