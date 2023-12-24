@@ -4,9 +4,9 @@ R,E,*w=0,0
 v=var
 r=v("x,y,z")
 q=v("o,e,f")
-for U,V,W,X,Y,Z in Q: 
+for U,V,W,X,Y,Z in Q:
  for b in Q: 
   A,B,C,D,F,G=b;m=Y/X;c=V-m*U;n=F/D;d=B-n*A
-  if m>n:i=(d-c)/(m-n);j=m*i+c;R+=(Y*j>Y*V)*(F*j>F*B)*(max(i,j)<4e14)*min(i,j)>2e14
+  if m>n:i=(d-c)/(m-n);j=m*i+c;R+=(Y*j>Y*V)*(F*j>F*B)*i//2e14==j//2e14==1
   if E<3:E+=1;t=v("t"*E);w+=[w+u*t-k-t*e for w,u,k,e in zip(r,q,b,b[3:])]
 print(R,sum(map(solve(w)[0].get,r)))
