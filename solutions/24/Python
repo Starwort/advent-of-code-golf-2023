@@ -1,5 +1,5 @@
 from sympy import*
-v,w,y,x,*z=var(":9"),[],0,6
+v,y,*z=var(":9"),0;x,*w=6,
 for l in open(0):
  m,n,_,o,p,_=a=eval(l.replace(*'@,'));w+=a,;z+=[v[i-3]+v[i]*v[x]-a[i-3]-v[x]*a[i]for i in(x<9)*b''];x+=1
  for a,b,c,d,e,_ in w:k=n-p/o*m;i=(b-e/d*a-k)/(p/o-e/d+1/c);j=p/o*i+k;y+=(p*j>p*n)+(e*j>e*b)>i/2e14>j//2e14>0
