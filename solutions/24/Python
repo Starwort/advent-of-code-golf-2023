@@ -8,5 +8,5 @@ for U,V,W,X,Y,Z in Q:
  for b in Q: 
   A,B,C,D,F,G=b;m=Y/X;c=V-m*U;n=F/D;d=B-n*A
   if m>n:i=(d-c)/(m-n);j=m*i+c;R+=all([Y*(j-V)>0,F*(j-B)>0,min(i,j)>2e14,max(i,j)<4e14])
-  if E<3:E+=1;t=v("t"*E);k=-1;w+=[w+u*t-b[k:=k+1]-t*b[k+3]for w,u in zip(r,q)]
+  if E<3:E+=1;t=v("t"*E);w+=[w+u*t-k-t*e for w,u,k,e in zip(r,q,b,b[3:])]
 print(R,sum(map(solve(w)[0].get,r)))
