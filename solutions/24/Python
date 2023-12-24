@@ -8,7 +8,7 @@ for a in Q:
  for b in Q: 
   m=a[4]/a[3];c=a[1]-m*a[0];n=b[4]/b[3];d=b[1]-n*b[0]
   if m<=n:continue
-  i=(d-c)/(m-n);j=m*i+c;t=1e14;h=len(w);k=-1;R+=all([a[4]*(j-a[1])>0,b[4]*(j-b[1])>0,min(i,j)>=2*t,max(i,j)<=4*t])
+  i=(d-c)/(m-n);j=m*i+c;h=len(w);k=-1;R+=all([a[4]*(j-a[1])>0,b[4]*(j-b[1])>0,min(i,j)>=2e14,max(i,j)<=4e14])
   if h<9:t=v("t%d"%h);w+=[w+u*t-b[k:=k+1]-b[k+3]*t for w,u in zip(r,q)]
 k=solve(w)[0]
 print(R,sum(k[A]for A in r))
