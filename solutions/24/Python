@@ -1,12 +1,11 @@
 from sympy import*
 Q=[eval(l.replace(*'@,'))for l in open(0)]
 R,E,*w=0,0
-v=var
-r=v("x,y,z")
-q=v("o,e,f")
+r=var("x,y,z")
+q=var("o,e,f")
 for U,V,W,X,Y,Z in Q:
  for b in Q: 
-  A,B,C,D,F,G=b;m=Y/X;c=V-m*U;n=F/D;d=B-n*A
-  if m>n:i=(d-c)/(m-n);j=m*i+c;R+=(Y*j>Y*V)*(F*j>F*B)*i//2e14==j//2e14==1
-  if E<3:E+=1;t=v("t"*E);w+=[w+u*t-k-t*e for w,u,k,e in zip(r,q,b,b[3:])]
+  A,B,C,D,F,G=b;m=Y/X;c=V-m*U;n=F/D
+  if m>n:i=(B-n*A-c)/(m-n);j=m*i+c;R+=(Y*j>Y*V)*(F*j>F*B)*i//2e14==j//2e14==1
+  if E<3:E+=1;t=var("t"*E);w+=[w+u*t-k-t*e for w,u,k,e in zip(r,q,b,b[3:])]
 print(R,sum(map(solve(w)[0].get,r)))
