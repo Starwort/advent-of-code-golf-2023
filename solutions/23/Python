@@ -2,8 +2,8 @@ s=open(0).read()
 v=[k:=142]*k*k
 def d(c):b=t;v[c]=0;[b:=max(b,g[c][n]+d(n))for n in g[c]if v[n]if c-i];v[c]=1;return b
 for x in'>z':
- q=[(1,1,0,0)];g=[{}for _ in v]
+ g,*q=[{}for _ in v],(1,1,0,0)
  for c,L,p,P in q:
-  if len(l:=[(c+z,1,c,c)for z in[k,-k,-1,1]*(s[c]<x)or[k**(s[c]>x)]if(c+z!=p)*s[c+z]>s if(c in g[P])-1])>1or(z:=k*k-k-k-4)<c:g[P][c]=L;exec(["i,t=P,L","q+=l"][c<z])
+  if len(l:=[(c+z,1,c,c)for z in[k,-k,-1,1]*(s[c]<x)or[k**(s[c]>x)]if(c+z!=p)*s[c+z]>s if(c in g[P])-1])>1or(z:=k*~-~-k-4)<c:g[P][c]=L;exec(["i,t=P,L","q+=l"][c<z])
   else:q+=[(n,L+1,c,P)for n,*_ in l]
  print(d(0))
