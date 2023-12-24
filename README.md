@@ -52,4 +52,4 @@ Day | APL (Dyalog APL) | AWK | J | K (ngn/k) | Lua | Perl | Python | Python (Ort
 21 | - | - | - | - | - | - | [170 - biz314](./solutions/21/Python) | - | -
 22 | - | - | - | [128 - okras](./solutions/22/K%20%28ngn/k%29) | - | - | [278 - _justconfused](./solutions/22/Python) | - | -
 23 | - | - | - | - | - | - | [392 - duckyluuk](./solutions/23/Python) | - | -
-24 | - | - | - | - | - | - | [422 - level_51](./solutions/24/Python) | - | -
+24 | - | - | - | - | - | - | [402 - level_51](./solutions/24/Python) | - | -
