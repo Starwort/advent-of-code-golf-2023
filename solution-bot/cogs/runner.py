@@ -335,7 +335,7 @@ class Runner(commands.Cog):
                 second=0, microsecond=0, minute=now.minute - (now.minute % 15)
             ) + timedelta(minutes=15)
             timestamp = int(soon.timestamp())
-            await ctx.last_message.append_line(
+            await ctx.reply(
                 "Sorry, submissions for this day are not yet open. Please try again"
                 f" <t:{timestamp}:R>"
             )
