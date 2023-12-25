@@ -1,5 +1,5 @@
 g={};L=len
 for l in open(0):
- for b in l[4:].split():P=V={b};exec("b,l=l[:3],b;g[b]=g.get(b,P)|{l};"*2)
+ for b in l[4:].split():exec("b,l=l[:3],b;V=P={b};g[l]=g.get(l,P)|P;"*2)
 while L(P:=(P|g[b])-V)>3:V|={b:=max((L(g[c]&V),c)for c in P)[1]}
 print(L(V)*L({*g}-V))
