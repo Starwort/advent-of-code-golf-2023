@@ -1,10 +1,8 @@
-from collections import*
 from random import*
-g,S=defaultdict(list),sum
+g={};s=sum
 for a,*B in[l.replace(*": ").split()for l in open(0)]:
- g[a]+=B
- for b in B:g[b]+=[a]
+ for b in B:g[b]=g.get(b,[])+[a];g[a]=g.get(a,[])+B
 p={k:choices([0,1],k=9)for k in g}
-for _ in'a'*30:p={k:[x/5+.8*S(L)/len(L)for x,*L in zip(p[k],*[p[K]for K in g[k]])]for k in p}
-L,*_,H=sorted(p.values(),key=S)
-print((X:=S(S(p[k])<S(L+H)/2for k in p))*(len(p)-X))
+for _ in'a'*30:p={k:[x/5+.8*s(L)/len(L)for x,*L in zip(p[k],*[p[K]for K in g[k]])]for k in p}
+L,*_,H=sorted(p.values(),key=s)
+print((X:=s(s(p[k])<s(L+H)/2for k in p))*(len(p)-X))
