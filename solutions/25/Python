@@ -3,5 +3,5 @@ for l in open(0):
  a,*B=l.split()
  for b in B:g[b]=g.get(b,[])+[k:=a[:3]];g[k]=g.get(k,[])+[b]
 V={b}
-while L(P:={a for v in V for a in g[v]}-V)>3:V|={min((-L({*g[c]}&V),c)for c in P)[1]}
+while L(P:={a for v in V for a in g[v]}-V)>3:V|={max((L({*g[c]}&V),c)for c in P)[1]}
 print(L(V)*(L(g)-L(V)))
