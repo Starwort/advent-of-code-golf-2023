@@ -1,6 +1,6 @@
 g={};L=len
 for l in open(0):
- for b in l[4:].split():g[b]=g.get(b,[])+[k:=l[:3]];g[k]=g.get(k,[])+[b]
+ for b in l[4:].split():g[k]=b,*g.get(k:=l[:3],[]);g[b]=*g.get(b,[]),k
 P=V={b}
 while L(P:=(P|{*g[b]})-V)>3:V|={b:=max((L({*g[c]}&V),c)for c in P)[1]}
 print(L(V)*(L(g)-L(V)))
