@@ -325,10 +325,9 @@ class Runner(commands.Cog):
                 return
         real_answer_path = aoc_data_dir / "2023" / f"{day}"
         try:
-            real_answers = (
-                (real_answer_path / "1.solution").read_text(),
-                (real_answer_path / "2.solution").read_text(),
-            )
+            real_answers = ((real_answer_path / "1.solution").read_text(),)
+            if day != 25:
+                real_answers += ((real_answer_path / "2.solution").read_text(),)
         except FileNotFoundError:
             now = datetime.utcnow()
             soon = now.replace(
@@ -340,7 +339,11 @@ class Runner(commands.Cog):
                 f" <t:{timestamp}:R>"
             )
             return
-        if real_answers[0] in code.content or real_answers[1] in code.content:
+        if (
+            real_answers[0] in code.content
+            or day != 25
+            and real_answers[1] in code.content
+        ):
             await ctx.reply("Don't cheat, that's not cool")
             return
         language = ato_lang["name"]
@@ -364,10 +367,9 @@ class Runner(commands.Cog):
             if cases_dir.exists():
                 for additional_case in cases_dir.iterdir():
                     input = (additional_case / "input").read_text()
-                    real_answers = (
-                        (additional_case / "1.solution").read_text(),
-                        (additional_case / "2.solution").read_text(),
-                    )
+                    real_answers = ((additional_case / "1.solution").read_text(),)
+                    if day != 25:
+                        real_answers += ((additional_case / "2.solution").read_text(),)
                     answers = await self.execute(
                         ctx,
                         code.content,
@@ -398,16 +400,16 @@ class Runner(commands.Cog):
         return out_answers
 
     async def grade_solution(
-        self, ctx: Context, answers: list[str], real_answers: tuple[str, str]
+        self, ctx: Context, answers: list[str], real_answers: tuple[str, ...]
     ) -> bool:
         answers = self.parse_answers(answers)
-        if len(answers) != 2:
+        if len(answers) != len(real_answers):
             await ctx.last_message.append_line(
                 "Your solution gave the wrong number of answers; found:"
-                f" {len(answers)} ({', '.join(answers)}), expected: 2"
+                f" {len(answers)} ({', '.join(answers)}), expected: {len(real_answers)}"
             )
             return False
-        if (answers[0], answers[1]) == real_answers:
+        if tuple(answers) == real_answers:
             return True
         elif answers[0] == real_answers[0]:
             await ctx.last_message.append_line(
@@ -415,7 +417,7 @@ class Runner(commands.Cog):
                 f" {real_answers[1]}"
             )
             return False
-        elif answers[1] == real_answers[1]:
+        elif len(answers) == 1 or answers[1] == real_answers[1]:
             await ctx.last_message.append_line(
                 f"Solution gave wrong answer for part 1: {answers[0]}! Correct answer:"
                 f" {real_answers[0]}"
@@ -543,7 +545,8 @@ class Runner(commands.Cog):
             (await file.read()).decode(file.content_type.split("charset=")[1])
         )
         (test_case_path / "1.solution").write_text(answer_1)
-        (test_case_path / "2.solution").write_text(answer_2)
+        if day != 25:
+            (test_case_path / "2.solution").write_text(answer_2)
         await ctx.reply(f"Added test case {case_name!r} successfully.")
 
 
