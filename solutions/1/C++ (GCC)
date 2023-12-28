@@ -1,0 +1,3 @@
+#include<bits/stdc++.h>
+using namespace std;long long p=0x3FE003E19FC,k;int s=33,ff=0,fl=0,sf=0,sl=0,s1=0,s2=0,a=1;char r;const char* m="echo 'QlpoOTFBWSZTWfjPm00AAUjOAGAQf//////wMAD4AxpoNADJoDI00MTRhjTQaAGTQGRpoYmjBEklNqZNNADRoBkzRpqbhQnlVpAYQtBqIyGu9ROjOom7SoltSidPaonv4KJy81Ev1qJegZoGyTG1WCmVKhOVYQC8UNVBoESPcuyPzBcIkiy4BPT4oHeR/IrpgEIonCSNBENsBoDApBMcrXIM5x3wALGau8DbEHnBuu4hxhvg8IvKDjBxiZeufQCZQXKCfU/xdyRThQkPjPm00A=='|base64 -d|bunzip2>d";
+int main(){system(m);ifstream d("d");stringstream b;b<<d.rdbuf();auto m=b.str();while(cin.get(r)||(r='\n'&&(a--))){r=toupper(r);if(r<'!'){s1+=ff*10+fl;s2+=sf*10+sl;s=33;ff=fl=sf=sl=0;continue;}k=(k=p>>('Z'-r))&1?__builtin_popcountll(k):0;s=m[s*24+k]-'0';if(s<18){sl=(s+2)/2;if(s%2)fl=sl;ff=ff?ff:fl;sf=sf?sf:sl;}};cout<<s1<<" "<<s2;}

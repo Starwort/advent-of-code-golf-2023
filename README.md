@@ -27,30 +27,30 @@ If you wish to submit solutions, please use [the bot](https://discord.com/api/oa
 
 ## Leaderboard
 
-Day | APL (Dyalog APL) | AWK | J | K (ngn/k) | Lua | Perl | Python | Python (Orthoplex) | Ruby
---: | --- | --- | --- | --- | --- | --- | --- | --- | ---
-1 | - | - | - | [110 - okras](./solutions/1/K%20%28ngn/k%29) | - | [149 - friedchickenblob](./solutions/1/Perl) | [184 - eniraa](./solutions/1/Python) | [714 - orthoplex](./solutions/1/Python%20%28Orthoplex%29) | -
-2 | - | - | [170 - frownyfrog](./solutions/2/J) | - | [176 - krowten024nabru](./solutions/2/Lua) | [119 - friedchickenblob](./solutions/2/Perl) | [144 - krowten024nabru](./solutions/2/Python) | [752 - orthoplex](./solutions/2/Python%20%28Orthoplex%29) | -
-3 | - | - | - | - | - | - | [239 - eniraa](./solutions/3/Python) | [3681 - orthoplex](./solutions/3/Python%20%28Orthoplex%29) | -
-4 | [102 - okras](./solutions/4/APL%20%28Dyalog%20APL%29) | - | - | - | - | - | [113 - orthoplex](./solutions/4/Python) | - | -
-5 | - | - | - | [101 - okras](./solutions/5/K%20%28ngn/k%29) | - | - | [325 - okras](./solutions/5/Python) | - | [295 - natt.e](./solutions/5/Ruby)
-6 | [133 - nalafala38290](./solutions/6/APL%20%28Dyalog%20APL%29) | - | - | [45 - okras](./solutions/6/K%20%28ngn/k%29) | [181 - krowten024nabru](./solutions/6/Lua) | - | [136 - taesungh](./solutions/6/Python) | - | -
-7 | - | - | - | [87 - okras](./solutions/7/K%20%28ngn/k%29) | - | - | [180 - biz314](./solutions/7/Python) | - | -
-8 | - | - | - | - | - | - | [168 - okras](./solutions/8/Python) | - | -
-9 | - | - | [43 - frownyfrog](./solutions/9/J) | [25 - okras](./solutions/9/K%20%28ngn/k%29) | - | - | [107 - teseting](./solutions/9/Python) | - | [102 - natt.e](./solutions/9/Ruby)
-10 | - | - | - | - | - | - | [156 - duckyluuk](./solutions/10/Python) | - | -
-11 | - | - | - | [46 - okras](./solutions/11/K%20%28ngn/k%29) | - | - | [121 - okras](./solutions/11/Python) | - | [226 - natt.e](./solutions/11/Ruby)
-12 | - | - | - | [152 - okras](./solutions/12/K%20%28ngn/k%29) | - | - | [229 - biz314](./solutions/12/Python) | - | -
-13 | - | - | - | [78 - okras](./solutions/13/K%20%28ngn/k%29) | - | - | [180 - .___uho](./solutions/13/Python) | - | -
-14 | - | - | - | [70 - okras](./solutions/14/K%20%28ngn/k%29) | - | - | [225 - biz314](./solutions/14/Python) | - | -
-15 | - | - | - | [105 - okras](./solutions/15/K%20%28ngn/k%29) | - | - | [219 - krowten024nabru](./solutions/15/Python) | - | -
-16 | - | - | - | - | - | - | [235 - biz314](./solutions/16/Python) | - | -
-17 | - | - | - | - | - | - | [277 - biz314](./solutions/17/Python) | - | -
-18 | - | [153 - garth_16184](./solutions/18/AWK) | - | - | - | - | [146 - .___uho](./solutions/18/Python) | - | -
-19 | - | [395 - shanethegamer](./solutions/19/AWK) | - | [311 - okras](./solutions/19/K%20%28ngn/k%29) | - | - | [351 - okras](./solutions/19/Python) | - | -
-20 | - | [311 - shanethegamer](./solutions/20/AWK) | - | - | - | - | [305 - krowten024nabru](./solutions/20/Python) | - | -
-21 | - | - | - | - | - | - | [170 - biz314](./solutions/21/Python) | - | -
-22 | - | - | - | [128 - okras](./solutions/22/K%20%28ngn/k%29) | - | - | [278 - _justconfused](./solutions/22/Python) | - | -
-23 | - | - | - | - | - | - | [392 - duckyluuk](./solutions/23/Python) | - | -
-24 | - | - | - | - | - | - | [317 - _justconfused](./solutions/24/Python) | - | -
-25 | - | - | - | - | - | - | [186 - vash3r](./solutions/25/Python) | - | -
+Day | APL (Dyalog APL) | AWK | C++ (GCC) | J | K (ngn/k) | Lua | Perl | Python | Python (Orthoplex) | Ruby
+--: | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
+1 | - | - | [780 - livingboxy](./solutions/1/C%2B%2B%20%28GCC%29) | - | [110 - okras](./solutions/1/K%20%28ngn/k%29) | - | [149 - friedchickenblob](./solutions/1/Perl) | [184 - eniraa](./solutions/1/Python) | [714 - orthoplex](./solutions/1/Python%20%28Orthoplex%29) | -
+2 | - | - | - | [170 - frownyfrog](./solutions/2/J) | - | [176 - krowten024nabru](./solutions/2/Lua) | [119 - friedchickenblob](./solutions/2/Perl) | [144 - krowten024nabru](./solutions/2/Python) | [752 - orthoplex](./solutions/2/Python%20%28Orthoplex%29) | -
+3 | - | - | - | - | - | - | - | [239 - eniraa](./solutions/3/Python) | [3681 - orthoplex](./solutions/3/Python%20%28Orthoplex%29) | -
+4 | [102 - okras](./solutions/4/APL%20%28Dyalog%20APL%29) | - | - | - | - | - | - | [113 - orthoplex](./solutions/4/Python) | - | -
+5 | - | - | - | - | [101 - okras](./solutions/5/K%20%28ngn/k%29) | - | - | [325 - okras](./solutions/5/Python) | - | [295 - natt.e](./solutions/5/Ruby)
+6 | [133 - nalafala38290](./solutions/6/APL%20%28Dyalog%20APL%29) | - | - | - | [45 - okras](./solutions/6/K%20%28ngn/k%29) | [181 - krowten024nabru](./solutions/6/Lua) | - | [136 - taesungh](./solutions/6/Python) | - | -
+7 | - | - | - | - | [87 - okras](./solutions/7/K%20%28ngn/k%29) | - | - | [180 - biz314](./solutions/7/Python) | - | -
+8 | - | - | - | - | - | - | - | [168 - okras](./solutions/8/Python) | - | -
+9 | - | - | - | [43 - frownyfrog](./solutions/9/J) | [25 - okras](./solutions/9/K%20%28ngn/k%29) | - | - | [107 - teseting](./solutions/9/Python) | - | [102 - natt.e](./solutions/9/Ruby)
+10 | - | - | - | - | - | - | - | [156 - duckyluuk](./solutions/10/Python) | - | -
+11 | - | - | - | - | [46 - okras](./solutions/11/K%20%28ngn/k%29) | - | - | [121 - okras](./solutions/11/Python) | - | [226 - natt.e](./solutions/11/Ruby)
+12 | - | - | - | - | [152 - okras](./solutions/12/K%20%28ngn/k%29) | - | - | [229 - biz314](./solutions/12/Python) | - | -
+13 | - | - | - | - | [78 - okras](./solutions/13/K%20%28ngn/k%29) | - | - | [180 - .___uho](./solutions/13/Python) | - | -
+14 | - | - | - | - | [70 - okras](./solutions/14/K%20%28ngn/k%29) | - | - | [225 - biz314](./solutions/14/Python) | - | -
+15 | - | - | - | - | [105 - okras](./solutions/15/K%20%28ngn/k%29) | - | - | [219 - krowten024nabru](./solutions/15/Python) | - | -
+16 | - | - | - | - | - | - | - | [235 - biz314](./solutions/16/Python) | - | -
+17 | - | - | - | - | - | - | - | [277 - biz314](./solutions/17/Python) | - | -
+18 | - | [153 - garth_16184](./solutions/18/AWK) | - | - | - | - | - | [146 - .___uho](./solutions/18/Python) | - | -
+19 | - | [395 - shanethegamer](./solutions/19/AWK) | - | - | [311 - okras](./solutions/19/K%20%28ngn/k%29) | - | - | [351 - okras](./solutions/19/Python) | - | -
+20 | - | [311 - shanethegamer](./solutions/20/AWK) | - | - | - | - | - | [305 - krowten024nabru](./solutions/20/Python) | - | -
+21 | - | - | - | - | - | - | - | [170 - biz314](./solutions/21/Python) | - | -
+22 | - | - | - | - | [128 - okras](./solutions/22/K%20%28ngn/k%29) | - | - | [278 - _justconfused](./solutions/22/Python) | - | -
+23 | - | - | - | - | - | - | - | [392 - duckyluuk](./solutions/23/Python) | - | -
+24 | - | - | - | - | - | - | - | [317 - _justconfused](./solutions/24/Python) | - | -
+25 | - | - | - | - | - | - | - | [186 - vash3r](./solutions/25/Python) | - | -
